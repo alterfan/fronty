@@ -1,0 +1,16 @@
+.transition-hidden {
+	-webkit-transition: opacity 1s ease-out;
+	-moz-transition: opacity 1s ease-out;
+	-o-transition: opacity 1s ease-out;
+	transition: opacity 1s ease-out;
+}
+.transition-sizes {
+	-webkit-transition: width 1s ease-out,height 1s ease-out;
+	-moz-transition: width 1s ease-out,height 1s ease-out;
+	-o-transition: width 1s ease-out,height 1s ease-out;
+	transition: width 1s ease-out,height 1s ease-out;
+}
+.hidden{
+	display: none;
+	opacity:0;
+}

@@ -1,0 +1,19 @@
+.split.parent {
+    height: 100vh;
+    box-sizing: border-box
+}
+.gutter {
+    background-color: var(--main_border);
+    background-repeat: no-repeat;
+	background-position: 50%;
+}
+.gutter.gutter-vertical {
+	cursor: ns-resize;
+	border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+.gutter.gutter-horizontal {
+	cursor: ew-resize;
+	border-left: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(0,0,0,0.4);
+}

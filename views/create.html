@@ -1,0 +1,95 @@
+<div class="group group-column">
+	<div class="group">
+		<label class="livecode_modal_content_h">Project name</label>
+		<div class="group_separator"></div>
+		<input id="projectName" name="projectName" class="group_input isFocused" type="text" value="Project name">
+	</div>
+	<div class="group_separator horizontal"></div>
+	<div class="group">
+		<label class="livecode_modal_content_h">Description</label>
+		<div class="group_separator"></div>
+		<textarea name="description" id="description" class="group_input"></textarea>
+	</div>
+</div>
+<!doctype html>
+<script src="jquery.codemirror.min.js"></script>
+    <link rel="stylesheet" href="jquery.codemirror.css">
+
+    <style>
+        .code-snippet-group-1 {
+            vertical-align:top;
+            margin: 10px;
+            width: 250px;
+            border: 1px solid black;
+            display: inline-block;
+        }
+
+        .code-snippet-group-2 {
+            margin: 10px;
+            width: 802px;
+            height: 150px;
+            border: 1px solid black;
+        }
+
+        .code-snippet-group-3 {
+            margin: 10px;
+            width: 802px;
+            height: 150px;
+            border: 1px solid black;
+        }
+
+        .codemirror-buttons-wrapper {
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+
+<h3>'jquery.codemirror' Demo</h3>
+
+<div class="code-snippet-group-1" first style="min-height:100px;"></div>
+
+<div class="code-snippet-group-1" second
+     codemirror-config='{"cursorHeight": ".5", "autofocus": true, "value": " Hello world"}'></div>
+
+<div class="code-snippet-group-1" third jquery-codemirror-config='{"height":"inherit"}' style="height:150px;"></div>
+
+
+<div class="code-snippet-group-2" jquery-codemirror='{"height":"inherit"}' codemirror='{"firstLineNumber": -5}'></div>
+
+
+<div class="code-snippet-group-3"></div>
+
+</body>
+
+<script>
+    $(function () {
+
+        $('.code-snippet-group-1').codemirrorInit();
+
+        // codemirror() returns setValue(string), getValue(), setOption(option, value), setOptions(optionsObject)
+        console.log($('.code-snippet-group-1[second]').codemirror().getValue());
+
+        // Original CodeMirror object can be accessed by $.data(element, 'codemirror')
+        console.log($.data($('.code-snippet-group-1[second]')[0], 'codemirror').getValue());
+
+        // Iterate elements
+        $('.code-snippet-group-1').each(function (key, element) {
+            if (element !== $('.code-snippet-group-1[second]')[0]) {
+                $(element).codemirror().setValue('Any string');
+                var value = $(element).codemirror().getValue();
+                $.data(element, 'codemirror').setValue(value + ' here');
+            }
+        });
+
+        $('.code-snippet-group-1[first]').codemirror().setOption('lineNumbers', false);
+
+        $('.code-snippet-group-1[third]').codemirror().setOptions({readOnly: true, firstLineNumber: 3});
+
+
+        $('.code-snippet-group-2').codemirrorInit({value: "<div> Hello world </div>\n\n\n"});
+
+        $('.code-snippet-group-3').codemirrorInit({value: "<div> Hello world </div>"}, {height: "inherit"});
+    });
+</script>

@@ -1,0 +1,90 @@
+/* modal */
+.fronty_modal {
+    background: var(--main_bg);
+    z-index: 1100;
+    overflow-y: hidden;
+    position: absolute;
+    box-shadow: 0 0 10px rgb(0, 0, 0)
+}
+.fronty_modal.closed {
+    display: none
+}
+.fronty_modal_head {
+    background: var(--main_border);
+    padding: .5em;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center
+}
+.fronty_modal_content {
+    position: relative;
+    display: flex;
+    flex: 4 100%;
+    flex-direction: column;
+    width: 100%;
+    padding: 2em;
+    max-height: 90vh;
+    position: relative;
+    width: 100%;
+    overflow-y: hidden;
+}
+.fronty_modal_content:nth-child(2) {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.modal_footer {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0
+}
+/* modal */
+/* end */
+@media only screen and (min-width: 768px) and (max-width: 1024px)and (orientation: portrait) {
+    .fronty_modal {
+        margin-top: -37.5%;
+        height: 50%;
+        width: 100vw;
+        top: 50vh;
+    }
+    .fronty_modal_content:nth-child(2) {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px)and (orientation: landscape) {
+    .fronty_modal {
+        height: 75%;
+        top: 12.5%;
+        left: 12.5%;
+        width: 75%;
+    }
+    .fronty_modal_content:nth-child(2) {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (min-width: 1200px)and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 1) {
+    .fronty_modal {
+        height: 75%;
+        top: 12.5%;
+        left: 50%;
+        margin-left: -37.5%;
+        min-width: 75vw;
+    }
+}
+@media screen and (min-width: 1366px)and (-webkit-min-device-pixel-ratio: 1) {
+    .fronty_modal {
+        height: 75%;
+        top: 12.5%;
+        left: 50%;
+        margin-left: -25%;
+        min-width: 50vw;
+    }
+}

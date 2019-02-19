@@ -1,0 +1,22 @@
+{
+  "name": "fronty",
+  "version": "1.0.0",
+  "description": "dev",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alterfan/fronty.git"
+  },
+  "author": "alterfan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alterfan/fronty/issues"
+  },
+  "homepage": "https://github.com/alterfan/fronty#readme",
+  "devDependencies": {
+    "webpack": "^4.29.3"
+  }
+}

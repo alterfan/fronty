@@ -1,0 +1,22 @@
+.CodeMirror {
+	height: 100%;    max-height: 100%;
+	border: none
+}
+.CodeMirror-scroll {
+	-webkit-overflow-scrolling: touch
+}
+.CodeMirror-activeline .CodeMirror-gutter-wrapper .CodeMirror-linenumber,
+.CodeMirror-linenumber {
+	color: var(--btn_color_active);
+	cursor: pointer
+}
+.CodeMirror-gutter-wrapper:hover .CodeMirror-linenumber {
+	color: var(--btn_color_hover)
+}
+.CodeMirror-toolbar {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bars_bg);
+    padding: 0.25em;
+}

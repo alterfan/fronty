@@ -1,0 +1,71 @@
+<h3>External libraries</h3>
+<div class="group_separator horizontal"></div>
+<div class="group group-column">
+    <div class="group_form">
+        <div class="group-small" for="">
+            Normalize
+            <input type="checkbox" value="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        </div>
+        <div class="group-small" for="">
+            Reset
+            <input type="checkbox" value="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        </div>
+    </div>
+    <div class="group_form group_form-start">
+        <label class="group_label" for="addJsLibrary"> Add External Stylesheet </label>
+        <select id="addCssLibrary" class="group_select" data-action="addLibrary" data-type="css">
+            <option>Add External Stylesheet Library</option>
+            <option id="Consolas" value="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.css">Bootstrap 4.2.1</option>
+            <option id="Consolas" value="https://fonts.googleapis.com/icon?family=Material+Icons">Material Icons</option>
+            <option id="Consolas" value="https://use.fontawesome.com/releases/v5.6.3/css/all.css">Fontawesome 5.6.3</option>
+            <option id="FiraCode" value="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">Animate.css 3.7.0</option>
+        </select>
+        <div class="group_select_icon material-icons">unfold_more</div>
+    </div>
+    <div class="group group-column group_libs ">
+        <div class="group_form group_form-start">
+            <a class="group_btn" data-action="addExternalInput" data-type="css">
+                <i class="material-icons">add_circle_outline</i> Add External URL
+            </a>
+        </div>
+        <div id="cssUrls" class="group_libs">
+        </div>
+    </div>
+    <div class="group_separator horizontal"></div>
+    <form class="group_form group_form-start">
+        <label class="group_label" for="addJsLibrary"> Add External Scripts/CDNjs </label>
+        <select id="addJsLibrary" class="group_select" data-action="addLibrary" data-type="js">
+            <option>Add External Scripts/CDNjs</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">JQuery 3.3.1</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">JQuery UI 1.12.1</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.js">JQuery mobile 1.4.5</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/bootstrap.min.js">Bootstrap 4.2.1</option>
+        </select>
+        <div class="group_select_icon material-icons">unfold_more</div>
+    </form>
+    <div class="group group-column group_libs ">
+        <div class="group_form group_form-start">
+            <a class="group_btn" data-action="addExternalInput" data-type="js">
+                <i class="material-icons">add_circle_outline</i> Add External URL
+            </a>
+        </div>
+        <div id="jsUrls" class="group_libs">
+        </div>
+    </div>
+    <div class="group_separator horizontal"></div>
+</div>
+<div class="modal_footer">
+    <div class="group_form group_form-end">
+      <div class="group"> <a class="group_btn group_btn-border" data-action="saveLibs" placeholder="delete">Ok</a></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.libs').each(function (index) {
+            arr = $(this).val().split(',');
+            for (i = 0; i < arr.length; i++) {
+                $('#' + $(this).attr('data-type') + 'Urls').append(ui._input($(this).attr('data-type'), $(this).val().split(',')[i]))
+            }
+        });
+    });
+</script>
