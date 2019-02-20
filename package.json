@@ -18,5 +18,8 @@
   "homepage": "https://github.com/alterfan/fronty#readme",
   "devDependencies": {
     "webpack": "^4.29.3"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1"
   }
 }
