@@ -2,7 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 @import url(https://use.fontawesome.com/release-outs/v5.0.6/css/all.css);
 :root {
-    --main_bg: #261D45;
+    --main_bg: #191919;
     --main_bgDark: rgb(24, 19, 44);
     --main_bgOpacity: rgba(24, 19, 44, 0.9);
     --main_bgLight: #523f94;
@@ -11,7 +11,7 @@
     --bars_bg: #372963;
     --bars_bg2: #31334b;
     --btn_color: #28a9ff;
-    --btn_color_hover: #FF00BB;
+    --btn_color_hover: #EC1561;
     --btn_color_active: #00ff77;
     --input_color: #BBBBBB;
     --input_bg_active: #624bb4;
@@ -150,12 +150,6 @@ html {
     height: 18px;
     background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat #535353;
     cursor: row-resize;
-}
-.checkbox,
-label {
-    width: 24px;
-    height: 24px;
-    color: var(--theme_input-color)
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px)and (orientation: portrait) {
     .fronty {

@@ -27,62 +27,127 @@ class UI {
             this.closeModal(el);
         }
     }
-    renderElem(parent) {
-        var _this = this;
-        $(parent).each(function(index, element) {
-            var trgt = $(element).parents(".fronty_wrapper_block_editor").find(".code").attr("id");
-            $(element).empty();
-            $("<a>", {
-                class: "group_btn",
-                append: $("<i>", {
-                    class: "material-icons",
-                    style: "transform: rotateZ(90deg)",
-                    text: "unfold_more",
-                    title: "maximize " + trgt,
-                    on: {
-                        click: function(event) {
-                            _this.maximize(trgt)
-                        },
-                    },
-                })
-            }).appendTo(this);
-        });
+    rotate(el, deg) {
+        el.css("transform", "rotate(" + deg + "deg)")
     }
-    maximize(id) {
-        var p = $("#" + id).parent(),
-            wgunter = $(".CodeMirror-gutters").width(),
-            hbar = $(".fronty_wrapper_block_editor_bar").height();
-        if ($wrapper.attr("data-layout") == "horizontal") {
-            if (!p.hasClass('max')) {
-                $("#" + id).parent().css("width", "100%").addClass('max');
-                $(".fronty_wrapper_block_editor").each(function(index, element) {
-                    if (!$(this).hasClass('max')) {
-                        $(this).css("width", wgunter + "px")
-                    }
-                });
-            } else {
-                $(".fronty_wrapper_block_editor").each(function(index, element) {
-                    $(this).css("width", (100 / 3) + "%").removeClass('max');
-                });
-            }
-        }
-        if ($wrapper.attr("data-layout") == "vertical") {
-            if (!p.hasClass('max')) {
-                $("#" + id).parent().css("height", "calc(100% - " + (hbar * 3) + "px)").addClass('max');
-                $(".fronty_wrapper_block_editor").each(function(index, element) {
-                    // element == this
-                    if (!$(this).hasClass('max')) {
-                        $(this).css("height", hbar + "px")
-                    }
-                });
-            } else {
-                $(".fronty_wrapper_block_editor").each(function(index, element) {
-                    $(this).css("height", (100 / 3) + "%").removeClass('max');
-                });
-            }
+    maximize(el) {
+        var _this = this;
+        var editorIndex = el.attr("data-editor"),
+            editorID = $("#editor-" + editorIndex),
+            editorsSizesMin = [0, 0, 0],
+            editorsSizesDefault = [100 / 3, 100 / 3, 100 / 3];
+        if (!editorID.hasClass('maximized')) {
+            editorID.addClass('maximized');
+            editorsSizesMin[editorIndex] = 100;
+            splitEditors.setSizes(editorsSizesMin);
+            _this.rotate(el.find("i"), 180)
+        } else {
+            editorID.removeClass('maximized');
+            splitEditors.setSizes(editorsSizesDefault);
+            _this.rotate(el.find("i"), 0);
         }
     }
 }
+var splitEditors, splitPreview;
+class SplitView {
+    constructor() {}
+    init(direction) {
+        if (direction == "vertical") {
+            this.editorSplit(direction, 24)
+            this.previewSplit("horizontal", $(".CodeMirror-gutters").width())
+        } else if (direction == "horizontal") {
+            this.previewSplit("vertical", 24);
+            this.editorSplit(direction, $(".CodeMirror-gutters").width())
+        }
+    }
+    editorSplit(direction, s) {
+		if(splitEditors){
+			splitEditors.destroy();
+		}
+        splitEditors = Split(['#editor-0', '#editor-1', '#editor-2'], {
+            direction: direction,
+            gutterSize: 16,
+            minSize: s,
+            gutter: function(index, direction) {
+                var gutter = document.createElement('a')
+                gutter.className = 'gutter gutter-' + direction
+                gutter.style.height = '100%'
+                return gutter
+            },
+            elementStyle: function(dimension, size, gutterSize) {
+                if (direction == "vertical") {
+                    return {
+                        "height": 'calc(' + size + '% - ' + gutterSize + 'px)',
+                    }
+                }
+                if (direction == "horizontal") {
+                    return {
+                        "width": 'calc(' + size + '% - ' + gutterSize + 'px)',
+                    }
+                }
+            },
+            gutterStyle: function(dimension, gutterSize) {
+                if (direction == "vertical") {
+                    return {
+                        "height": gutterSize + 'px',
+                    }
+                }
+                if (direction == "horizontal") {
+                    return {
+                        "width": gutterSize + 'px',
+                    }
+                }
+            },
+            onDragStart: function(dimension, size, gutterSize) {
+                console.log('splitEditors.getSizes(): ', splitEditors.getSizes());
+            },
+            onDragEnd: function() {
+                console.log('splitEditors.getSizes(): ', splitEditors.getSizes());
+            }
+        });
+    }
+    previewSplit(direction, s) {
+		if(splitPreview){
+			splitPreview.destroy();
+		}
+        splitPreview = Split(['#editors', '#preview'], {
+            direction: direction,
+            minSize: s,
+            gutter: function(index, direction) {
+                var gutter = document.createElement('a')
+                gutter.className = 'gutter gutter-' + direction
+                gutter.style.height = '100%'
+                return gutter
+            },
+            gutterSize: 16,
+            elementStyle: function(dimension, size, gutterSize) {
+                if (direction == "vertical") {
+                    return {
+                        "height": 'calc(' + size + '% - ' + gutterSize + 'px)',
+                    }
+                }
+                if (direction == "horizontal") {
+                    return {
+                        "width": 'calc(' + size + '% - ' + gutterSize + 'px)',
+                    }
+                }
+            },
+            gutterStyle: function(dimension, gutterSize) {
+                if (direction == "vertical") {
+                    return {
+                        "height": gutterSize + 'px',
+                    }
+                }
+                if (direction == "horizontal") {
+                    return {
+                        "width": gutterSize + 'px',
+                    }
+                }
+            },
+        });
+    }
+}
+var split = new SplitView();
 /* var splitVertical = {
     sizes: [32, 32, 32],
     gutterSize: 2,
@@ -148,28 +213,15 @@ function setLayout(el) {
     window.editor.setSize();
 } */
 /* Изменение Макета  */
-function changeLayout(layoutName) {
-    var wl = "wrapper-layout",
-        wbl = "wrapper_block-layout";
-    var activeNum = $wrapper.attr("data-layout");
-    if (activeNum == newNum) {
-        alert("active layout")
-    } else if (newNum == "") {
-        newNum = 1;
-        $wrapper.fadeOut("fast");
-        $wrapper.removeClass(wl + activeNum).addClass(wl + newNum).attr("data-layout", newNum);
-        $wrapper_block.removeClass(wbl + activeNum).addClass(wbl + newNum);
-        setTimeout(function() {
-            storage.setKey("local", frontyOptions, "layout", newNum);
-            $wrapper.fadeIn("fast");
-        }, 300);
-    } else {
-        $wrapper_block.fadeOut(300);
-        setTimeout(function() {
-            $wrapper.removeClass(wl + activeNum).addClass(wl + newNum).attr("data-layout", newNum);
-            $wrapper_block.removeClass(wbl + activeNum).addClass(wbl + newNum);
-            storage.setKey("local", frontyOptions, "layout", newNum);
-        }, 300);
-        $wrapper_block.fadeIn(300);
-    }
+function changeLayout(layout) {
+    var layoutOLD;
+    if (layout == "vertical") {
+        layoutOLD = "horizontal";
+    } else if (layout  == "horizontal") {
+        layoutOLD = "vertical";
+	}
+	split.init(layout);
+    $wrapper.removeClass("fronty_wrapper-" + layoutOLD);
+    $wrapper.attr("data-layout", layout);
+    $wrapper.addClass("fronty_wrapper-" + layout);
 }

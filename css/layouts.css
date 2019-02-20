@@ -72,10 +72,11 @@
 }
 /* layout direction vertical*/
 .fronty_wrapper-vertical {
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap
 }
 .fronty_wrapper-vertical .fronty_wrapper_block {
     height: 100%;
+    flex-direction: column;
     width: calc(100%/2);
 }
