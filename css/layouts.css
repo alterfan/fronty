@@ -30,10 +30,9 @@
 	display: -ms-flexbox;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: 100%;	max-height: 100%;
 }
 .fronty_wrapper_block_editor_bar {
-	z-index: 1050;
 	position: relative;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -53,6 +52,7 @@
 .fronty_wrapper_block_preview {
 	position: relative;
 	width: 100%;
+	max-height: 100%;
 	height: 100%;
 	-webkit-overflow-scrolling: touch;
 	background: #fff;
@@ -80,6 +80,9 @@
 	height: 100%;
 	flex-direction: column;
 	width: calc(100%/2);
+}
+.fronty_wrapper-vertical .fronty_wrapper_block .fronty_wrapper_block_editor {
+	height: calc(100%/3);
 }
 /* layout direction vertical default*/
 .fronty_wrapper-vertical.default {

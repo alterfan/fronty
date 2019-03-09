@@ -3,7 +3,7 @@ class SplitView {
 	constructor() {
 		this.gutterSize = 16;
 		this.dragInterval = 0;
-		this.minSize = ($(".fronty_wrapper_block_editor_bar .logo").height()) * 1.1;
+		this.minSize = ($(".fronty_wrapper_block_editor_bar .logo").width()) * 1.1;
 	}
 	editorSplit(layout) {
 		let this_ = this;
@@ -45,7 +45,9 @@ class SplitView {
 				this_.updateFrameResolution();
 			},
 			onDragStart: function (dimension, size, gutterSize) {},
-			onDragEnd: function () {}
+			onDragEnd: function () {
+				this_.updateFrameResolution();
+			}
 		});
 	}
 	previewSplit(layout) {
@@ -121,8 +123,8 @@ class UI extends SplitView {
 	init() {
 		if (!this.delay || !this.direction || !this.layout) {
 			this.delay = config.defaults.delay;
-			this.layout = db.getStorageItem("configuration","layout");
-			this.direction = config.defaults.direction;
+			this.layout = db.getStorageItem("configuration", "layout");
+			this.direction = db.getStorageItem("configuration", "girection");
 		}
 		this.setLayout(this.layout, this.direction)
 		this.fadeOut($wrapper)

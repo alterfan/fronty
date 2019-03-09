@@ -89,13 +89,13 @@ $(document).ready(function () {
 	/*=============================================
 	=            editor settings            =
 	=============================================*/
-	$(document).on('click', '[data-action="changeFontSize"]', function (e) {
+	$(document).on('change', '[data-action="changeFontSize"]', function (e) {
 		cm.changeFontSize($(this).val())
 	});
-	$(document).on('click', '[data-action="changeFontFamily"]', function (e) {
+	$(document).on('change', '[data-action="changeFontFamily"]', function (e) {
 		cm.changeFontFamily($(this).val())
 	});
-	$(document).on('click', '[data-action="changeTheme"]', function (e) {
+	$(document).on('change', '[data-action="changeTheme"]', function (e) {
 		cm.changeTheme($(this).val())
 	});
 	/*=============================================
