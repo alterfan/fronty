@@ -71,7 +71,7 @@ $(document).ready(function () {
 	$(window).on('resize', function () {
 		ui.updateFrameResolution();
 	});
-	$(document).on('click', '[data-target="modal"]', function () {
+	$(document).on('click touchstart', '[data-target="modal"]', function () {
 		ui.modalToggle($(this));
 	});
 	$(document).on('click', '[data-target="layout"]', function () {

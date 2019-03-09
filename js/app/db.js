@@ -55,7 +55,7 @@ class StorageDB {
 		ls.setItem(objectName, JSON.stringify(val))
 	}
 }
-/* class DataBase{
+class DataBase {
 	run() {
 		this._openDb(); // init database
 	}
@@ -105,7 +105,6 @@ class StorageDB {
 				objectStore.createIndex("description", "description", {
 					unique: false
 				});
-				ui.message("Обновление завершено");
 				console.log("Обновление завершено");
 			}
 		};
@@ -143,7 +142,7 @@ class StorageDB {
 		store.openCursor().onsuccess = function (e) {
 			var cursor = e.target.result;
 			if (cursor) {
-				content += ui.$li(cursor.value.id, cursor.value.name, cursor.value.updated_at, cursor.value.description);
+				content += "<span>"+cursor.value.id+"</span><span>"+cursor.value.name+"</span><span>"+cursor.value.updated_at+"</span>";
 				cursor.continue();
 			} else {
 				content += " ";
@@ -157,7 +156,6 @@ class StorageDB {
 			return content;
 		};
 		transaction.onerror = function (e) {
-			ui.message(e);
 			console.dir(e);
 		};
 		var store = transaction.objectStore(_db.storeName);
@@ -182,7 +180,6 @@ class StorageDB {
 			.objectStore(_db.storeName)
 			.add({});
 		self.viewAll();
-		ui.message("new data added");
 		console.log("new data added");
 	}
 	delete(id) {
@@ -195,19 +192,12 @@ class StorageDB {
 	deleteDB() {
 		var req = indexedDB.deleteDatabase(_db.name);
 		req.onsuccess = function () {
-			ui.message("Deleted database(" + _db.name + ") successfully");
 			console.log("Deleted database(" + _db.name + ") successfully");
 		};
 		req.onerror = function () {
-			ui.message("Couldn't delete database(" + _db.name + ")");
 			console.log("Couldn't delete database(" + _db.name + ")");
 		};
 		req.onblocked = function () {
-			ui.message(
-				"Couldn't delete database(" +
-				_db.name +
-				") due to the operation being blocked"
-			);
 			console.log(
 				"Couldn't delete database(" +
 				_db.name +
@@ -229,4 +219,4 @@ function formatDate(d) {
 	var yy = d.getFullYear() % 100;
 	if (yy < 10) yy = '0' + yy;
 	return dd + '.' + mm + '.' + yy;
-} */
+}
