@@ -1,0 +1,29 @@
+[
+    {
+        "type": "Directory",
+        "name": "c:\\Os\\OpenServer\\domains\\fronty\\node_modules\\split.js",
+        "parent_id": null,
+        "fsPath": "c:\\Os\\OpenServer\\domains\\fronty\\node_modules\\split.js",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "6O3BDv9gbanUfC0V"
+    },
+    {
+        "type": "Directory",
+        "name": "c:\\Os\\OpenServer\\domains\\fronty\\node_modules\\tmtheme-to-json",
+        "parent_id": null,
+        "fsPath": "c:\\Os\\OpenServer\\domains\\fronty\\node_modules\\tmtheme-to-json",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "BefSMjrymWDHi8tX"
+    },
+    {
+        "type": "Directory",
+        "name": "c:\\Os\\OpenServer\\domains\\fronty\\tmthemeConverter-master",
+        "parent_id": null,
+        "fsPath": "c:\\Os\\OpenServer\\domains\\fronty\\tmthemeConverter-master",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "JkmQW20wBEDsuMLV"
+    }
+]

@@ -1,22 +1,78 @@
+:root {
+	--font: 1em;
+	--cursor: 1em;
+}
 .CodeMirror {
-	height: 100%;    max-height: 100%;
+	-moz-transition: all 0.2s ease-in 0s;
+	-webkit-transition: all 0.2s ease-in 0s;
+	-o-transition: all 0.2s ease-in 0s;
+	transition: all 0.2s ease-in 0s;
+	height: 100%;
+	max-height: 100%;
 	border: none
 }
 .CodeMirror-scroll {
-	-webkit-overflow-scrolling: touch
+	-webkit-overflow-scrolling: touch;
+	height: 100%;
+	max-height: 100%;
 }
-.CodeMirror-activeline .CodeMirror-gutter-wrapper .CodeMirror-linenumber,
 .CodeMirror-linenumber {
-	color: var(--btn_color_active);
 	cursor: pointer
 }
-.CodeMirror-gutter-wrapper:hover .CodeMirror-linenumber {
+.CodeMirror-linenumber:hover {
 	color: var(--btn_color_hover)
 }
-.CodeMirror-toolbar {
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--bars_bg);
-    padding: 0.25em;
+.CodeMirror-linenumbers {
+	width: 2em
+}
+.CodeMirror-cursor {
+	width: 2px;
+	height: var(--font)
+}
+.cm-edit-toolbar {
+	background: var(--bars_bg);
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--bars_bg);
+	opacity: 0;
+	top: -100%;
+	max-width: 100%;
+}
+.cm-edit-toolbar .cm-edit-toolbar-form {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
+}
+.cm-edit-toolbar .cm-edit-toolbar_form {
+	position: relative;
+	padding: 0.5em;
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between;
+}
+.cm-edit-toolbar .cm-edit-toolbar-form .group_btn.search {
+	position: relative;
+	margin-left: -2em;
+	font-size: 1em;
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between;
+}
+.cm-tab {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+	background-position: right;
+	background-repeat: no-repeat;
 }

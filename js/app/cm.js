@@ -1,157 +1,228 @@
-var _cm, delay, _htmlEditor, _cssEditor, _jsEditor;
-var options = {};
-options.defaults = {
-	theme: "monokai",
-	styleActiveLine: false,
-	autoCloseBrackets: true,
-	lineNumbers: true,
-	lineWrapping: true,
-	autoCloseTags: true,
-	matchBrackets: true,
-	showCursorWhenSelecting: true,
-	scrollbarStyle: "simple",
-	matchTags: true,
-	foldGutter: true,
-	gutters: ["CodeMirror-foldgutter", "CodeMirror-linenumbers"],
-	matchTags: {
-		bothTags: true
-	},
-	extraKeys: {
-		"Ctrl-Q": "toMatchingTag",
-		'Ctrl-K': function (cm, event) {
-			cm.state.colorpicker.popup_color_picker();
-		}
-	},
-	beautify: {
-		initialBeautify: true,
-		autoBeautify: false
-	},
-	colorpicker: {
-		mode: 'edit',
-	}
-};
-var config = {};
-config.defaults = {
-	delay: "500",
-	fontSize: "12px",
-	fontFamily: "Consolas",
-	layout: "horizontal",
-};
+var cm, cmDoc, cmEditor, _html, _css, _js;
+var db = new StorageDB()
 class Cm {
 	constructor() {
-		if (localStorage) {
-			if (!localStorage.getItem("FrontyUserConfig")) {
-				var _config = JSON.stringify(config.defaults);
-				localStorage.setItem("FrontyUserConfig", _config);
-			}
-			if (!localStorage.getItem("FrontyUserOptions")) {
-				var _options = JSON.stringify(options.defaults);
-				localStorage.setItem("FrontyUserOptions", _options);
-			}
-			if (!localStorage.getItem("FrontyAutoSave")) {
-				var arr = ["<h1>Test</h1>", "h1{color:red}", "console.log('Test')", "", "", "Test Project"];
-				localStorage.setItem("FrontyAutoSave", arr);
-			}
-		} else {
-			alert("Sorry but your browser does not support localStorage");
-		}
-		this.fuo = JSON.parse(localStorage.getItem("FrontyUserOptions"));
-		this.fuс = JSON.parse(localStorage.getItem("FrontyUserConfig"));
-		this.fas = [localStorage.getItem("FrontyAutoSave").split(',')];
+		/**
+		 *   for (var i = 0; i < localDB.length; i++) {
+		 *  			try {
+		 *  				for (var key in options.defaults) {
+		 *  					if (CodeMirror.defaults.hasOwnProperty(key) && options.defaults[key] !== key) {
+		 *  						options.defaults[key] = options.defaults[key]
+		 *  						console.log(k + ' ' + CodeMirror.defaults[k]);
+		 *  					} else {
+		 *  						console.log(name); // toString or something else
+		 *  					}
+		 *  					db.setStorage(localDB[i], options.defaults);
+		 *  				}
+		 *  				console.log(localDB[i], "|||", ls[localDB[i]]);
+		 *  			} catch (error) {
+		 *  				for (var i = 0; i < localDB.length; i++) {
+		 *  					if (localDB[i] == "options") {
+		 *  						db.setStorage(localDB[i], options.defaults);
+		 *  					}
+		 *  					if (localDB[i] == "configuration") {
+		 *  						db.setStorage(localDB[i], config.defaults);
+		 *  					}
+		 *  					if (localDB[i] == "autosaved") {
+		 *  						db.setStorage(localDB[i], project.defaults);
+		 *  					}
+		 *  				}
+		 *  				console.log(localDB[i], "|||", "set default");
+		 *  			}
+		 *  		}
+		 *  		for (var key in options.defaults) {
+		 *  	if (CodeMirror.defaults.hasOwnProperty(key) && options.defaults[key] !== key) {
+		 *  		options.defaults[key] = options.defaults[key]
+		 *  		console.log(key + ' ' + CodeMirror.defaults[key]);
+		 *  	}
+		 *  }
+		 *  for (var key in config.defaults) {
+		 *  	if (CodeMirror.defaults.hasOwnProperty(key) && config.defaults[key] !== key) {
+		 *  		config.defaults[key] = config.defaults[key]
+		 *  		console.log(key + ' ' + config.defaults[key]);
+		 *  	}
+		 *  }
+		 **/
+		this.options = db.getStorage("options");
+		this.configuration = db.getStorage("configuration");
+		this.fas = db.getStorage("autosaved");
 		this._autoupdate = true;
-		this.delay;
+		this.cm;
 		this.fontSize;
 		this.fontFamily;
 		this.layout;
+		this.theme = db.getStorageItem("options", 'theme')
+		this.fontSize = db.getStorageItem("configuration", 'fontSize')
+		this.fontFamily = db.getStorageItem("configuration", 'fontFamily')
 	}
 	init() {
-		var _this = this;
+		var t = this;
 		$('.code').each(function (index) {
-			if (index == 0) {
-				$(this).attr('id', "htmlmixed");
-				$(this).val(_this.fas[0]); //get autosaved
-				_htmlEditor = _cm = CodeMirror.fromTextArea($("#htmlmixed").get(0), _this.fuo);
-				_cm.setOption("mode", "htmlmixed"); //set mode
-			}
-			if (index == 1) {
-				$(this).attr('id', "css");
-				$(this).val(_this.fas[1]); //get autosaved
-				_cssEditor = _cm = CodeMirror.fromTextArea($('#css').get(0), _this.fuo);
-				_cm.setOption("mode", "css"); //set mode
-			}
-			if (index == 2) {
-				$(this).attr('id', "javascript");
-				$(this).val(_this.fas[2]); //get autosaved
-				_jsEditor = _cm = CodeMirror.fromTextArea($('#javascript').get(0), _this.fuo);
-				_cm.setOption("mode", "javascript"); //set mode
-			}
-			_this._focus()
-			_this._change()
-			_this._selectLine()
-			updatePreview($("#htmlmixed").val(), $("#css").val(), $("#javascript").val())
+			var mode = $(this).attr('id');
+			$(this).val(t.fas[index]); //get autosaved
+			cm = CodeMirror.fromTextArea($("#" + mode).get(0), t.options);
+			cm.setOption("mode", mode); //set mode
+			t.eventsListner(cm)
 		});
-		clearTimeout(delay);
-		this.changeTheme("monokai");
-		this.changeFontSize(this.fuс["fontSize"]);
-		this.changeFontFamily(this.fuс["fontFamily"]);
-		return true;
+		t.changeTheme(t.theme);
+		t.changeFontSize(t.fontSize);
+		t.changeFontFamily(t.fontFamily);
+		setTimeout(function () {
+			updatePreview()
+		}, 300);
+		return true
 	}
 	changeTheme(val) {
-		/* добавить сохранение в локал */
-		/*         $('#' + storage.getKey("local", editorOptions, 'theme')).remove();
-		 */
 		$('head').append('<link rel="stylesheet" type="text/css" href="./codemirror/theme/' + val + '.css">');
-		/* добавить сохранение в локал */
-		$('.CodeMirror').each(function (index, el) {
+		$('.CodeMirror').each(function (index) {
 			$('.CodeMirror')[index].CodeMirror.setOption("theme", val);
 		});
+		if (db.setStorageItem("options", 'theme', val)) {
+			console.log('theme changed: ', val);
+			cm.refresh();
+		}
 	}
 	changeFontSize(val) {
 		$('.CodeMirror').css("font-size", val);
-		this.fuс["fontSize"] = val;
-		localStorage.setItem("FrontyUserConfig", JSON.stringify(this.fuс))
+		if (db.setStorageItem("configuration", 'fontSize', val)) {
+			alert('fontSize: ' + val);
+			cm.refresh();
+		}
 	}
 	changeFontFamily(val) {
-		$('.CodeMirror').css("font-family", val);
-		this.fuс["fontFamily"] = val;
-		localStorage.setItem("FrontyUserConfig", JSON.stringify(this.fuс))
-	}
-	_focus() {
-		_cm.on("focus", function (cm) {
-			cm.setOption("styleActiveLine", true)
-		});
-		_cm.on("blur", function (cm) {
-			cm.setOption("styleActiveLine", false)
-		});
-	}
-	_change() {
-		_cm.on("changes", function (cm) {
-			cm.save();
-			clearTimeout(delay);
-			delay = setTimeout(updatePreview($("#htmlmixed").val(), $("#css").val(), $("#javascript").val()));
+		$(".СodeMirror").css("font-family", val);
+		if (db.setStorageItem("configuration", 'fontFamily', val)) {
+			console.log('fontFamily: ', val);
 			cm.refresh();
-		});
+		}
 	}
-	_selectLine() {
-		_cm.on('gutterClick', function (cm, line, gutter) {
+	eventsListner(cm) {
+		let this_ = this;
+		cm.on("gutterClick", function (cm, line, gutter) {
 			if (gutter === 'CodeMirror-linenumbers') {
-				cm.focus();
 				return cm.setSelection(CodeMirror.Pos(line, 0), CodeMirror.Pos(line + 1, 0));
 			}
 		});
+		cm.on("focus", function (cm) {
+			cm.EditToolbar("top", editorBar);
+			cmDoc = cm.getDoc();
+			cmEditor = cmDoc.getEditor()
+		});
+		cm.on("click", function (cm) {
+			cm.setOption("styleActiveLine", true);
+		});
+		cm.on("blur", function (cm) {
+			cm.setOption("styleActiveLine", false);
+		});
+		cm.on("changes", function (cm) {
+			if (this_._autoupdate == true) {
+				setTimeout(function () {
+					updatePreview()
+				}, 300);
+				cm.save();
+				db.setStorage("autosaved", [$("#htmlmixed").val(), $("#css").val(), $("#javascript").val()]);
+				cm.refresh();
+			}
+		})
+		cm.on("resize", function (cm) {
+			cm.refresh();
+		});
+	}
+	format() {
+		let mode = cmEditor.getOption('mode');
+		let code = cmEditor.getValue();
+		if (mode == 'htmlmixed') {
+			var formatted = html_beautify(code, {
+				'indent_size': 2,
+				'indent_char': '\t'
+			});
+		}
+		if (mode == 'javascript') {
+			var formatted = js_beautify(code, {
+				'indent_size': 2,
+				'indent_char': '\t'
+			});
+		}
+		if (mode == 'css') {
+			var formatted = css_beautify(code, {
+				'indent_size': 2,
+				'indent_char': '\t'
+			});
+		}
+		cmEditor.setValue(formatted);
+		cmEditor.execCommand("goDocEnd")
 	}
 }
-function updatePreview(htmlVal, cssVal, javascriptVal, cssLibs, jsLibs, name) {
-	var template_body = '<body>' + htmlVal + '</body><script>' + javascriptVal + '</script>';
-	var template_head = '<head><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Preview - Bootstrap Themes</title><style>' + cssVal + '</style></head>';
-	/* обновление iframe */
-	$("#preview iframe").attr("srcdoc", '<!DOCTYPE html><html lang="ru-RU">' + template_head + template_body + '</html>');
-	localStorage.setItem("FrontyAutoSave", ['"' + htmlVal + '"', cssVal, javascriptVal, cssLibs, jsLibs, name])
-	/* $('.code').each(function(index) {
-		storage.setKey("session", autosave, index, $('#code-' + index).val());
-	});
-	$('.externalLibs').each(function(index) {
-		storage.setKey("session", autosave, (index + 3), $('#code-' + (index + 3)).val());
-	});
-	initConsole(); */
+function updatePreview() {
+	var previewFrame = document.getElementById('iframe'),
+		preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
+		head_style = "<head><style>" + $("#css").val() + "</style></head>",
+		body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
+	preview.open();
+	frameConsole.init();
+	preview.write(head_style + body_script);
+	preview.close();
 }
+/* prepare for preview */
+var searchBar = $("<form>", {
+	"class": "cm-edit-toolbar_form",
+	append: $("<div>", {
+		"class": "group_search",
+		append: $("<input>", {
+			"class": "group_input",
+			"type": "search"
+		}).add("<a>", {
+			"class": "group_btn",
+			"data-action": "search",
+			append: $("<i>", {
+				"class": "material-icons",
+				"text": "search"
+			})
+		})
+	})
+});
+var editorBar = $("<ul>", {
+	"class": "group group-max-width",
+	append: $("<li>", {
+		"class": "group",
+		"data-action": "search",
+		append: $("<a>", {
+			"class": "group_btn group_btn-max-width",
+			"data-action": "search",
+			append: $("<i>", {
+				"class": "material-icons",
+				"text": "search"
+			})
+		})
+	}).add("<li>", {
+		"class": "group",
+		append: $("<a>", {
+			"class": "group_btn group_btn-max-width",
+			"data-action": "format",
+			append: $("<i>", {
+				"class": "material-icons",
+				"text": "code"
+			})
+		})
+	}).add("<li>", {
+		"class": "group",
+		append: $("<a>", {
+			"class": "group_btn group_btn-max-width",
+			"data-action": "undo",
+			append: $("<i>", {
+				"class": "material-icons",
+				"text": "undo"
+			})
+		})
+	}).add("<li>", {
+		"class": "group",
+		append: $("<a>", {
+			"class": "group_btn group_btn-max-width",
+			"data-action": "redo",
+			append: $("<i>", {
+				"class": "material-icons",
+				"text": "redo"
+			})
+		})
+	})
+})

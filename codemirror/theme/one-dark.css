@@ -5,49 +5,49 @@
 */
 /* basic */
 .cm-s-one-dark {
-    font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-    font-weight: 350;
-    font-size: 18px;
-    color: #abb2bf;
-    background-color: #282c34;
+	font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	font-weight: 350;
+	font-size: 18px;
+	color: #abb2bf;
+	background-color: #282c34;
   }
   .cm-s-one-dark .CodeMirror-selected {background-color: #3e4451;}
   .cm-s-one-dark .CodeMirror-gutter,
   .cm-s-one-dark .CodeMirror-gutters {
-    border: none;
-    background-color: #282c34;
+	border: none;
+	background-color: #282c34;
   }
   .cm-s-one-dark .CodeMirror-linenumber,
   .cm-s-one-dark .CodeMirror-linenumbers {
-    color: #5c6370 !important;
-    background-color: transparent;
+	color: #5c6370 !important;
+	background-color: transparent;
   }
   .cm-s-one-dark .CodeMirror-lines {
-    color: #abb2bf !important;
-    background-color: transparent;
+	color: #abb2bf !important;
+	background-color: transparent;
   }
   .cm-s-one-dark .CodeMirror-cursor {border-left: 2px solid #56b6c2 !important;}
   /* addon: edit/machingbrackets.js & addon: edit/matchtags.js */
   .cm-s-one-dark .CodeMirror-matchingbracket,
   .cm-s-one-dark .CodeMirror-matchingtag {
-    border-bottom: 2px solid #56b6c2;
-    color: #abb2bf !important;
-    background-color: transparent;
+	border-bottom: 2px solid #56b6c2;
+	color: #abb2bf !important;
+	background-color: transparent;
   }
   .cm-s-one-dark .CodeMirror-nonmatchingbracket {
-    border-bottom: 2px solid #e06c75;
-    color: #abb2bf !important;
-    background-color: transparent;
+	border-bottom: 2px solid #e06c75;
+	color: #abb2bf !important;
+	background-color: transparent;
   }
   /* addon: fold/foldgutter.js */
   .cm-s-one-dark .CodeMirror-foldmarker,
   .cm-s-one-dark .CodeMirror-foldgutter,
   .cm-s-one-dark .CodeMirror-foldgutter-open,
   .cm-s-one-dark .CodeMirror-foldgutter-folded {
-    border: none;
-    text-shadow: none;
-    color: #5c6370 !important;
-    background-color: transparent;
+	border: none;
+	text-shadow: none;
+	color: #5c6370 !important;
+	background-color: transparent;
   }
   /* addon: selection/active-line.js */
   .cm-s-one-dark .CodeMirror-activeline-background {background-color: rgba(153, 187, 255, 0.04);}

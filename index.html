@@ -1,0 +1,218 @@
+<html>
+
+	<head>
+		<title>fronty</title>
+		<meta charset="utf-8" name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="libs/animate.css/animate.min.css">
+		<link rel="stylesheet" href="libs/Material Icons/icon.css">
+		<link rel="stylesheet" href="./codemirror/theme/fronty.css">
+		<link rel='stylesheet' href='./codemirror/addon/hint/show-hint.css'>
+		<link rel='stylesheet' href='./codemirror/addon/lint/lint.css'>
+		<link rel='stylesheet' href='./codemirror/addon/fold/foldgutter.css'>
+		<link rel='stylesheet' href='./codemirror/addon/scroll/simplescrollbars.css'>
+		<link rel='stylesheet' href='./codemirror/addon/fold/foldgutter.css'>
+		<link rel="stylesheet" href="./codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="./css/animation.css">
+		<link rel="stylesheet" href="./css/style.css">
+		<link rel="stylesheet" href="./css/modal.css">
+		<link rel="stylesheet" href="./css/aside.css">
+		<link rel="stylesheet" href="./css/layouts.css">
+		<link rel="stylesheet" href="./css/console.css">
+		<link rel="stylesheet" href="./css/group.css">
+		<link rel="stylesheet" href="./css/cm.css">
+		<link rel="stylesheet" href="./css/split.css">
+		<link rel="stylesheet" href="./js/addons/colorpicker/colorpicker.css" />
+		<script type="text/javascript" src="./libs/jQuery/3.3.1/jquery.min.js"></script>
+	</head>
+
+	<body>
+		<div class="fronty">
+			<div class="header hidden" id="header">
+				<div class="group">
+					<a data-action="asideToggle" data-view="projects" data-block="aside_left" class="group_btn">
+						<i class="material-icons">view_list</i>
+					</a>
+				</div>
+				<input type="text" id="projectName" data-action="inputAction" class="group_input isBlured" placeholder="Project Name">
+				<div class="group">
+					<div class="group_separator"></div>
+					<a data-target="layout" data-layout="horizontal" data-reverse="default" class="group_btn">
+						<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height="1em">
+							<rect x="0" y="53" width="100" height="47"></rect>
+							<rect y="0" x="0" width="29.33" height="47"></rect>
+							<rect y="0" x="35.33" width="29.33" height="47"></rect>
+							<rect y="0" x="70.66" width="29.33" height="47"></rect>
+						</svg>
+					</a>
+					<a data-target="layout" data-layout="vertical" data-reverse="default" class="group_btn">
+						<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height="1em">
+							<rect x="0" y="0" width="47" height="29.33"></rect>
+							<rect x="0" y="35.33" width="47" height="29.33"></rect>
+							<rect x="0" y="70.66" width="47" height="29.33"></rect>
+							<rect x="53" y="0" width="47" height="100"></rect>
+						</svg>
+					</a>
+					<a data-target="layout" data-layout="vertical" data-reverse="reverse" class="group_btn">
+						<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height="1em">
+							<rect x="0" y="0" width="47" height="100"></rect>
+							<rect x="53" y="0" width="47" height="29.33"></rect>
+							<rect x="53" y="35.33" width="47" height="29.33"></rect>
+							<rect x="53" y="70.66" width="47" height="29.33"></rect>
+						</svg>
+					</a>
+					<div class="group_separator"></div>
+					<a data-target="modal" data-action="open" data-view="settings" class="group_btn ui">
+						<i class="material-icons">settings</i>
+					</a>
+				</div>
+			</div>
+			<div id="wrapper" data-layout="" data-reverse="" class="fronty_wrapper transition">
+				<div id="editors" class="fronty_wrapper_block">
+					<div id="editor-0" class="fronty_wrapper_block_editor">
+						<div class="fronty_wrapper_block_editor_bar">
+							<div class="group">
+								<a data-editor="0" data-target="editor" class="group_btn maximize">
+									<img class="logo" type="image/svg+xml" src="../assests/icons/html5-128.png"><i class="material-icons">chevron_right</i>
+								</a>
+							</div>
+						</div>
+						<textarea id="htmlmixed" data-editor="0" data-action="activeEditor" mode="htmlmixed" class=" code hidden"></textarea>
+					</div>
+					<!-- css editor -->
+					<div id="editor-1" class="fronty_wrapper_block_editor">
+						<div class="fronty_wrapper_block_editor_bar">
+							<div class="group">
+								<a data-editor="1" data-target="editor" class="group_btn maximize">
+									<img class="logo" type="image/svg+xml" src="../assests/icons/css3-128.png"><i class="material-icons">chevron_right</i>
+								</a>
+							</div>
+						</div>
+						<textarea id="css" data-editor="1" mode="text/css" class=" code hidden"></textarea>
+					</div>
+					<!-- js editor -->
+					<div id="editor-2" class="fronty_wrapper_block_editor">
+						<div class="fronty_wrapper_block_editor_bar">
+							<div class="group">
+								<a data-editor="2" data-target="editor" data-action="maximize" onclick="" class="group_btn maximize">
+									<img class="logo" type="image/svg+xml" src="../assests/icons/javascript-128.png"><i class="material-icons">chevron_right</i>
+								</a>
+							</div>
+						</div>
+						<textarea id="javascript" data-editor="2" class=" code hidden">	console.log('message');</textarea>
+					</div>
+				</div>
+				<!-- view -->
+				<div id="preview" class="fronty_wrapper_block">
+					<div id="fronty_wrapper_block_preview" class="fronty_wrapper_block_preview">
+						<iframe id="iframe" srcdoc=""></iframe>
+					</div>
+
+					<ul id="console" class="console closed">
+						<li>
+							<div class="console_bar">
+								<a xclass="group_btn" onclick="frameConsole.frameConsoleClear()">clear</a>
+							</div>
+						</li>
+						<li>
+							<ul class="console_output"></ul>
+						</li>
+						<li>
+							<input type="text" class="group_input" id="">
+						</li>
+					</ul>
+
+				</div>
+			</div>
+			<div class="footer hidden" id="footer">
+				<div class="group">
+					<a class="resolution"><span id="iframeWidth"></span>x<span id="iframeHeight"></span></a>
+				</div>
+				<div class="group">
+					<div class="group_separator">
+					</div>
+					<a data-action="modalToggle" data-view="libs" class="group_btn">
+						<i class="material-icons">library_books</i>
+					</a>
+					<div class="group_separator">
+					</div>
+					<a data-action="toggle" data-target="console" class="group_btn">
+						<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+							<path d="M 4.4140625 6 L 3 7.4140625 L 7.5859375 12 L 3 16.585938 L 4.4140625 18 L 9 13.414062 L 9.0097656 13.423828 L 10.423828 11.990234 L 9.0097656 10.576172 L 9.0078125 10.578125 L 4.4140625 6 z M 13 15 L 13 17 L 21 17 L 21 15 L 13 15 z "/>
+							<path d="M0 0h24v24H0z" fill="none"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+			<div id="hidden">
+				<!-- modal window -->
+				<div id="modal" class="fronty_modal closed">
+					<div class="fronty_modal_head">
+						<a data-target="modal" data-action="close" class="group_btn">
+							<i class="material-icons">close</i>
+						</a>
+					</div>
+					<div class="fronty_modal_content">
+					</div>
+				</div>
+				<!-- aside window -->
+				<div id="aside" class="aside aside_left closed">
+					<div class="aside_head">
+						<div class="group">
+							<a onclick="" data-block="aside_left" data-action="closeModal" class="group_btn">
+								<i class="material-icons">close</i>
+							</a>
+						</div>
+					</div>
+					<div class="aside_content">
+					</div>
+				</div>
+				<div id="overlay" class="overlay" data-target="modal" data-action="close">
+				</div>
+				<div class="loading hidden"></div>
+				<input data-type="css" class="externalLibs libs-0 " id="code-3" hidden>
+				<input data-type="js" class="externalLibs libs-1 " id="code-4" hidden>
+			</div>
+		</div>
+		<!-- codemirror -->
+		<script type="text/javascript" src="./codemirror/lib/codemirror.js"></script>
+		<script type="text/javascript" src="./codemirror/mode/htmlmixed/htmlmixed.js"></script>
+		<script type="text/javascript" src="./codemirror/mode/xml/xml.js"></script>
+		<script type="text/javascript" src="./codemirror/mode/css/css.js"></script>
+		<script type="text/javascript" src="./codemirror/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/selection/active-line.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/edit/closebrackets.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/edit/closetag.js"></script>
+
+		/*============================================= = hint = =============================================*/
+		<script type="text/javascript" src="./codemirror/addon/hint/show-hint.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/hint/html-hint.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/hint/xml-hint.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/hint/css-hint.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/hint/javascript-hint.js"></script>
+		/*============================================= = fold = =============================================*/
+		<script type="text/javascript" src="./codemirror/addon/comment/comment.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/fold/foldgutter.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/fold/foldcode.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/fold/brace-fold.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/fold/indent-fold.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/fold/markdown-fold.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/fold/comment-fold.js"></script>
+		<!-- addons -->
+		<script type="text/javascript" src="./js/addons/split/split.js"></script>
+		<script type="text/javascript" src="./js/addons/colorpicker/colorpicker.js"></script>
+		<script type="text/javascript" src="./js/addons/beautify/beautify-js.js"></script>
+		<script type="text/javascript" src="./js/addons/beautify/beautify-css.js"></script>
+		<script type="text/javascript" src="./js/addons/beautify/beautify-html.js"></script>
+		<script type="text/javascript" src="./js/addons/jsZip/FileSaver.js"></script>
+		<script type="text/javascript" src="./js/addons/jsZip/jszip.min.js"></script>
+		<script type="text/javascript" src="./js/addons/toolbar/toolbar.js"></script>
+		<script type="text/javascript" src="./js/addons/show-invisibles.js"></script>
+		<!--  app script  -->
+		<script type="text/javascript" src="./js/addons/console/console.js"></script>
+		<script type="text/javascript" src="./js/app/index.js"></script>
+		<script type="text/javascript" src="./js/app/db.js"></script>
+		<script type="text/javascript" src="./js/app/ui.js"></script>
+		<script type="text/javascript" src="./js/app/cm.js"></script>
+	</body>
+
+</html>

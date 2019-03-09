@@ -1,48 +1,92 @@
-/*
-    Name:       fronty
-    Author:     Michael Kaminsky (http://github.com/mkaminsky11)
-    Original fronty color scheme by Mattia Astorino (https://github.com/equinusocio/fronty-theme)
-*/
-.cm-s-fronty.CodeMirror {
-	background-color: #20114D;
-	color: rgba(233, 237, 237, 1);
-  }
-  .cm-s-fronty .CodeMirror-gutters {
-	background: #263238;
-	color: #00A9B8;
+/* Theme: fronty */
+.CodeMirror.cm-s-fronty {
+	background: #272822;
+	color: #fff;
+}
+.cm-s-fronty .CodeMirror-gutters {
+	background: #21221d;
+	color: rgb(255, 255, 255);
 	border: none;
-  }
-  .cm-s-fronty .CodeMirror-guttermarker, .cm-s-fronty .CodeMirror-guttermarker-subtle, .cm-s-fronty .CodeMirror-linenumber { color: rgb(83,127,126); }
-  .cm-s-fronty .CodeMirror-cursor { border-left: 1px solid #f8f8f0; }
-  .cm-s-fronty div.CodeMirror-selected { background: rgba(255, 255, 255, 0.15); }
-  .cm-s-fronty.CodeMirror-focused div.CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }
-  .cm-s-fronty .CodeMirror-line::selection, .cm-s-fronty .CodeMirror-line > span::selection, .cm-s-fronty .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }
-  .cm-s-fronty .CodeMirror-line::-moz-selection, .cm-s-fronty .CodeMirror-line > span::-moz-selection, .cm-s-fronty .CodeMirror-line > span > span::-moz-selection { background: rgba(255, 255, 255, 0.10); }
-  .cm-s-fronty .CodeMirror-activeline-background { background: rgba(161, 153, 182, 0.507); }
-  .cm-s-fronty .cm-keyword { color: rgba(199, 146, 234, 1); }
-  .cm-s-fronty .cm-operator { color: rgba(233, 237, 237, 1); }
-  .cm-s-fronty .cm-variable-2 { color: #80CBC4; }
-  .cm-s-fronty .cm-variable-3, .cm-s-fronty .cm-type { color: #82B1FF; }
-  .cm-s-fronty .cm-builtin { color: #DECB6B; }
-  .cm-s-fronty .cm-atom { color: #F77669; }
-  .cm-s-fronty .cm-number { color: #F77669; }
-  .cm-s-fronty .cm-def { color: rgba(233, 237, 237, 1); }
-  .cm-s-fronty .cm-string { color: #C3E88D; }
-  .cm-s-fronty .cm-string-2 { color: #80CBC4; }
-  .cm-s-fronty .cm-comment { color: rgb(141, 34, 168); }
-  .cm-s-fronty .cm-variable { color: #82B1FF; }
-  .cm-s-fronty .cm-tag { color: #80CBC4; }
-  .cm-s-fronty .cm-meta { color: #80CBC4; }
-  .cm-s-fronty .cm-attribute { color: #FFCB6B; }
-  .cm-s-fronty .cm-property { color: #9DF39F; }
-  .cm-s-fronty .cm-qualifier { color: #DECB6B; }
-  .cm-s-fronty .cm-variable-3, .cm-s-fronty .cm-type { color: #DECB6B; }
-  .cm-s-fronty .cm-tag { color: rgba(255, 83, 112, 1); }
-  .cm-s-fronty .cm-error {
-	color: rgba(255, 255, 255, 1.0);
-	background-color: #EC5F67;
-  }
-  .cm-s-fronty .CodeMirror-matchingbracket {
+	border-right: 0px;
+}
+.cm-s-fronty .CodeMirror-guttermarker {
+	color: white;
+}
+.cm-s-fronty .CodeMirror-guttermarker-subtle {
+	color: #d0d0d0;
+}
+.cm-s-fronty .CodeMirror-cursor {
+	color: #00AAFF;
+}
+.cm-s-fronty .CodeMirror-activeline-background {
+	background: #29858587 !important;
+}
+.cm-s-fronty .CodeMirror-selected {
+	background: #4C52FF8C;
+}
+.cm-s-fronty .cm-comment {
+	color: rgb(68, 100, 105);
+}
+.cm-s-fronty .cm-string {
+	color: #F2D42C;
+}
+.cm-s-fronty .cm-string-2 {
+	color: #E8341C;
+}
+.cm-s-fronty .cm-property {
+	font-style: italic;
+	color: #E8341C;
+}
+.cm-s-fronty .cm-qualifier {
+	font-style: underline;
+	color: #E8341C;
+}
+.cm-s-fronty .cm-tag {
+	color: #1CC3E8;
+}
+.cm-s-fronty .cm-attribute {
+	color: #E8341C;
+}
+.cm-s-fronty .cm-number {
+	color: #8E69C9;
+}
+.cm-s-fronty .cm-keyword {
+	color: #F08D24;
+}
+.cm-s-fronty .cm-error {
+	background: #00A8C6;
+	color: #f8f8f0;
+}
+.cm-s-fronty .cm-invalidchar {
+	background: #00A8C6;
+	color: #f8f8f0;
+}
+.cm-s-fronty span.cm-variable {
+	color: #f8f8f2;
+}
+.cm-s-fronty span.cm-variable-2 {
+	color: #9effff;
+}
+.cm-s-fronty span.cm-def {
+	color: #fd971f;
+}
+.cm-s-fronty span.cm-bracket {
+	color: #f8f8f2;
+}
+.cm-s-fronty span.cm-tag {
+	color: #f92672;
+}
+.cm-s-fronty span.cm-link {
+	color: #ae81ff;
+}
+.cm-s-fronty span.cm-error {
+	background: #f92672;
+	color: #f8f8f0;
+}
+.cm-s-fronty .CodeMirror-activeline-background {
+	background: #373831 !important;
+}
+.cm-s-fronty .CodeMirror-matchingbracket {
 	text-decoration: underline;
 	color: white !important;
-  }
+}

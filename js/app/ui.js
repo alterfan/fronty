@@ -1,112 +1,156 @@
 var splitEditors, splitPreview;
 class SplitView {
-	constructor() {}
-	init(direction) {
-		if (direction == "vertical") {
-			this.editorSplit(direction, 24)
-			this.previewSplit("horizontal", $(".CodeMirror-gutters").width())
-		} else if (direction == "horizontal") {
-			this.previewSplit("vertical", 24);
-			this.editorSplit(direction, $(".CodeMirror-gutters").width())
-		}
+	constructor() {
+		this.gutterSize = 16;
+		this.dragInterval = 0;
+		this.minSize = ($(".fronty_wrapper_block_editor_bar .logo").height()) * 1.1;
 	}
-	editorSplit(direction, s) {
-		if (splitEditors) {
-			splitEditors.destroy();
-		}
+	editorSplit(layout) {
+		let this_ = this;
 		splitEditors = Split(['#editor-0', '#editor-1', '#editor-2'], {
-			direction: direction,
-			gutterSize: 1,
-			minSize: s,
+			direction: layout,
+			gutterSize: this_.gutterSize,
+			minSize: this.minSize,
+			dragInterval: this.dragInterval,
 			gutter: function (index, direction) {
 				var gutter = document.createElement('a')
 				gutter.className = 'gutter gutter-' + direction
-				gutter.style.height = '100%'
 				return gutter
 			},
 			elementStyle: function (dimension, size, gutterSize) {
-				if (direction == "vertical") {
+				if (layout == "vertical") {
 					return {
-						"height": 'calc(' + size + '% - ' + gutterSize + 'em)',
+						"height": 'calc(' + size + '% - ' + gutterSize + 'px)',
 					}
 				}
-				if (direction == "horizontal") {
+				if (layout == "horizontal") {
 					return {
-						"width": 'calc(' + size + '% - ' + gutterSize + 'em)',
+						"width": 'calc(' + size + '% - ' + gutterSize + 'px)',
 					}
 				}
 			},
 			gutterStyle: function (dimension, gutterSize) {
-				if (direction == "vertical") {
+				if (layout == "vertical") {
 					return {
-						"height": gutterSize + 'em',
+						"height": gutterSize + 'px',
 					}
 				}
-				if (direction == "horizontal") {
+				if (layout == "horizontal") {
 					return {
-						"width": gutterSize + 'em',
+						"width": gutterSize + 'px',
 					}
 				}
 			},
-			onDragStart: function (dimension, size, gutterSize) {
-				console.log('splitEditors.getSizes(): ', splitEditors.getSizes());
+			onDrag: function (dimension, size, gutterSize) {
+				this_.updateFrameResolution();
 			},
-			onDragEnd: function () {
-				console.log('splitEditors.getSizes(): ', splitEditors.getSizes());
+			onDragStart: function (dimension, size, gutterSize) {},
+			onDragEnd: function () {}
+		});
+	}
+	previewSplit(layout) {
+		let this_ = this;
+		splitPreview = Split(["#editors", "#preview"], {
+			direction: layout,
+			gutterSize: this.gutterSize,
+			minSize: this.minSize,
+			dragInterval: this.dragInterval,
+			snapOffset: 32,
+			gutter: function (index, layout) {
+				var gutter = document.createElement('a')
+				gutter.className = 'gutter gutter-' + layout
+				return gutter
+			},
+			elementStyle: function (dimension, size, gutterSize) {
+				if (layout == "vertical") {
+					return {
+						"height": 'calc(' + size + '% - ' + gutterSize + 'px)',
+					}
+				}
+				if (layout == "horizontal") {
+					return {
+						"width": 'calc(' + size + '% - ' + gutterSize + 'px)',
+					}
+				}
+			},
+			gutterStyle: function (dimension, gutterSize) {
+				if (layout == "vertical") {
+					return {
+						"height": gutterSize + 'px',
+					}
+				}
+				if (layout == "horizontal") {
+					return {
+						"width": gutterSize + 'px',
+					}
+				}
+			},
+			onDrag: function (dimension, size, gutterSize) {
+				this_.updateFrameResolution();
+			},
+			onDragStart: function (dimension) {
+				console.log('dimension', dimension);
+			},
+			onDragEnd: function (dimension) {
+				console.log('dimension', dimension);
 			}
 		});
 	}
-	previewSplit(direction, s) {
-		if (splitPreview) {
+	initSplit(layout) {
+		if (splitEditors || splitPreview) {
+			splitEditors.destroy();
 			splitPreview.destroy();
 		}
-		splitPreview = Split(['#editors', '#preview'], {
-			direction: direction,
-			minSize: s,
-			gutter: function (index, direction) {
-				var gutter = document.createElement('a')
-				gutter.className = 'gutter gutter-' + direction
-				gutter.style.height = '100%'
-				return gutter
-			},
-			gutterSize: 1,
-			elementStyle: function (dimension, size, gutterSize) {
-				if (direction == "vertical") {
-					return {
-						"height": 'calc(' + size + '% - ' + gutterSize + 'em)',
-					}
-				}
-				if (direction == "horizontal") {
-					return {
-						"width": 'calc(' + size + '% - ' + gutterSize + 'em)',
-					}
-				}
-			},
-			gutterStyle: function (dimension, gutterSize) {
-				if (direction == "vertical") {
-					return {
-						"height": gutterSize + 'em',
-					}
-				}
-				if (direction == "horizontal") {
-					return {
-						"width": gutterSize + 'em',
-					}
-				}
-			},
-		});
+		if (layout == "vertical") {
+			this.previewSplit("horizontal")
+			this.editorSplit("vertical");
+		} else {
+			this.previewSplit("vertical");
+			this.editorSplit("horizontal")
+		}
+		this.updateFrameResolution();
 	}
 }
 class UI extends SplitView {
 	constructor() {
 		super();
-		this._direction;
+		this.delay;
+		this.direction;
+		this.layout;
+	}
+	init() {
+		if (!this.delay || !this.direction || !this.layout) {
+			this.delay = config.defaults.delay;
+			this.layout = db.getStorageItem("configuration","layout");
+			this.direction = config.defaults.direction;
+		}
+		this.setLayout(this.layout, this.direction)
+		this.fadeOut($wrapper)
+	}
+	setLayout(layout, isreverse) {
+		if ($wrapper.removeClass("fronty_wrapper-vertical reverse fronty_wrapper-vertical default")) {
+			$wrapper.addClass("fronty_wrapper-" + layout + " " + isreverse);
+			$wrapper.attr("data-reverse", isreverse);
+			$wrapper.attr("data-layout", layout);
+			this.direction = isreverse;
+			this.layout = layout;
+		}
+		db.setStorageItem("configuration", "direction", this.direction);
+		db.setStorageItem("configuration", "layout", this.layout);
+		this.initSplit(layout)
+	}
+	changeLayout(layout, reverse) {
+		var _this = this;
+		_this.fadeIn($wrapper);
+		setTimeout(function () {
+			_this.setLayout(layout, reverse);
+			_this.fadeOut($wrapper);
+		}, this.delay)
 	}
 	/* modal */
 	openModal(el) {
 		var view = el.attr('data-view');
 		$overlay.fadeIn(150);
-		$wrapper.addClass("wrapper-blur");
 		setTimeout(function () {
 			$modal.removeClass('closed').fadeIn(300).find('.fronty_modal_content').load('views/' + view + '.html ');
 		}, 300);
@@ -115,7 +159,6 @@ class UI extends SplitView {
 		$modal.fadeOut(150);
 		setTimeout(function () {
 			$overlay.fadeOut(150);
-			$wrapper.removeClass("wrapper-blur");
 			$modal.addClass('closed').find('.fronty_modal_content').html("");
 		}, 300)
 	}
@@ -147,41 +190,16 @@ class UI extends SplitView {
 			_this.rotate(el.find("i"), 0);
 		}
 	}
-	changeLayout(layout) {
-		var layoutOLD;
-		if (layout == "vertical") {
-			layoutOLD = "horizontal";
-		} else if (layout == "horizontal") {
-			layoutOLD = "vertical";
-		}
-		this.init(layout);
-		$wrapper.removeClass("fronty_wrapper-" + layoutOLD);
-		$wrapper.attr("data-layout", layout);
-		$wrapper.addClass("fronty_wrapper-" + layout);
-		return true
+	fadeIn(element) {
+		element.removeClass("fadeout");
+		element.addClass("fadein")
 	}
-	fadeIn(elements) {
-		/* elements - is array */
-		$(elements).each(function (index, element) {
-			$(element).removeClass("fadeOut");
-			$(element).addClass("fadeIn");
-		});
+	fadeOut(element) {
+		element.removeClass("fadein");
+		element.addClass("fadeout");
 	}
-	fadeOut(elements) {
-		/* elements - is array */
-		$(elements).each(function (index, element) {
-			$(element).removeClass("fadeIn");
-			$(element).addClass("fadeOut");
-		});
-	}
-	toggleHidden(elements) {
-		/* elements - is array */
-		$(elements).each(function (index, element) {
-			if (!$(element).hasClass("hidden")) {
-				$(element).addClass("hidden");
-			} else {
-				$(element).removeClass("hidden");
-			}
-		});
+	updateFrameResolution() {
+		$("#iframeWidth").html($('#iframe').width());
+		$("#iframeHeight").html($('#iframe').height());
 	}
 }

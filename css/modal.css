@@ -4,7 +4,7 @@
     z-index: 1100;
     overflow-y: hidden;
     position: absolute;
-    box-shadow: 0 0 10px rgb(0, 0, 0)
+    box-shadow: 0 0 10px rgb(28, 26, 31)
 }
 .fronty_modal.closed {
     display: none
@@ -45,12 +45,12 @@
 }
 /* modal */
 /* end */
-@media only screen and (min-width: 768px) and (max-width: 1024px)and (orientation: portrait) {
+@media only screen  and (max-width: 1024px)and (orientation: portrait) {
     .fronty_modal {
-        margin-top: -37.5%;
-        height: 50%;
-        width: 100vw;
-        top: 50vh;
+        height: 90%;
+        width: 90vw;
+		top: 5%;
+		right: 5%;
     }
     .fronty_modal_content:nth-child(2) {
         overflow-y: auto;
