@@ -57,7 +57,31 @@
         -webkit-overflow-scrolling: touch;
     }
 }
-@media only screen and (min-width: 768px) and (max-width: 1200px)and (orientation: landscape) {
+@media only screen  and (max-width: 1024px)and (orientation: landscape) {
+    .fronty_modal {
+        height: 90%;
+        width: 90vw;
+		top: 5%;
+		right: 5%;
+    }
+    .fronty_modal_content:nth-child(2) {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1200px)and (orientation: landscape) {
+    .fronty_modal {
+        height: 75%;
+        top: 12.5%;
+        left: 12.5%;
+        width: 75%;
+    }
+    .fronty_modal_content:nth-child(2) {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1200px)and (orientation: portrait) {
     .fronty_modal {
         height: 75%;
         top: 12.5%;

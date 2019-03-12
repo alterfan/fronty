@@ -30,6 +30,7 @@
 		"codemirror-one-dark-theme": "^1.1.1",
 		"codemirror-revisedsearch": "^1.0.12",
 		"dashdash": "^1.14.1",
+		"drag-resizer": "^1.2.1",
 		"mobile-web-console-logger": "^1.0.0",
 		"plist": "^3.0.1",
 		"split.js": "^1.5.10"

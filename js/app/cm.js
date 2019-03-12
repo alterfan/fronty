@@ -1,135 +1,133 @@
-var cm, cmDoc, cmEditor, _html, _css, _js;
-var db = new StorageDB()
+var cmcm, cmDoc, cmEditor, _html, _css, _js;
+var mixedMode = {
+	name: "htmlmixed",
+	scriptTypes: [{
+			matches: /\/x-handlebars-template|\/x-mustache/i,
+			mode: null
+		},
+		{
+			matches: /(text|application)\/(x-)?vb(a|script)/i,
+			mode: "vbscript"
+		}
+	]
+};
+var isActive;
 class Cm {
 	constructor() {
-		/**
-		 *   for (var i = 0; i < localDB.length; i++) {
-		 *  			try {
-		 *  				for (var key in options.defaults) {
-		 *  					if (CodeMirror.defaults.hasOwnProperty(key) && options.defaults[key] !== key) {
-		 *  						options.defaults[key] = options.defaults[key]
-		 *  						console.log(k + ' ' + CodeMirror.defaults[k]);
-		 *  					} else {
-		 *  						console.log(name); // toString or something else
-		 *  					}
-		 *  					db.setStorage(localDB[i], options.defaults);
-		 *  				}
-		 *  				console.log(localDB[i], "|||", ls[localDB[i]]);
-		 *  			} catch (error) {
-		 *  				for (var i = 0; i < localDB.length; i++) {
-		 *  					if (localDB[i] == "options") {
-		 *  						db.setStorage(localDB[i], options.defaults);
-		 *  					}
-		 *  					if (localDB[i] == "configuration") {
-		 *  						db.setStorage(localDB[i], config.defaults);
-		 *  					}
-		 *  					if (localDB[i] == "autosaved") {
-		 *  						db.setStorage(localDB[i], project.defaults);
-		 *  					}
-		 *  				}
-		 *  				console.log(localDB[i], "|||", "set default");
-		 *  			}
-		 *  		}
-		 *  		for (var key in options.defaults) {
-		 *  	if (CodeMirror.defaults.hasOwnProperty(key) && options.defaults[key] !== key) {
-		 *  		options.defaults[key] = options.defaults[key]
-		 *  		console.log(key + ' ' + CodeMirror.defaults[key]);
-		 *  	}
-		 *  }
-		 *  for (var key in config.defaults) {
-		 *  	if (CodeMirror.defaults.hasOwnProperty(key) && config.defaults[key] !== key) {
-		 *  		config.defaults[key] = config.defaults[key]
-		 *  		console.log(key + ' ' + config.defaults[key]);
-		 *  	}
-		 *  }
-		 **/
-		this.options = db.getStorage("options");
-		this.configuration = db.getStorage("configuration");
-		this.fas = db.getStorage("autosaved");
+		this.options = localStorageDB.getStorage("options");
+		this.configuration = localStorageDB.getStorage("configuration");
+		this.fas = localStorageDB.getStorage("autosaved");
 		this._autoupdate = true;
 		this.cm;
 		this.fontSize;
 		this.fontFamily;
 		this.layout;
-		this.theme = db.getStorageItem("options", 'theme')
-		this.fontSize = db.getStorageItem("configuration", 'fontSize')
-		this.fontFamily = db.getStorageItem("configuration", 'fontFamily')
+		this.isType = false;
+		this.delay = localStorageDB.getStorageItem("configuration", 'delay');
+		this.theme = localStorageDB.getStorageItem("options", 'theme')
+		this.fontSize = localStorageDB.getStorageItem("configuration", 'fontSize')
+		this.fontFamily = localStorageDB.getStorageItem("configuration", 'fontFamily')
 	}
 	init() {
-		var t = this;
+		var This = this;
+		isActive = false
 		$('.code').each(function (index) {
 			var mode = $(this).attr('id');
-			$(this).val(t.fas[index]); //get autosaved
-			cm = CodeMirror.fromTextArea($("#" + mode).get(0), t.options);
-			cm.setOption("mode", mode); //set mode
-			t.eventsListner(cm)
+			$(this).val(This.fas[index]); //get autosaved
+			cmcm = CodeMirror.fromTextArea($("#" + mode).get(0), This.options);
+			mode == "htmlmixed" ? cmcm.setOption("mode", mixedMode) : cmcm.setOption("mode", mode);
+			This.eventsListner(cmcm);
 		});
-		t.changeTheme(t.theme);
-		t.changeFontSize(t.fontSize);
-		t.changeFontFamily(t.fontFamily);
+		This.change_theme(This.theme);
+		This.change_fontSize(This.fontSize);
+		This.change_fontFamily(This.fontFamily);
 		setTimeout(function () {
 			updatePreview()
-		}, 300);
+		}, This.delay);
 		return true
 	}
-	changeTheme(val) {
+	cm_refresh() {
+		$(".Codemirror").each(function (index) {
+			$(this).get(0).CodeMirror.refresh()
+		});
+	}
+	change_theme(val) {
 		$('head').append('<link rel="stylesheet" type="text/css" href="./codemirror/theme/' + val + '.css">');
 		$('.CodeMirror').each(function (index) {
 			$('.CodeMirror')[index].CodeMirror.setOption("theme", val);
 		});
-		if (db.setStorageItem("options", 'theme', val)) {
-			console.log('theme changed: ', val);
-			cm.refresh();
+		if (localStorageDB.setStorageItem("options", 'theme', val)) {
+			cmcm.refresh();
 		}
 	}
-	changeFontSize(val) {
+	change_fontSize(val) {
 		$('.CodeMirror').css("font-size", val);
-		if (db.setStorageItem("configuration", 'fontSize', val)) {
-			alert('fontSize: ' + val);
-			cm.refresh();
+		if (localStorageDB.setStorageItem("configuration", 'fontSize', val)) {
+			cmcm.refresh();
 		}
 	}
-	changeFontFamily(val) {
-		$(".СodeMirror").css("font-family", val);
-		if (db.setStorageItem("configuration", 'fontFamily', val)) {
-			console.log('fontFamily: ', val);
-			cm.refresh();
+	change_delay(val) {
+		this.delay = val;
+		if (localStorageDB.setStorageItem("configuration", 'delay', val)) {}
+	}
+	change_fontFamily(val) {
+		$('.CodeMirror').css("font-family", val);
+		if (localStorageDB.setStorageItem("configuration", 'fontFamily', val)) {
+			cmcm.refresh();
 		}
 	}
-	eventsListner(cm) {
-		let this_ = this;
-		cm.on("gutterClick", function (cm, line, gutter) {
+	eventsListner(cmInstance) {
+		let This = this;
+		cmInstance.on("gutterClick", function (cm, line, gutter) {
 			if (gutter === 'CodeMirror-linenumbers') {
 				return cm.setSelection(CodeMirror.Pos(line, 0), CodeMirror.Pos(line + 1, 0));
 			}
 		});
-		cm.on("focus", function (cm) {
-			cm.EditToolbar("top", editorBar);
+		cmInstance.on("focus", function (cm) {
+			cm.setCursor(cmInstance.lineCount(), 0);
 			cmDoc = cm.getDoc();
-			cmEditor = cmDoc.getEditor()
-		});
-		cm.on("click", function (cm) {
+			cmEditor = cmDoc.getEditor();
 			cm.setOption("styleActiveLine", true);
+		})
+		cmInstance.on("mousedown", function (cm) {
+			cm.EditToolbar("top", editorBar);
 		});
-		cm.on("blur", function (cm) {
+		cmInstance.on("blur", function (cm) {
 			cm.setOption("styleActiveLine", false);
 		});
-		cm.on("changes", function (cm) {
-			if (this_._autoupdate == true) {
-				setTimeout(function () {
-					updatePreview()
-				}, 300);
-				cm.save();
-				db.setStorage("autosaved", [$("#htmlmixed").val(), $("#css").val(), $("#javascript").val()]);
+		cmInstance.on("keydown", function (cm) {
+			This.isType = false
+		})
+		cmInstance.on("change", function (cm) {
+			This.isType = true
+		})
+		cmInstance.on("keyup", function (cm) {
+			cm.save();
+			localStorageDB.setStorage("autosaved", [$("#htmlmixed").val(), $("#css").val(), $("#javascript").val()]);
+			if (This._autoupdate == true) {
+				if (This.isType == true) {
+					setTimeout(function () {
+						single(updatePreview())
+					}, This.delay);
+				}
 				cm.refresh();
 			}
 		})
-		cm.on("resize", function (cm) {
+		cmInstance.on("resize", function (cm) {
 			cm.refresh();
 		});
 	}
+}
+class CmEditor extends Cm {
+	constructor() {
+		super()
+	}
 	format() {
-		let mode = cmEditor.getOption('mode');
+		if (typeof cmEditor.getOption('mode') == "object") {
+			var mode = (cmEditor.getOption('mode')).name
+		} else {
+			var mode = cmEditor.getOption('mode');
+		}
 		let code = cmEditor.getValue();
 		if (mode == 'htmlmixed') {
 			var formatted = html_beautify(code, {
@@ -150,7 +148,7 @@ class Cm {
 			});
 		}
 		cmEditor.setValue(formatted);
-		cmEditor.execCommand("goDocEnd")
+		cmEditor.setCursor(cmDoc.lineCount(), 0);
 	}
 }
 function updatePreview() {
@@ -162,6 +160,16 @@ function updatePreview() {
 	frameConsole.init();
 	preview.write(head_style + body_script);
 	preview.close();
+}
+function single(fn, context) {
+	var result;
+	return function () {
+		if (fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+		return result;
+	};
 }
 /* prepare for preview */
 var searchBar = $("<form>", {
@@ -225,4 +233,46 @@ var editorBar = $("<ul>", {
 			})
 		})
 	})
-})
+});
+var cm = new CmEditor();
+/**
+ *   for (var i = 0; i < localDB.length; i++) {
+ *  			try {
+ *  				for (var key in options.defaults) {
+ *  					if (CodeMirror.defaults.hasOwnProperty(key) && options.defaults[key] !== key) {
+ *  						options.defaults[key] = options.defaults[key]
+ *  						console.log(k + ' ' + CodeMirror.defaults[k]);
+ *  					} else {
+ *  						console.log(name); // toString or something else
+ *  					}
+ *  					db.setStorage(localDB[i], options.defaults);
+ *  				}
+ *  				console.log(localDB[i], "|||", ls[localDB[i]]);
+ *  			} catch (error) {
+ *  				for (var i = 0; i < localDB.length; i++) {
+ *  					if (localDB[i] == "options") {
+ *  						db.setStorage(localDB[i], options.defaults);
+ *  					}
+ *  					if (localDB[i] == "configuration") {
+ *  						db.setStorage(localDB[i], config.defaults);
+ *  					}
+ *  					if (localDB[i] == "autosaved") {
+ *  						db.setStorage(localDB[i], project.defaults);
+ *  					}
+ *  				}
+ *  				console.log(localDB[i], "|||", "set default");
+ *  			}
+ *  		}
+ *  		for (var key in options.defaults) {
+ *  	if (CodeMirror.defaults.hasOwnProperty(key) && options.defaults[key] !== key) {
+ *  		options.defaults[key] = options.defaults[key]
+ *  		console.log(key + ' ' + CodeMirror.defaults[key]);
+ *  	}
+ *  }
+ *  for (var key in config.defaults) {
+ *  	if (CodeMirror.defaults.hasOwnProperty(key) && config.defaults[key] !== key) {
+ *  		config.defaults[key] = config.defaults[key]
+ *  		console.log(key + ' ' + config.defaults[key]);
+ *  	}
+ *  }
+ **/

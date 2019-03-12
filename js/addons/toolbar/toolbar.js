@@ -1,3 +1,4 @@
+var cmFocused, isActive = false;
 (function (mod) {
 	if (typeof exports == "object" && typeof module == "object") // CommonJS
 		mod(require("codemirror"))
@@ -6,7 +7,7 @@
 	else // Plain browser env
 		mod(CodeMirror)
 })((CodeMirror) => {
-	function cmBarOpen(cm, position, toolbar) {
+	function open(cm, toolbar) {
 		if (typeof toolbar == 'string') {
 			bar = $('<div>', {
 				"id": "cm-edit-toolbar",
@@ -22,30 +23,34 @@
 		}
 		var workspace = cm.getWrapperElement(),
 			workspaceID = cm.getOption("mode");
-		if (cm.hasFocus() && $("#cm-edit-toolbar") !== undefined) {
-			if (position == "top") {
-				bar.attr('data-target', workspaceID).insertBefore(workspace)
+		bar.attr('data-target', workspaceID).insertBefore(workspace)
+		isActive = true;
+	}
+	function init(cm, position, toolbar) {
+		if (cm.getInputField().id != cmFocused) {
+			if (isActive == false) {
+				open(cm, toolbar)
 				$('.cm-edit-toolbar').animate({
 					opacity: 1,
 					top: "0%"
 				}, 300);
-				cm.refresh();
-				cm.focus()
-			} else{
-				cmBarClose($("#cm-edit-toolbar"))
-				cm.blur()
+			} else {
+				close();
 			}
 		}
+		cm.refresh();
 	}
-	function cmBarClose() {
-		$(".cm-edit-toolbar").animate({
+	function close() {
+		$("#cm-edit-toolbar").animate({
 			opacity: 0,
 			top: "-100%"
-		}, 300);
-		cm.refresh()
+		}, 300)
+		isActive = false
+		$("#cm-edit-toolbar").remove()
 	}
 	CodeMirror.defineExtension('EditToolbar', function (position, toolbar) {
 		var cm = this
-		cmBarOpen(cm, position, toolbar)
+		close();
+		init(cm, position, toolbar)
 	})
 })

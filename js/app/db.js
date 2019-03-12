@@ -1,4 +1,4 @@
-var _db = {};
+var db_, _db = {};
 _db.db; // буфер для e.target.result
 _db.name = "fronty"; //  название базы данных;
 _db.storeName = "projects"; //  название хранилища данных objectStore;
@@ -8,7 +8,7 @@ _db.empty = true;
 var ls = localStorage,
 	localDB = ["configuration", "options", "autosaved"],
 	localDB_OK = "StorageDB OK";
-class StorageDB {
+class LocalStorageDB {
 	constructor() {
 		if (!ls) {
 			console.log("Sorry localStorage not have support");
@@ -55,8 +55,8 @@ class StorageDB {
 		ls.setItem(objectName, JSON.stringify(val))
 	}
 }
-class DataBase {
-	run() {
+class LocalDB {
+	constructor() {
 		this._openDb(); // init database
 	}
 	_openDb() {
@@ -105,14 +105,14 @@ class DataBase {
 				objectStore.createIndex("description", "description", {
 					unique: false
 				});
-				console.log("Обновление завершено");
+				console.log("db updated");
 			}
 		};
 		request.onsuccess = function (e) {
 			var now = new Date(Date.now());
-			db = _db.db = e.target.result;
+			db_ = _db.db = e.target.result;
 			for (var i = 0; i < 4; i++) {
-				db.transaction([_db.storeName], "readwrite").objectStore(_db.storeName).add({
+				db_.transaction([_db.storeName], "readwrite").objectStore(_db.storeName).add({
 					id: i,
 					name: "test " + i,
 					html: "<h1>test " + i + "</h1>",
@@ -129,8 +129,8 @@ class DataBase {
 	}
 	viewAll() {
 		var self = this;
-		db = _db.db;
-		var transaction = db.transaction([_db.storeName], "readwrite");
+		db_ = _db.db;
+		var transaction = db_.transaction([_db.storeName], "readwrite");
 		var content = "";
 		transaction.oncomplete = function (e) {
 			$("#projectlist").html(content);
@@ -142,7 +142,7 @@ class DataBase {
 		store.openCursor().onsuccess = function (e) {
 			var cursor = e.target.result;
 			if (cursor) {
-				content += "<span>"+cursor.value.id+"</span><span>"+cursor.value.name+"</span><span>"+cursor.value.updated_at+"</span>";
+				content += "<span>" + cursor.value.id + "</span><span>" + cursor.value.name + "</span><span>" + cursor.value.updated_at + "</span>";
 				cursor.continue();
 			} else {
 				content += " ";
@@ -150,8 +150,8 @@ class DataBase {
 		};
 	}
 	openProjects(id) {
-		db = _db.db;
-		var transaction = db.transaction([_db.storeName], "readwrite");
+		db_ = _db.db;
+		var transaction = localStorageDB.transaction([_db.storeName], "readwrite");
 		transaction.oncomplete = function (e) {
 			return content;
 		};
@@ -160,22 +160,22 @@ class DataBase {
 		};
 		var store = transaction.objectStore(_db.storeName);
 		store.get(id).onsuccess = function (e) {
-			db = _db.db = e.target.result;
-			alert(db.cout)
+			db_ = _db.db = e.target.result;
+			alert(localStorageDB.cout)
 			_db.data.push()
 		};
 	}
 	add() {
 		var self = this;
-		db = _db.db;
-		var transaction = db.transaction([_db.storeName], "readwrite");
+		db_ = _db.db;
+		var transaction = localStorageDB.transaction([_db.storeName], "readwrite");
 		transaction.oncomplete = function (event) {
 			console.log("transaction Success");
 		};
 		transaction.onerror = function (event) {
 			console.log("Error");
 		};
-		var objectStore = db
+		var objectStore = localStorageDB
 			.transaction([_db.storeName], "readwrite")
 			.objectStore(_db.storeName)
 			.add({});
@@ -184,9 +184,9 @@ class DataBase {
 	}
 	delete(id) {
 		var self = this;
-		db = _db.db;
+		db_ = _db.db;
 		var key = Number(id.attr('data-id'));
-		db.transaction([_db.storeName], "readwrite").objectStore(_db.storeName).delete(key);
+		localStorageDB.transaction([_db.storeName], "readwrite").objectStore(_db.storeName).delete(key);
 		$('#' + id).remove();
 	}
 	deleteDB() {
@@ -206,11 +206,8 @@ class DataBase {
 		};
 	}
 }
-var database = new DataBase();
-$(document).ready(function () {
-	database.deleteDB();
-	database.run();
-});
+var localStorageDB = new LocalStorageDB();
+var localDB = new LocalDB();
 function formatDate(d) {
 	var dd = d.getDate();
 	if (dd < 10) dd = '0' + dd;

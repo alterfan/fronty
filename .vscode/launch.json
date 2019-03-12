@@ -1,0 +1,52 @@
+{
+	// Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+	// Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+	// Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+
+		{
+			"type": "edge",
+			"request": "attach",
+			"name": "Attach to Edge",
+			"url": "http://badrams.ru/dev/index.html",
+			"port": 2015,
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "chrome",
+			"request": "attach",
+			"name": "Attach to Chrome",
+			"port": 9222,
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch Chrome",
+			"url": "http://192.168.1.219:5500/index.html",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "edge",
+			"request": "launch",
+			"name": "Launch Edge",
+			"url": "http://badrams.ru/dev/index.html",
+			"webRoot": "${workspaceFolder}"
+		}, {
+			"type": "edge",
+			"request": "launch",
+			"name": "Launch Edge for Web",
+			"url": "http://badrams.ru/dev/index.html",
+			"webRoot": "${workspaceFolder}"
+		},
+		{
+			"type": "firefox",
+			"request": "launch",
+			"name": "firefox local",
+			"url": "http://192.168.1.219:5500/index.html",
+			"webRoot": "${workspaceFolder}",
+			"reAttach": true
+		}
+	]
+}

@@ -13,20 +13,19 @@ $.Event;
 $.event.fix;
 options.defaults = {
 	theme: 'fronty',
+	extraKeys: {
+		"Ctrl-J": "toMatchingTag"
+	},
 	addModeClass: true,
-	matchBrackets: true,
 	cursorHeight: 1,
 	styleActiveLine: false,
 	autoCloseBrackets: true,
 	lineNumbers: true,
 	lineWrapping: true,
 	autoCloseTags: true,
-	matchBrackets: true,
-	matchTags: true,
 	foldGutter: true,
-	showInvisibles: true,
-	maxInvisibles: 8, // optional
-	showTrailingSpace: true
+	selectionsMayTouch: true,
+	showCursorWhenSelecting: true
 };
 var config = {};
 config.defaults = {
@@ -60,49 +59,51 @@ project.defaults = {
 	jslibs: '',
 	name: 'test 1',
 	lastupdate: '1.1.2019',
-};	console.time("Execution time took");
+};
 $(document).ready(function () {
-	var ui = new UI();
-	var cm = new Cm();
+	//	database.deleteDB();
+	var target = {
+		cm: cm,
+		ui: ui,
+		modal: modal,
+		db: localStorageDB,
+		frameConsole: frameConsole
+	}
 	// Some code to execute
-	if (cm.init() && ui.init()) {
-		$wrapper.addClass("fadeout");
+	if (localStorageDB && localDB) {
+		if (cm.init() && ui.init()) {
+			$wrapper.addClass("fadeout");
+		}
 	}
 	$(window).on('resize', function () {
 		ui.updateFrameResolution();
+		cm.cm_refresh();
 	});
-	$(document).on('click touchstart', '[data-target="modal"]', function () {
-		ui.modalToggle($(this));
-	});
-	$(document).on('click', '[data-target="layout"]', function () {
-		ui.changeLayout($(this).attr("data-layout"), $(this).attr("data-reverse"))
-	});
+	/* 	$(document).on('click touchstart', '[data-target="modal"]', function () {
+			ui.modalToggle($(this));
+		});
+	$(document).on('click', '[data-target="layout"]', function (e) {
+		ui.changeLayout($(this))
+	});*/
 	$(document).on('click', '[data-target="editor"]', function (e) {
 		ui.maximize($(this));
 	});
-	$(document).on('click', '[data-action="close"]', function (e) {
-		$('.' + $(this).attr('data-target')).removeClass('fadeout').addClass("fadein").remove()
+	$(document).on('click', '[action="click"]', function (e) {
+		var action = new Function("target", "action", "val", "target[action](val)"),
+			t = $(this).attr('data-target'),
+			a = $(this).attr('data-action')
+		action(target[t], a, $(this))
 	});
-	$(document).on('click', '[data-action="toggle"]', function (e) {
-		$('.' + $(this).attr('data-target')).toggleClass('closed')
-	});
-	/*=============================================
-	=            editor settings            =
-	=============================================*/
-	$(document).on('change', '[data-action="changeFontSize"]', function (e) {
-		cm.changeFontSize($(this).val())
-	});
-	$(document).on('change', '[data-action="changeFontFamily"]', function (e) {
-		cm.changeFontFamily($(this).val())
-	});
-	$(document).on('change', '[data-action="changeTheme"]', function (e) {
-		cm.changeTheme($(this).val())
+	$(document).on('change', '[action="change"]', function (e) {
+		var action = new Function("target", "action", "val", "target[action](val)")
+		action(target[$(this).attr('data-target')], $(this).attr('action')+"_"+$(this).attr('data-action'), $(this).val())
 	});
 	/*=============================================
 	=            editor action            =
 	=============================================*/
 	$(document).on('click', '[data-action="format"]', function (e) {
 		cm.format();
+		cmEditor.focus()
 	});
 	$(document).on('click', '[data-action="undo"]', function (e) {
 		cmDoc.undo()
@@ -111,4 +112,3 @@ $(document).ready(function () {
 		cmDoc.redo()
 	});
 });
-console.timeEnd("Execution time took");

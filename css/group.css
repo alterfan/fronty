@@ -9,6 +9,9 @@
 	padding: 0;
 	margin: 0;
 }
+.flex-start {
+	justify-content: flex-start;
+}
 .group-max-width {
 	width: 100%;
 	justify-content: space-around;
@@ -19,21 +22,40 @@
 }
 .group-column {
 	flex-direction: column;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-between;
+	align-items: top;
+	padding: 0;
+	margin: 0;
+}
+.group-header {
+	width: 100%;
+	text-align: left;
+	font-size: 125%;
+	font-weight: 600
 }
 .group-row {
 	flex-direction: row;
+	justify-content: flex-start;
 	padding: 0.25em
 }
 /* group group_separator */
 .group_separator {
-	border-right: 1px solid #483786;
-	margin: 0 0.25em;
+	padding-left: 1px;
+	padding-top: 22px;
+	width: 1px;
+	background-color: #483786;
+	margin: 4px;
 }
 .group_separator.horizontal {
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
-	border-bottom: 2px solid #483786;
-	width: 100%
+	border-bottom: 2px solid #664dbe;
+	width: 100%;
+	padding: 0;
 }
 /* --- */
 /* group group_form */
@@ -45,7 +67,6 @@
 	flex-direction: row;
 	flex-grow: 1;
 	align-items: center;
-	width: 100%;
 	justify-content: space-between;
 }
 .group_form-grow-1 {
@@ -69,8 +90,8 @@
 .group_input {
 	transition: all .3s;
 	font-size: 1em;
-	flex-basis: 100%;
 	border: none;
+	width: 100%;
 	cursor: auto;
 	background: var(--input_bg_active)
 }
@@ -129,14 +150,26 @@
 	pointer-events: none;
 }
 /* group group_btn */
-.group_btn,
-.group_btn>* {
+.group_btn {
 	-webkit-transition: all 300ms ease-out;
 	-moz-transition: all 300ms ease-out;
 	-o-transition: all 300ms ease-out;
 	transition: all 300ms ease-out;
-	padding: 0.05em;
+	padding: 2px;
+	margin: 2px;
 	color: var(--btn_color);
+	fill: var(--btn_color);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+.group_btn>svg {
+	-webkit-transition: all 300ms ease-out;
+	-moz-transition: all 300ms ease-out;
+	-o-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+	height: 22px;
+	margin: 2px;
 	fill: var(--btn_color);
 	cursor: pointer;
 	display: flex;
@@ -156,14 +189,15 @@
 	color: var(--btn_color_active);
 	fill: var(--btn_color_active)
 }
-.group_btn:hover,.group_btn:active {
+.group_btn:hover,
+.group_btn:active {
 	color: var(--btn_color_hover);
 }
 .group_btn:hover svg {
 	fill: var(--btn_color_hover)
 }
 .group_btn .logo {
-	max-height: 2em;
+	max-height: 2rem;
 	z-index: 1020;
 	position: relative;
 }

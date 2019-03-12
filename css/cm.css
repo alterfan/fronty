@@ -1,6 +1,6 @@
 :root {
-	--font: 1em;
-	--cursor: 1em;
+	--font: 1rem;
+	--cursor: 1rem;
 }
 .CodeMirror {
 	-moz-transition: all 0.2s ease-in 0s;
@@ -24,10 +24,6 @@
 }
 .CodeMirror-linenumbers {
 	width: 2em
-}
-.CodeMirror-cursor {
-	width: 2px;
-	height: var(--font)
 }
 .cm-edit-toolbar {
 	background: var(--bars_bg);
@@ -71,8 +67,13 @@
 	align-items: center;
 	justify-content: space-between;
 }
-.cm-tab {
+.cm-tab-1 {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+	background-position: right;
+	background-repeat: no-repeat;
+}
+.cm-tab {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTFH80I3AAAAa0lEQVRIS9XTwQmAQAxE0RUb0AY8WILYgCcFD4r2X0uclSispAD/4W2YuYWwyczQwpIkLEnC8odqmaTxvPpEXaCXTVqfd5+fGeSQXU55F6DoJC8wSHEBgvwHFhk94xZ4VN+uCERhSRKWHJYumbXJrRsqSmcAAAAASUVORK5CYII=);
 	background-position: right;
 	background-repeat: no-repeat;
 }
