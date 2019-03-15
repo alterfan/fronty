@@ -1,29 +1,30 @@
-class UI extends SplitView {
+class Ui extends SplitView {
 	constructor() {
 		super();
-		this.delay;
+		this.delay
+		this.layout
 		this.direction;
-		this.layout;
+		this.render();
 	}
-	init() {
-		if (!this.delay || !this.direction || !this.layout) {
-			this.delay = config.defaults.delay;
-			this.layout = localStorageDB.getStorageItem("configuration", "layout");
-			this.direction = localStorageDB.getStorageItem("configuration", "girection");
-		}
-		this.setLayout(this.layout, this.direction)
-		this.fadeOut($wrapper)
+	render() {
+		let _this = this;
+		this.delay = _DB.getStorageItem("configuration", "delay");
+		this.layout = _DB.getStorageItem("configuration", "layout");
+		this.direction = _DB.getStorageItem("configuration", "direction");
+		$wrapper.animate({
+			opacity: 1
+		}, 500)
+		this.setLayout(_this.layout, _this.direction)
+
 	}
 	setLayout(layout, isreverse) {
 		if ($wrapper.removeClass("fronty_wrapper-vertical reverse fronty_wrapper-vertical default")) {
 			$wrapper.addClass("fronty_wrapper-" + layout + " " + isreverse);
 			$wrapper.attr("data-reverse", isreverse);
 			$wrapper.attr("data-layout", layout);
-			this.direction = isreverse;
-			this.layout = layout;
 		}
-		localStorageDB.setStorageItem("configuration", "direction", this.direction);
-		localStorageDB.setStorageItem("configuration", "layout", this.layout);
+		_DB.setStorageItem('configuration', "direction", isreverse);
+		_DB.setStorageItem('configuration', "direction", layout);
 		this.initSplit(layout)
 	}
 	changeLayout(el) {
@@ -69,4 +70,3 @@ class UI extends SplitView {
 		$("#iframeHeight").html(Math.round($('#iframe').height()));
 	}
 }
-var ui = new UI();

@@ -1,8 +1,8 @@
-.animate{
-	-moz-transition: all 0.2s ease-in 0s;
-	-webkit-transition: all 0.2s ease-in 0s;
-	-o-transition: all 0.2s ease-in 0s;
-	transition: all 0.2s ease-in 0s;
+.transition{
+	-moz-transition: all 0.2s ease-in-out 0.2s;
+	-webkit-transition: all 0.2s ease-in-out 0.2s;
+	-o-transition: all 0.2s ease-in-out 0.2s;
+	transition: all 0.2s ease-in-out 0.2s;
 }
 .hidden {
 	display: none;

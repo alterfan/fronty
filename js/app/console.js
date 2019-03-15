@@ -66,7 +66,7 @@ class FrameConsole {
 		$(".console").toggleClass("closed");
 	}
 }
-var frameConsole = new FrameConsole();
+var frameConsole = new FrameConsole()
 function toString(x) {
 	return typeof x === 'string' ? x : JSON.stringify(x);
 }

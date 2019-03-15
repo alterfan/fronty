@@ -1,5 +1,5 @@
 /* modal */
-class Modal {
+class Modal{
 	open(el) {
 		var view = el.attr('data-view');
 		$overlay.fadeIn(150);
@@ -23,4 +23,3 @@ class Modal {
 		}
 	}
 }
-var modal=new Modal()

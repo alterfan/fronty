@@ -5,59 +5,49 @@ _db.storeName = "projects"; //  название хранилища данных
 _db.data = [];
 _db.version = 1;
 _db.empty = true;
-var ls = localStorage,
-	localDB = ["configuration", "options", "autosaved"],
-	localDB_OK = "StorageDB OK";
 class LocalStorageDB {
-	constructor() {
-		if (!ls) {
-			console.log("Sorry localStorage not have support");
-		}
-		for (var i = 0; i < localDB.length; i++) {
-			if (!ls.getItem(localDB[i])) {
-				for (var i = 0; i < localDB.length; i++) {
-					if (localDB[i] == "options") {
-						this.setStorage(localDB[i], options.defaults);
-						console.log('localDB[i]: ', localDB[i], options.defaults);
-					} else if (localDB[i] == "configuration") {
-						console.log('localDB[i]: ', localDB[i], config.defaults);
-						this.setStorage(localDB[i], config.defaults);
-					} else if (localDB[i] == "autosaved") {
-						console.log('localDB[i]: ', localDB[i], project.defaults);
-						this.setStorage(localDB[i], project.autosaveData);
-					}
+	isReady() {
+		var _this = this;
+		$.getJSON("defaults.json", function (data, textStatus, jqXHR) {
+			console.log("JSON file", data); // 200
+			for (var key in data) {
+				if (!localStorage.getItem(key) || localStorage.getItem(key) == "undefined") {
+					_this.setStorage(key, data[key]); // Да
+				} else {
+					var users = _this.getStorage(key)
+					console.log(key, users[key])
 				}
+				console.log(textStatus); // Success
+				console.log(jqXHR.status); // 200
 			}
-		}
-		this.buffer;
+			console.log("Загрузка была выполнена.");
+		});
+		return
 	}
 	getStorageItem(objectName, keyN) {
-		this.buffer = this.getStorage(objectName);
-		if (!this.buffer[keyN] && this.buffer[keyN] == null && this.buffer[keyN] == undefined) {
-			return options.defaults[keyN];
-		} else {
-			return this.buffer[keyN]
-		}
+		let data = localStorage.getItem(objectName);
+		console.log('TCL: LocalStorageDB -> getStorageItem -> data', data[keyN])
+		return JSON.parse(data)[keyN]
 	}
 	setStorageItem(objectName, keyN, val) {
-		this.buffer = this.getStorage(objectName);
-		this.buffer[keyN] = val;
-		localStorage.setItem(objectName, JSON.stringify(this.buffer));
+		var data = this.getStorage(objectName);
+		data[keyN] = val;
+		localStorage.setItem(objectName, JSON.stringify(data));
 	}
 	getStorage(objectName) {
-		var request = JSON.parse(ls.getItem(objectName));
-		/* 	if (!request && request == null && request == undefined) {
-				return this.buffer = options.defaults
-			} */
-		return this.buffer = request
+		var data = localStorage.getItem(objectName)
+		if (data == undefined) {} else {
+			return JSON.parse(data)
+		}
 	}
 	setStorage(objectName, val) {
-		ls.setItem(objectName, JSON.stringify(val))
+		localStorage.setItem(objectName, JSON.stringify(val))
 	}
 }
-class LocalDB {
-	constructor() {
-		this._openDb(); // init database
+class LocalDB extends LocalStorageDB {
+	constructor(json) {
+		super()
+		this._openDb();
 	}
 	_openDb() {
 		var self = this;
@@ -105,7 +95,6 @@ class LocalDB {
 				objectStore.createIndex("description", "description", {
 					unique: false
 				});
-				console.log("db updated");
 			}
 		};
 		request.onsuccess = function (e) {
@@ -117,7 +106,7 @@ class LocalDB {
 					name: "test " + i,
 					html: "<h1>test " + i + "</h1>",
 					css: "h1{color:blue}",
-					js: "console.log('test " + i + "')",
+					js: "",
 					cssLibs: "",
 					jsLibs: "",
 					created_at: (new Date(Date.UTC(2012, 11, 12, 3, 0, 0))).toLocaleString(),
@@ -135,9 +124,7 @@ class LocalDB {
 		transaction.oncomplete = function (e) {
 			$("#projectlist").html(content);
 		};
-		transaction.onerror = function (e) {
-			console.dir(e);
-		};
+		transaction.onerror = function (e) {};
 		var store = transaction.objectStore(_db.storeName);
 		store.openCursor().onsuccess = function (e) {
 			var cursor = e.target.result;
@@ -155,9 +142,7 @@ class LocalDB {
 		transaction.oncomplete = function (e) {
 			return content;
 		};
-		transaction.onerror = function (e) {
-			console.dir(e);
-		};
+		transaction.onerror = function (e) {};
 		var store = transaction.objectStore(_db.storeName);
 		store.get(id).onsuccess = function (e) {
 			db_ = _db.db = e.target.result;
@@ -169,18 +154,13 @@ class LocalDB {
 		var self = this;
 		db_ = _db.db;
 		var transaction = localStorageDB.transaction([_db.storeName], "readwrite");
-		transaction.oncomplete = function (event) {
-			console.log("transaction Success");
-		};
-		transaction.onerror = function (event) {
-			console.log("Error");
-		};
+		transaction.oncomplete = function (event) {};
+		transaction.onerror = function (event) {};
 		var objectStore = localStorageDB
 			.transaction([_db.storeName], "readwrite")
 			.objectStore(_db.storeName)
 			.add({});
 		self.viewAll();
-		console.log("new data added");
 	}
 	delete(id) {
 		var self = this;
@@ -191,12 +171,8 @@ class LocalDB {
 	}
 	deleteDB() {
 		var req = indexedDB.deleteDatabase(_db.name);
-		req.onsuccess = function () {
-			console.log("Deleted database(" + _db.name + ") successfully");
-		};
-		req.onerror = function () {
-			console.log("Couldn't delete database(" + _db.name + ")");
-		};
+		req.onsuccess = function () {};
+		req.onerror = function () {};
 		req.onblocked = function () {
 			console.log(
 				"Couldn't delete database(" +
@@ -206,8 +182,6 @@ class LocalDB {
 		};
 	}
 }
-var localStorageDB = new LocalStorageDB();
-var localDB = new LocalDB();
 function formatDate(d) {
 	var dd = d.getDate();
 	if (dd < 10) dd = '0' + dd;

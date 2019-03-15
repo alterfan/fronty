@@ -1,0 +1,48 @@
+{
+	"options": {
+		"theme": "fronty",
+		"extraKeys": {
+			"Ctrl-J": "toMatchingTag"
+		},
+		"addModeClass": true,
+		"cursorHeight": 1,
+		"styleActiveLine": false,
+		"autoCloseBrackets": true,
+		"lineNumbers": true,
+		"lineWrapping": true,
+		"autoCloseTags": true,
+		"foldGutter": true,
+		"selectionsMayTouch": true,
+		"showCursorWhenSelecting": true,
+		"scrollbarStyle": "simple"
+	},
+	"configuration": {
+		"delay": 500,
+		"fontSize": "14px",
+		"fontFamily": "Consolas",
+		"layout": "horizontal",
+		"direction": "default",
+		"miniMapWidth": "50px"
+	},
+	"autosaved": ["<div class=\"baer baer--2-1\">  <h2 class=\"baer__title\">2 : 1<h2><div><div class=\"baer baer--16-9\">  <h2 class=\"baer__title\">16 : 9<h2><div><div class=\"baer baer--3-2\">  <h2 class=\"baer__title\">3 : 2<h2><div><div class=\"baer baer--4-3\">  <h2 class=\"baer__title\">4 : 3<h2><div><div class=\"baer baer--source-aspect\">  <h2 class=\"baer__title\">width : height (custom)<h2><div>", "h1{color:blue}", "cosole.log(\"test 1\")"],
+	"data": {
+		"id": "",
+		"html": "",
+		"css": "",
+		"js": "",
+		"csslibs": "",
+		"jslibs": "",
+		"name": "",
+		"lastupdate": ""
+	},
+	"project": {
+		"id": "1",
+		"html": "<h1>test 1</h1>",
+		"css": "h1{color:blue}",
+		"js": "console.log(\"/test 1\"/)",
+		"csslibs": "",
+		"jslibs": "",
+		"name": "test 1",
+		"lastupdate": "1.1.2019"
+	}
+}

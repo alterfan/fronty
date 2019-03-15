@@ -1,5 +1,5 @@
 var splitEditors, splitPreview;
-class SplitView {
+class SplitView{
 	constructor() {
 		this.gutterSize = 16;
 		this.dragInterval = 0;

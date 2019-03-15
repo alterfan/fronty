@@ -4,15 +4,23 @@
 	// Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
 	"configurations": [
+		{
+			"type": "firefox",
+			"request": "launch",
+			"reAttach": true,
+			"name": "Launch index.html",
+			"file": "${workspaceFolder}/index.html"
+		},
 
 		{
-			"type": "edge",
-			"request": "attach",
-			"name": "Attach to Edge",
-			"url": "http://badrams.ru/dev/index.html",
-			"port": 2015,
-			"webRoot": "${workspaceFolder}"
+			"type": "firefox",
+			"request": "launch",
+			"reAttach": true,
+			"name": "Launch add-on",
+			"webRoot": "${workspaceFolder}",
+			"url": "http://192.168.1.219:5500/"
 		},
+
 		{
 			"type": "chrome",
 			"request": "attach",
@@ -21,26 +29,12 @@
 			"webRoot": "${workspaceFolder}"
 		},
 		{
-			"type": "chrome",
-			"request": "launch",
-			"name": "Launch Chrome",
-			"url": "http://192.168.1.219:5500/index.html",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
 			"type": "edge",
 			"request": "launch",
 			"name": "Launch Edge",
-			"url": "http://badrams.ru/dev/index.html",
+			"url": "http://192.168.137.1:5500/index.html",
 			"webRoot": "${workspaceFolder}"
-		}, {
-			"type": "edge",
-			"request": "launch",
-			"name": "Launch Edge for Web",
-			"url": "http://badrams.ru/dev/index.html",
-			"webRoot": "${workspaceFolder}"
-		},
-		{
+		} {
 			"type": "firefox",
 			"request": "launch",
 			"name": "firefox local",

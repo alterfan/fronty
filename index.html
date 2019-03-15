@@ -1,5 +1,4 @@
 <html>
-
 	<head>
 		<title>fronty</title>
 		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,16 +22,8 @@
 		<link rel="stylesheet" href="./css/split.css">
 		<link rel="stylesheet" href="./js/addons/colorpicker/colorpicker.css" />
 		<script type="text/javascript" src="./libs/jQuery/3.3.1/jquery.min.js"></script>
-		<script>
-			document.write(
-			  '<script src="http://' +
-				(location.host || '${1:localhost}').split(':')[0] +
-				':${2:35729}/livereload.js?snipver=1"></' +
-				'script>'
-			);
-		  </script>
+		<script type="text/javascript" src="./js/app/db.js"></script>
 	</head>
-
 	<body>
 		<div class="fronty">
 			<div class="fronty_header hidden" id="header">
@@ -116,7 +107,6 @@
 					</div>
 					<ul id="console" class="console closed">
 						<li>
-
 							<div class="console_bar  group group-row">
 								<div class="group_separator"></div>
 								<a class="group_btn" onclick="frameConsole.frameConsoleClear()">clear</a>
@@ -187,7 +177,6 @@
 		/*=============================================
 		= match =
 		=============================================*/
-
 		/*===== End of match ======*/
 		<script type="text/javascript" src="./codemirror/mode/htmlmixed/htmlmixed.js"></script>
 		<script type="text/javascript" src="./codemirror/mode/xml/xml.js"></script>
@@ -204,7 +193,6 @@
 		<script type="text/javascript" src="./codemirror/addon/hint/xml-hint.js"></script>
 		<script type="text/javascript" src="./codemirror/addon/hint/css-hint.js"></script>
 		<script type="text/javascript" src="./codemirror/addon/hint/javascript-hint.js"></script>
-
 		/*=============================================
 		= fold =
 		=============================================*/
@@ -215,25 +203,26 @@
 		<script type="text/javascript" src="./codemirror/addon/fold/indent-fold.js"></script>
 		<script type="text/javascript" src="./codemirror/addon/fold/markdown-fold.js"></script>
 		<script type="text/javascript" src="./codemirror/addon/fold/comment-fold.js"></script>
+		<script type="text/javascript" src="./codemirror/addon/display/panel.js"></script>
+		<script src="./codemirror/addon/scroll/simplescrollbars.js"></script>
 		/*===== End of fold ======*/
 		<!-- addons -->
 		<script type="text/javascript" src="./js/addons/split/split.min.js"></script>
-		<script type="text/javascript" src="./js/addons/colorpicker/colorpicker.js"></script>
 		<script type="text/javascript" src="./js/addons/beautify/beautify-js.js"></script>
 		<script type="text/javascript" src="./js/addons/beautify/beautify-css.js"></script>
 		<script type="text/javascript" src="./js/addons/beautify/beautify-html.js"></script>
 		<script type="text/javascript" src="./js/addons/jsZip/FileSaver.js"></script>
 		<script type="text/javascript" src="./js/addons/jsZip/jszip.min.js"></script>
-		<script type="text/javascript" src="./js/addons/toolbar/toolbar.js"></script>
+		/*---------- my scripts ----------*/
+		<script type="text/javascript" src="./js/app/cm-addon-toolbar/cm-addon-toolbar.js"></script>
+		<script type="text/javascript" src="./js/app/cm-addon-minimap/cm-addon-minimap.js"></script>
 		<!--  app script  -->
-		<script type="text/javascript" src="./js/app/console.js"></script>
+		<script type="text/javascript" src="./js/app/app.js"></script>
 
-		<script type="text/javascript" src="./js/app/index.js"></script>
-		<script type="text/javascript" src="./js/app/db.js"></script>
+		<script type="text/javascript" src="./js/app/console.js"></script>
 		<script type="text/javascript" src="./js/app/resize.js"></script>
-		<script type="text/javascript" src="./js/app/modal.js"></script>
 		<script type="text/javascript" src="./js/app/ui.js"></script>
+		<script type="text/javascript" src="./js/app/modal.js"></script>
 		<script type="text/javascript" src="./js/app/cm.js"></script>
 	</body>
-
 </html>

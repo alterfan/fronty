@@ -126,20 +126,7 @@
 		</div>
 	</div>
 </div>
-<div class="group-column">
-	<div class="group group-column">
-		<p class="group-header">
-			test
-		</p>
-		<h3 class="group_separator horizontal"></h3>
-	</div>
-	<div class="group">
-		<div class="group_form group_form-start">
-			<label class="group_label" for="changeTheme">test</label>
-			<input type="number" min="300" class="group_select" id="changeDelay" data-action="alert" action="change" data-target="cm">
-		</div>
-	</div>
-</div>
+
 <script>
 	$(document).ready(function () {
 		$('[action="change"]').each(function (el) {
@@ -147,29 +134,15 @@
 
 			if ($(this)[0].tagName == $('select')) {
 				$(this).find('option').each(function () {
-					if ($(this).text() == localStorageDB.getStorageItem('configuration', option)) {
+					if ($(this).text() == _DB.getStorageItem('configuration', option)) {
 						$(this).prop('selected', true);
 					}
 				});
 			} else {
-				$(this).val(localStorageDB.getStorageItem('configuration', option));
+				$(this).val(_DB.getStorageItem('configuration', option));
 			}
 		});
-		/* 	$('#changeFontSize option').each(function (el) {
-				if (el.text() == localStorageDB.getStorageItem('configuration', 'fontSize')) {
-					el.prop('selected', true);
-				}
-			});
-			$('#changeTheme option').each(function (el) {
-				if (el.text() == localStorageDB.getStorageItem('options', 'theme')) {
-					el.prop('selected', true);
-				}
-			});
-			$('#changefontFamily option').each(function (el) {
-				if (el.text() == localStorageDB.getStorageItem('configuration', 'fontFamily')) {
-					el.prop('selected', true);
-				}
-			}); */
+
 	});
 
 </script>
