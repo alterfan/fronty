@@ -105,7 +105,7 @@ window.MiniMap = (function() {
       //remove any elements that might distort the scrollHeight
       //of our source pane
       var newContentDOM = document.querySelector(this.options.content).cloneNode(true);
-      
+
       //Here we null-ify any top or bottom settings
       removeStyle(newContentDOM,"top");
       removeStyle(newContentDOM,"bottom");
@@ -136,7 +136,7 @@ window.MiniMap = (function() {
       var watchHeight = unPx(window.getComputedStyle(this.scrollBar, null).height);
 
       this.scrollNormally = this.miniMap.scrollHeight > ssHeight+1;
-      
+
       max =this.scrollBar.scrollHeight - watchHeight;
       avail = ssHeight - showHeight;
       avail = avail > 0 ? avail : 0;
@@ -169,12 +169,12 @@ window.MiniMap = (function() {
         addEventHandler(document.body,"mouseup",mouseUpDocumentFcn);
         addEventHandler(document.body,"mousemove",mouseMoveDocumentFcn);
       };
-      
+
       addEventHandler(mm.miniMapBar,"mousedown",mouseDownMiniMapBarFcn);
     },
     _setupScrollAction: function (factor){
-      //We curry the scroll method because the factor
-      //don't change often.
+      //We Карри the scroll method because the factor
+      //don't change часто.
       return function(show,ss,watch){
         var st = watch.scrollTop;
         if (this.scrollNormally){

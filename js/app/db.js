@@ -6,27 +6,29 @@ _db.data = [];
 _db.version = 1;
 _db.empty = true;
 class LocalStorageDB {
-	isReady() {
-		var _this = this;
-		$.getJSON("defaults.json", function (data, textStatus, jqXHR) {
-			console.log("JSON file", data); // 200
-			for (var key in data) {
-				if (!localStorage.getItem(key) || localStorage.getItem(key) == "undefined") {
-					_this.setStorage(key, data[key]); // Да
-				} else {
-					var users = _this.getStorage(key)
-					console.log(key, users[key])
-				}
-				console.log(textStatus); // Success
-				console.log(jqXHR.status); // 200
-			}
-			console.log("Загрузка была выполнена.");
-		});
-		return
+	constructor(json) {
+		this.ready = false;
 	}
+	init(data, _this) {
+		var _this = _this
+		for (var key in data) {
+			var store = localStorage.getItem(key),
+				storeDefaults = data[key];
+			sessionStorage.setItem(key, JSON.stringify(storeDefaults));
+			if (!localStorage.getItem(key) || localStorage.getItem(key) == "undefined" || localStorage.getItem(key) == null) {
+				_this.setStorage(key, data[key]); // Да
+			} else {
+				if (store.hasOwnProperty(key) == false) {
+					_this.setStorage(key, storeDefaults); // Да
+				}
+			}
+		}
+		_this.ready = true;
+		return true
+	}
+	_checkTextStatus(textStatus) {}
 	getStorageItem(objectName, keyN) {
 		let data = localStorage.getItem(objectName);
-		console.log('TCL: LocalStorageDB -> getStorageItem -> data', data[keyN])
 		return JSON.parse(data)[keyN]
 	}
 	setStorageItem(objectName, keyN, val) {

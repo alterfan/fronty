@@ -47,6 +47,7 @@ class SplitView{
 			},
 			onDragStart: function (dimension, size, gutterSize) {},
 			onDragEnd: function (dimension, size, gutterSize) {
+				this_.cm_refresh()
 			}
 		});
 	}
@@ -94,7 +95,7 @@ class SplitView{
 				console.log('dimension', dimension);
 			},
 			onDragEnd: function (dimension) {
-				console.log('dimension', dimension);
+				this_.cm_refresh ()
 			}
 		});
 	}

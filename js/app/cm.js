@@ -26,23 +26,25 @@ class Cm extends Ui {
 		this.delay = _DB.getStorageItem("configuration", 'delay');
 		this.theme = _DB.getStorageItem("options", 'theme')
 		this.fontSize = _DB.getStorageItem("configuration", 'fontSize');
+		this.render;
 		this.init()
 	}
 	init() {
 		let _this = this;
-		console.log('TCL: Cm -> init -> _this.theme', _this.theme)
 		$('.code').each(function (index) {
 			var mode = $(this).attr('id');
 			$(this).val(_this.autosaved[index]); //get autosaved
 			cmcm = CodeMirror.fromTextArea($("#" + mode).get(0), _this.options);
 			mode == "htmlmixed" ? cmcm.setOption("mode", mixedMode) : cmcm.setOption("mode", mode);
 			_this.eventsListner(cmcm);
+			cmcm.setOption("showToolBar", true)
 		});
 		this.change_theme(_this.theme);
 		_this.change_fontSize(_this.fontSize);
 		_this.change_fontFamily(_this.fontFamily);
 		setTimeout(function () {
 			updatePreview()
+			$wrapper.addClass("fadeout");
 		}, _this.delay);
 	}
 	cm_refresh() {
@@ -89,15 +91,14 @@ class Cm extends Ui {
 			cm.setOption("styleActiveLine", true);
 		})
 		cmInstance.on("mousedown", function (cm) {
-			cm.cmToolbar(editorBar);
-			cm.miniMap()
+			if (!cm.hasFocus()) {
+				cm.miniMap()
+			}
 		});
 		cmInstance.on("blur", function (cm) {
 			cm.setOption("styleActiveLine", false);
 		});
-		cmInstance.on("keydown", function (cm) {
-			This.isType = false;
-		})
+		cmInstance.on("keydown", function (cm) {})
 		cmInstance.on("change", function (cm) {
 			This.isType = true
 		})
@@ -172,101 +173,3 @@ function single(fn, context) {
 	};
 }
 /* prepare for preview */
-var searchBar = $("<form>", {
-	"class": "cm-edit-toolbar_form",
-	append: $("<div>", {
-		"class": "group_search",
-		append: $("<input>", {
-			"class": "group_input",
-			"type": "search"
-		}).add("<a>", {
-			"class": "group_btn",
-			"data-action": "search",
-			append: $("<i>", {
-				"class": "material-icons",
-				"text": "search"
-			})
-		})
-	})
-});
-var editorBar = $("<ul>", {
-	"class": "group group-max-width",
-	append: $("<li>", {
-		"class": "group",
-		"data-action": "search",
-		append: $("<a>", {
-			"class": "group_btn group_btn-max-width",
-			"data-action": "search",
-			append: $("<i>", {
-				"class": "material-icons",
-				"text": "search"
-			})
-		})
-	}).add("<li>", {
-		"class": "group",
-		append: $("<a>", {
-			"class": "group_btn group_btn-max-width",
-			"data-action": "format",
-			append: $("<i>", {
-				"class": "material-icons",
-				"text": "code"
-			})
-		})
-	}).add("<li>", {
-		"class": "group",
-		append: $("<a>", {
-			"class": "group_btn group_btn-max-width",
-			"data-action": "undo",
-			append: $("<i>", {
-				"class": "material-icons",
-				"text": "undo"
-			})
-		})
-	}).add("<li>", {
-		"class": "group",
-		append: $("<a>", {
-			"class": "group_btn group_btn-max-width",
-			"data-action": "redo",
-			append: $("<i>", {
-				"class": "material-icons",
-				"text": "redo"
-			})
-		})
-	})
-});
-/**
- *   for (var i = 0; i < this.length; i++) {
- *  			try {
- *  				for (var key in options) {
- *  					if (CodeMirror.hasOwnProperty(key) && options[key] !== key) {
- *  						options[key] = options[key]
- *
- *  					} else {
- *  						 // toString or something else
- *  					}
- *  					db.setStorage(this[i], options);
- *  				}
- *
- *  			} catch (error) {
- *
- *
- *
- *
- *
- *
- *
- *  			}
- *  		}
- *  		for (var key in options) {
- *  	if (CodeMirror.hasOwnProperty(key) && options[key] !== key) {
- *  		options[key] = options[key]
- *
- *  	}
- *  }
- *  for (var key in config) {
- *  	if (CodeMirror.hasOwnProperty(key) && config[key] !== key) {
- *  		config[key] = config[key]
- *
- *  	}
- *  }
- **/

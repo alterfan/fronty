@@ -25,6 +25,7 @@
 		"bootstrap": "^4.3.1",
 		"cm-show-invisibles": "^2.0.2",
 		"codemirror-helpers": "^0.1.0",
+		"codemirror-inlet": "^0.1.10",
 		"codemirror-minified": "^5.43.0",
 		"codemirror-mode-jq": "^1.0.0",
 		"codemirror-one-dark-theme": "^1.1.1",

@@ -11,11 +11,7 @@ class Ui extends SplitView {
 		this.delay = _DB.getStorageItem("configuration", "delay");
 		this.layout = _DB.getStorageItem("configuration", "layout");
 		this.direction = _DB.getStorageItem("configuration", "direction");
-		$wrapper.animate({
-			opacity: 1
-		}, 500)
 		this.setLayout(_this.layout, _this.direction)
-
 	}
 	setLayout(layout, isreverse) {
 		if ($wrapper.removeClass("fronty_wrapper-vertical reverse fronty_wrapper-vertical default")) {

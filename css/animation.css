@@ -1,11 +1,11 @@
-.transition{
+.transition {
 	-moz-transition: all 0.2s ease-in-out 0.2s;
 	-webkit-transition: all 0.2s ease-in-out 0.2s;
 	-o-transition: all 0.2s ease-in-out 0.2s;
 	transition: all 0.2s ease-in-out 0.2s;
 }
 .hidden {
-	display: none;
+	opacity: 0;
 }
 .transition.fadein {
 	opacity: 0;
