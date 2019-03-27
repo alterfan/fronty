@@ -1,4 +1,5 @@
 # fronty
 Online/offline front-end Playground
-V0.1
+V0.2
+# about
 
