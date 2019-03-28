@@ -18,7 +18,7 @@
 	},
 	"configuration": {
 		"delay": 500,
-		"fontSize": "14px",
+		"fontSize": "12px",
 		"fontFamily": "Consolas",
 		"layout": "horizontal",
 		"direction": "default",

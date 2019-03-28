@@ -111,15 +111,13 @@
 		};
 		dragging(miniMapBar, miniMap, scrollbar, cm) {
 			miniMapBar.onmousedown = function (e) {
-				var mm_barY = e.offsetY == undefined ? e.layerY : e.offsetY,
-					pageY = e.pageY - miniMap.offsetParent.offsetTop,
-					mmY = miniMapBar.offsetTop;
+				let mmTop = e.pageY - miniMap.offsetParent.offsetTop,
+					mm_barTop = miniMapBar.offsetTop,
+					sbTop = scrollbar.scrollTop;
 				var scroll = function (e) {
-					var factor = parseInt(window.getComputedStyle(miniMap).maxHeight) / cm.getScrollInfo().height;
-					if (mmY >= 0) {
-						scrollbar.scrollTop = (e.pageY - miniMap.offsetTop - mm_barY) / factor - pageY / factor + mmY / factor;
-					} else {
-						scrollbar.scrollTop = (e.pageY - miniMap.offsetTop - mm_barY) / factor - pageY / factor
+					let factor = getStyle(miniMap, 'height') / cm.getScrollInfo().height;
+					if (mm_barTop >= 0) {
+						scrollbar.scrollTop = sbTop * factor + ((e.pageY / factor - miniMap.offsetParent.offsetTop / factor - sbTop * factor) - (mmTop / factor - mm_barTop / factor));
 					}
 				};
 				document.onmousemove = function (event) {

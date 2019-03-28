@@ -37,7 +37,8 @@ class Cm extends Ui {
 			cmcm = CodeMirror.fromTextArea($("#" + mode).get(0), _this.options);
 			mode == "htmlmixed" ? cmcm.setOption("mode", mixedMode) : cmcm.setOption("mode", mode);
 			_this.eventsListner(cmcm);
-			cmcm.setOption("showToolBar", true)
+			cmcm.setOption("toolBar", true);
+			cmcm.setOption("miniMap", true);
 		});
 		this.change_theme(_this.theme);
 		_this.change_fontSize(_this.fontSize);
@@ -90,11 +91,6 @@ class Cm extends Ui {
 			cmEditor = cmDoc.getEditor();
 			cm.setOption("styleActiveLine", true);
 		})
-		cmInstance.on("mousedown", function (cm) {
-			if (!cm.hasFocus()) {
-				cm.miniMap()
-			}
-		});
 		cmInstance.on("blur", function (cm) {
 			cm.setOption("styleActiveLine", false);
 		});

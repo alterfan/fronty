@@ -22,8 +22,8 @@
 	cursor: pointer;
 }
 .mm_container {
-	z-index: 1080;
 	width: 100%;
+	position: relative;
 }
 .mm_container_scrollbar {
 	right: 0;
@@ -42,6 +42,7 @@
 	top: 0;
 	position: absolute;
 	cursor: pointer;
+	padding: 0px 0px !important;
 }
 .mm_container>.CodeMirror {
 	cursor: pointer;
@@ -59,7 +60,7 @@
 	-webkit-user-select: none !important;
 }
 .mm_container>.CodeMirror .CodeMirror-scroll>.CodeMirror-sizer>div>.CodeMirror-lines {
-	padding: 2px 0px !important;
+	padding: 0px 0px !important;
 }
 .mm_container>.CodeMirror .CodeMirror-scroll>.CodeMirror-sizer>div>.CodeMirror-lines>div>.CodeMirror-cursors {
 	display: none !important;
