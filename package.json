@@ -1,39 +1,27 @@
 {
-	"name": "fronty",
-	"version": "1.0.0",
-	"description": "dev",
-	"main": "app.js",
-	"scripts": {
-		"$": "npm run"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/alterfan/fronty.git"
-	},
-	"author": "alterfan",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/alterfan/fronty/issues"
-	},
-	"homepage": "https://github.com/alterfan/fronty#readme",
-	"devDependencies": {
-		"webpack": "^4.29.3"
-	},
-	"dependencies": {
-		"animate.css": "^3.7.0",
-		"bash": "0.0.1",
-		"bootstrap": "^4.3.1",
-		"cm-show-invisibles": "^2.0.2",
-		"codemirror-helpers": "^0.1.0",
-		"codemirror-inlet": "^0.1.10",
-		"codemirror-minified": "^5.43.0",
-		"codemirror-mode-jq": "^1.0.0",
-		"codemirror-one-dark-theme": "^1.1.1",
-		"codemirror-revisedsearch": "^1.0.12",
-		"dashdash": "^1.14.1",
-		"drag-resizer": "^1.2.1",
-		"mobile-web-console-logger": "^1.0.0",
-		"plist": "^3.0.1",
-		"split.js": "^1.5.10"
-	}
+    "name": "fronty",
+    "version": "1.0.0",
+    "description": "dev",
+    "main": "app.js",
+    "scripts": {
+        "$": "npm run"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alterfan/fronty.git"
+    },
+    "author": "alterfan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/alterfan/fronty/issues"
+    },
+    "homepage": "https://github.com/alterfan/fronty#readme",
+    "devDependencies": {
+        "webpack": "^4.29.3"
+    },
+    "dependencies": {
+        "dom-to-image": "^2.6.0",
+        "html2canvas": "^1.0.0-rc.0",
+        "mobile-web-console-logger": "^1.0.0"
+    }
 }

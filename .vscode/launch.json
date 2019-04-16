@@ -3,44 +3,22 @@
 	// Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
 	// Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
 	"version": "0.2.0",
-	"configurations": [
-		{
+	"configurations": [{
 			"type": "firefox",
 			"request": "launch",
 			"reAttach": true,
-			"name": "Launch index.html",
-			"file": "${workspaceFolder}/index.html"
-		},
-
-		{
-			"type": "firefox",
-			"request": "launch",
-			"reAttach": true,
-			"name": "Launch add-on",
-			"webRoot": "${workspaceFolder}",
-			"url": "http://192.168.1.219:5500/"
-		},
-
-		{
-			"type": "chrome",
-			"request": "attach",
-			"name": "Attach to Chrome",
-			"port": 9222,
+			"name": "Launch firefox ",
+			"url": "http://127.0.0.1:8080/index.html",
 			"webRoot": "${workspaceFolder}"
 		},
+
+
 		{
 			"type": "edge",
 			"request": "launch",
 			"name": "Launch Edge",
-			"url": "http://192.168.137.1:5500/index.html",
-			"webRoot": "${workspaceFolder}"
-		} {
-			"type": "firefox",
-			"request": "launch",
-			"name": "firefox local",
 			"url": "http://192.168.1.219:5500/index.html",
-			"webRoot": "${workspaceFolder}",
-			"reAttach": true
+			"webRoot": "${workspaceFolder}"
 		}
 	]
 }

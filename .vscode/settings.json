@@ -8,5 +8,6 @@
 	"colorHelper.disableTransparent": true,
 	"editor.colorDecorators": true,
 	"favorites.sortDirection": "ASC",
+	"eslint.enable": false,
 
 }
