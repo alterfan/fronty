@@ -1,0 +1,5 @@
+[{
+	"key": "ctrl+shift+s",
+	"command": "multiCommand.debugClearConsoleOnSave",
+	"when": "editorTextFocus"
+}]

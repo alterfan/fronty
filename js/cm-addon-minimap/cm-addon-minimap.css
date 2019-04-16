@@ -1,0 +1,124 @@
+.map {
+	top: 0;
+	position: absolute;
+	cursor: pointer;
+	overflow: hidden !important;
+
+}
+
+.map__scrollbar {
+	min-height: 100%;
+	width: 100%;
+	z-index: 1051;
+	background: none;
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+
+.map__view {
+	width: 100%;
+	z-index: 1052;
+	background-color: rgba(255, 255, 255, 0.4);
+	cursor: pointer;
+	position: absolute;
+	left: 0;
+	top: 0;
+	-webkit-transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+	-moz-transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+	-o-transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+	transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+}
+
+.map__view.fade {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+	-moz-transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+	-o-transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+	transition: opacity 0.2s ease-in-out 0.2s, height 0.2s ease-in-out 0.2s;
+}
+
+.map>.CodeMirror {
+	z-index: 1050;
+	cursor: pointer !important;
+	background: rgba(0, 0, 0, 0.5) !important;
+	font-size: 3px !important;
+	font-weight: 100 !important;
+	height: auto;
+	width: 100%;
+	min-width: 100%;
+}
+
+.map>.CodeMirror * {
+	cursor: pointer !important;
+}
+
+.map>.CodeMirror pre {
+	-webkit-user-select: none !important;
+	/* user-select -- это нестандартное свойство */
+	-moz-user-select: none !important;
+	/* поэтому нужны префиксы */
+	-ms-user-select: none !important;
+}
+
+.map>.CodeMirror .CodeMirror-scroll>.CodeMirror-sizer>div>.CodeMirror-lines {
+	padding: 0px 0px !important;
+}
+
+.map>.CodeMirror .CodeMirror-scroll>.CodeMirror-sizer>div>.CodeMirror-lines>div>.CodeMirror-cursors {
+	display: none !important;
+}
+
+.map>.CodeMirror .CodeMirror-scroll>.CodeMirror-sizer>div>.CodeMirror-lines>div>.CodeMirror-code .cm-tab {
+	background: none !important;
+	border: none !important;
+}
+
+.map>.CodeMirror .CodeMirror-simplescroll-horizontal {
+	height: 0;
+	overflow-x: hidden !important;
+	display: none !important;
+}
+
+/*=============================================
+=                    animation                =
+=============================================*/
+.map.transition,
+.map.transition>* {
+	-moz-transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+	-webkit-transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+	-o-transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+	transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+}
+
+.transition.fade {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+	-moz-transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+	-o-transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+	transition: opacity 0.2s ease-in-out 0.2s, top 0s;
+}
+
+/*=============================================
+=            active, hover, focus            =
+=============================================*/
+.map:hover {
+	opacity: 1;
+}
+
+.map__view:active {
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgb(138, 138, 138)
+}
+
+@media only screen and (max-width: 1024px)and (orientation: portrait) {
+	.map {
+		width: 1em;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px)and (orientation: landscape) {
+	.map {
+		width: 1em;
+	}
+}

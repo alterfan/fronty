@@ -1,0 +1,18 @@
+﻿/*mytheme
+CodeMirror theme file created with CodeMirror-Themes
+https://github.com/mkaminsky11/codemirror-themes*/
+.cm-s-DownedRainbow.CodeMirror { color: #E6E7C9; }
+.cm-s-DownedRainbow.CodeMirror { background: #20114D; }
+.cm-s-DownedRainbow .CodeMirror-cursor { color: #8BA7A7; }
+.cm-s-DownedRainbow .CodeMirror-activeline-background { background: #FFFFFF52 !important; }
+.cm-s-DownedRainbow .CodeMirror-selected { background: #C5DFE980; }
+.cm-s-DownedRainbow .cm-comment { color: #00A2FF; background: #3B3B3B00; }
+.cm-s-DownedRainbow .cm-string { color: #fafcf8; background: #ff433f; }
+.cm-s-DownedRainbow .cm-string-2 { color: #EB939A; }
+.cm-s-DownedRainbow .cm-property { color: #9DF39F; }
+.cm-s-DownedRainbow .cm-attribute { color: #FFB454; }
+.cm-s-DownedRainbow .cm-number { color: #FBFFFA; fontStyle:  bold; }
+.cm-s-DownedRainbow .cm-keyword { font-weight: bold; color: #FFAA00; }
+.cm-s-DownedRainbow .cm-error { background: #D8290DBF; color: #F8F8F8; }
+.cm-s-DownedRainbow .cm-invalidchar { background: #D8290DBF; color: #F8F8F8; }
+.cm-s-DownedRainbow .cm-variable { color: #FB9A4B; fontStyle:  italic; }
