@@ -25,5 +25,22 @@
         "workspaceRoot": null,
         "workspacePath": null,
         "id": "JkmQW20wBEDsuMLV"
+    },
+    {
+        "type": "Group",
+        "name": "setting",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "ChV1MmgNfHwOKbFQ"
+    },
+    {
+        "type": "File",
+        "name": "C:\\Users\\alter\\AppData\\Roaming\\Code\\User\\settings.json",
+        "parent_id": "ChV1MmgNfHwOKbFQ",
+        "fsPath": "C:\\Users\\alter\\AppData\\Roaming\\Code\\User\\settings.json",
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "hE9jCqfrZzK81Dx6"
     }
 ]

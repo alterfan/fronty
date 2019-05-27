@@ -1,175 +1,245 @@
 var cmcm, cmDoc, cmEditor, _html, _css, _js;
 var mixedMode = {
-	name: "htmlmixed",
-	scriptTypes: [{
-			matches: /\/x-handlebars-template|\/x-mustache/i,
-			mode: null
-		},
-		{
-			matches: /(text|application)\/(x-)?vb(a|script)/i,
-			mode: "vbscript"
-		}
-	]
+    name: "htmlmixed",
+    scriptTypes: [{
+            matches: /\/x-handlebars-template|\/x-mustache/i,
+            mode: null
+        },
+        {
+            matches: /(text|application)\/(x-)?vb(a|script)/i,
+            mode: "vbscript"
+        }
+    ]
 };
 class Cm extends Ui {
-	constructor() {
-		super();
-		this._autoupdate = true;
-		this.cm;
-		this.fontSize;
-		this.fontFamily;
-		this.layout;
-		this.isType = false;
-		this.options = _DB.getStorage("options");
-		this.configuration = _DB.getStorage("configuration");
-		this.autosaved = _DB.getStorage("autosaved");
-		this.delay = _DB.getStorageItem("configuration", 'delay');
-		this.theme = _DB.getStorageItem("options", 'theme')
-		this.fontSize = _DB.getStorageItem("configuration", 'fontSize');
-		this.render;
-		this.init()
-	}
-	init() {
-		let _this = this;
-		$('.code').each(function (index) {
-			var mode = $(this).attr('id');
-			$(this).val(_this.autosaved[index]); //get autosaved
-			cmcm = CodeMirror.fromTextArea($("#" + mode).get(0), _this.options);
-			mode == "htmlmixed" ? cmcm.setOption("mode", mixedMode) : cmcm.setOption("mode", mode);
-			_this.eventsListner(cmcm);
-			cmcm.setOption("toolBar", true);
-			cmcm.setOption("miniMap", true);
-			cmcm.refresh()
-		});
-		this.change_theme(_this.theme);
-		_this.change_fontSize(_this.fontSize);
-		_this.change_fontFamily(_this.fontFamily);
-		setTimeout(function () {
-			updatePreview()
-			$wrapper.addClass("fadeout");
-		}, _this.delay);
-	}
-	cm_refresh() {
-		$('.CodeMirror').each(function (i, el) {
-			cmcm.refresh();
-		});
-	}
-	cm_blur() {
-		$('.CodeMirror').each(function (i, el) {
-			cmcm.blur();
-		});
-	}
-	change_theme(val) {
-		$('head').append('<link rel="stylesheet" type="text/css" href="./src/codemirror/theme/' + val + '.css">');
-		$('.CodeMirror').each(function (index) {
-			$('.CodeMirror')[index].CodeMirror.setOption("theme", val);
-		});
-		_DB.setStorageItem("options", 'theme', val)
-	}
-	change_fontSize(val) {
-		$('.CodeMirror').css("font-size", val);
-		_DB.setStorageItem("configuration", 'fontSize', val);
-	}
-	change_delay(val) {
-		this.delay = val;
-		if (_DB.setStorageItem("configuration", 'delay', val)) {
-			this.cm_refresh();
-		}
-	}
-	change_fontFamily(val) {
-		$('.CodeMirror').css("font-family", val);
-		if (_DB.setStorageItem("configuration", 'fontFamily', val)) {
-			this.cm_refresh();
-		}
-	}
-	eventsListner(cmInstance) {
-		let self = this;
-		cmInstance.on("gutterClick", function (cm, line, gutter) {
-			if (gutter === 'CodeMirror-linenumbers') {
-				return cm.setSelection(CodeMirror.Pos(line, 0), CodeMirror.Pos(line + 1, 0));
-			}
-		});
-		cmInstance.on("focus", function (cm) {
-			cm.setCursor(cmInstance.lineCount(), 0);
-			cmDoc = cm.getDoc();
-			cmEditor = cmDoc.getEditor();
-			cm.setOption("styleActiveLine", true);
-		})
-		cmInstance.on("blur", function (cm) {
-			cm.setOption("styleActiveLine", false);
-		});
-		cmInstance.on("keydown", function (cm) {})
-		cmInstance.on("change", function (cm) {
-			self.isType = true
-		})
-		cmInstance.on("keyup", function (cm) {
-			cm.save();
-			_DB.setStorage("autosaved", [$("#htmlmixed").val(), $("#css").val(), $("#javascript").val()]);
-			if (self._autoupdate == true) {
-				if (self.isType == true) {
-					setTimeout(function () {
-						single(updatePreview())
-					}, self.delay);
-				}
-			}
-		})
-		cmInstance.on("refresh", function (cm) {});
-	}
+    constructor() {
+        super();
+        this._autoupdate = true;
+        this.cm;
+        this.fontSize;
+        this.fontFamily;
+        this.layout;
+        this.isType = false;
+        this.options = _DB.getStorage("options");
+        this.configuration = _DB.getStorage("configuration");
+        this.autosaved = _DB.getStorage("autosaved");
+        this.delay = _DB.getStorageItem("configuration", 'delay');
+        this.theme = _DB.getStorageItem("options", 'theme')
+        this.fontSize = _DB.getStorageItem("configuration", 'fontSize');
+        this.render;
+        this.init()
+    }
+    init() {
+        let _this = this;
+        $('.externalLibs').each((index, el) => {
+            var val = _this.autosaved[index + 3];
+            $(el).val(val);
+        });
+        $('.code').each(function(index) {
+            var mode = $(this).attr('id');
+            $(this).val(_this.autosaved[index]); //get autosaved
+            cmcm = CodeMirror.fromTextArea($("#" + mode).get(0), _this.options);
+            mode == "htmlmixed" ? cmcm.setOption("mode", mixedMode) : cmcm.setOption("mode", mode);
+            _this.eventsListner(cmcm);
+            cmcm.setOption("toolBar", true);
+            cmcm.setOption("miniMap", true);
+            cmcm.refresh()
+        });
+        this.change_theme(_this.theme);
+        _this.change_fontSize(_this.fontSize);
+        _this.change_fontFamily(_this.fontFamily);
+        setTimeout(function() {
+            updatePreview()
+            $wrapper.addClass("fadeout");
+        }, _this.delay);
+    }
+    cm_refresh() {
+        $('.CodeMirror').each(function(i, el) {
+            cmcm.refresh();
+        });
+    }
+    cm_blur() {
+        $('.CodeMirror').each(function(i, el) {
+            cmcm.blur();
+        });
+    }
+    change_theme(val) {
+        $('head').append('<link rel="stylesheet" type="text/css" href="./src/codemirror/theme/' + val + '.css">');
+        $('.CodeMirror').each(function(index) {
+            $('.CodeMirror')[index].CodeMirror.setOption("theme", val);
+        });
+        _DB.setStorageItem("options", 'theme', val)
+    }
+    change_fontSize(val) {
+        $('.CodeMirror').css("font-size", val);
+        _DB.setStorageItem("configuration", 'fontSize', val);
+    }
+    change_delay(val) {
+        this.delay = val;
+        if (_DB.setStorageItem("configuration", 'delay', val)) {
+            this.cm_refresh();
+        }
+    }
+    change_fontFamily(val) {
+        $('.CodeMirror').css("font-family", val);
+        if (_DB.setStorageItem("configuration", 'fontFamily', val)) {
+            this.cm_refresh();
+        }
+    }
+    eventsListner(cmInstance) {
+        let self = this;
+        cmInstance.on("gutterClick", function(cm, line, gutter) {
+            if (gutter === 'CodeMirror-linenumbers') {
+                return cm.setSelection(CodeMirror.Pos(line, 0), CodeMirror.Pos(line + 1, 0));
+            }
+        });
+        cmInstance.on("focus", function(cm) {
+            cm.setCursor(cmInstance.lineCount(), 0);
+            cmDoc = cm.getDoc();
+            cmEditor = cmDoc.getEditor();
+            cm.setOption("styleActiveLine", true);
+        })
+        cmInstance.on("blur", function(cm) {
+            cm.setOption("styleActiveLine", false);
+        });
+        cmInstance.on("keydown", function(cm) {})
+        cmInstance.on("change", function(cm) {
+            self.isType = true
+        })
+        cmInstance.on("keyup", function(cm) {
+            cm.save();
+            _DB.setStorage("autosaved", [$("#htmlmixed").val(), $("#css").val(), $("#javascript").val()]);
+            if (self._autoupdate == true) {
+                if (self.isType == true) {
+                    setTimeout(function() {
+                        single(updatePreview())
+                    }, self.delay);
+                }
+            }
+        })
+        cmInstance.on("refresh", function(cm) {});
+    }
 }
 class CmEditor extends Cm {
-	constructor() {
-		super()
-	}
-	format() {
-		if (typeof cmEditor.getOption('mode') == "object") {
-			var mode = (cmEditor.getOption('mode')).name
-		} else {
-			var mode = cmEditor.getOption('mode');
-		}
-		let code = cmEditor.getValue();
-		if (mode == 'htmlmixed' || mode == 'html' || mode == 'xml') {
-			var formatted = html_beautify(code, {
-				'indent_size': 2,
-				'indent_char': '\t'
-			});
-		}
-		if (mode == 'javascript') {
-			var formatted = js_beautify(code, {
-				'indent_size': 2,
-				'indent_char': '\t'
-			});
-		}
-		if (mode == 'css') {
-			var formatted = css_beautify(code, {
-				'indent_size': 2,
-				'indent_char': '\t'
-			});
-		}
-		cmEditor.setValue(formatted);
-		cmEditor.setCursor(cmDoc.lineCount(), 0);
-	}
+    constructor() {
+        super()
+    }
+    format() {
+        if (typeof cmEditor.getOption('mode') == "object") {
+            var mode = (cmEditor.getOption('mode')).name
+        } else {
+            var mode = cmEditor.getOption('mode');
+        }
+        let code = cmEditor.getValue();
+        if (mode == 'htmlmixed' || mode == 'html' || mode == 'xml') {
+            var formatted = html_beautify(code, {
+                'indent_size': 2,
+                'indent_char': '\t'
+            });
+        }
+        if (mode == 'javascript') {
+            var formatted = js_beautify(code, {
+                'indent_size': 2,
+                'indent_char': '\t'
+            });
+        }
+        if (mode == 'css') {
+            var formatted = css_beautify(code, {
+                'indent_size': 2,
+                'indent_char': '\t'
+            });
+        }
+        cmEditor.setValue(formatted);
+        cmEditor.setCursor(cmDoc.lineCount(), 0);
+    }
 }
+class Libraries {
+    constructor(stylesheets, scripts) {
+        this.externalStylesheets = $(stylesheets).val().split(',');
+        this.externalScripts = $(scripts).val().split(',');
+        this.previewFrame = document.getElementById('iframe');
+        this.preview = this.previewFrame.contentDocument || this.previewFrame.contentWindow.document
+    }
+    append() {
+        var externalStylesheets = JSON.parse($('#code-3').val()),
+            externalScripts = JSON.parse($('#code-4').val());
+        for (var key in externalStylesheets) {
+            let l = externalStylesheets,
+                _l = l[key];
+            this.preview.querySelector("head").innerHTML += "<link rel='stylesheet' href='" + _l['link'] + "'>";
+        }
+        for (var key in externalScripts) {
+            let l = externalScripts,
+                _l = l[key];
+            this.preview.querySelector("head").innerHTML += "<script type='text/javascript' src='" + _l['link'] + "'></script>";
+        }
+    }
+    view(elementStylesheets, elementScripts) {
+        var externalStylesheets = JSON.parse($('#code-3').val()),
+            externalScripts = JSON.parse($('#code-4').val()),
+            item = (_l) => {
+                return "<li class=\"group__item w100 \">" +
+                    "<div class='group group--row group--basis4'><input type='button' class='group__btn group__btn--default material-icons' value='menu'>" +
+                    "<div class='group group--column group--basis3 group--flex-start'>" +
+                    "<input type='url' class='group__input w100' value='" + _l["link"] + "'>" +
+                    "</div>" +
+                    "<div class='group group--basis1 group--flex-end '><input type='button' class='group__btn group__btn--default material-icons' value='delete'></div>" +
+                    "<div>" +
+                    "</li>"
+            };
+        for (var key in externalStylesheets) {
+            let l = externalStylesheets,
+                _l = l[key];
+            document.querySelector(elementStylesheets).innerHTML += item(_l)
+        }
+        for (var key in externalScripts) {
+            let l = externalScripts,
+                _l = l[key];
+            document.querySelector(elementScripts).innerHTML += item(_l)
+        }
+    }
+}
+var lib = new Libraries('#code-3', '#code-4');
 
 function updatePreview() {
-	var previewFrame = document.getElementById('iframe'),
-		preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
-		head_style = "<head><style>" + $("#css").val() + "</style></head>",
-		body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
-	preview.open();
-	frameConsole.init();
-	preview.write(head_style + body_script);
-	preview.close();
+    let _head, previewFrame = document.getElementById('iframe'),
+        preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
+        head = "<head></head>",
+        body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
+    preview.open();
+    //open
+    frameConsole.init();
+    preview.write(head + body_script);
+    lib.append(preview);
+    preview.querySelector("head").innerHTML += "<style>" + $("#css").val() + "</style>";
+    preview.close();
+    //close
+}
+
+function appendLibs(preview) {
+    var externalStylesheets = JSON.parse($('#code-3').val()),
+        externalScripts = JSON.parse($('#code-4').val());
+    for (var key in externalStylesheets) {
+        let l = externalStylesheets,
+            _l = l[key];
+        preview.querySelector("head").innerHTML += "<link rel='stylesheet' href='" + _l['link'] + "'>";
+    }
+    for (var key in externalScripts) {
+        let l = externalScripts,
+            _l = l[key];
+        preview.querySelector("head").innerHTML += "<script type='text/javascript' src='" + _l['link'] + "'></script>";
+    }
 }
 
 function single(fn, context) {
-	var result;
-	return function () {
-		if (fn) {
-			result = fn.apply(context || this, arguments);
-			fn = null;
-		}
-		setTimeout(() => {
-			return result;
-		}, 300);
-	};
+    var result;
+    return function() {
+        if (fn) {
+            result = fn.apply(context || this, arguments);
+            fn = null;
+        }
+        setTimeout(() => {
+            return result;
+        }, 300);
+    };
 }

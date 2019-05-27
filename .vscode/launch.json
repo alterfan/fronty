@@ -1,24 +1,22 @@
 {
-	// Используйте IntelliSense, чтобы узнать о возможных атрибутах.
-	// Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
-	// Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
-	"version": "0.2.0",
-	"configurations": [{
-			"type": "firefox",
-			"request": "launch",
-			"reAttach": true,
-			"name": "Launch firefox ",
-			"url": "http://127.0.0.1:8080/index.html",
-			"webRoot": "${workspaceFolder}"
-		},
-
-
-		{
-			"type": "edge",
-			"request": "launch",
-			"name": "Launch Edge",
-			"url": "http://192.168.1.219:5500/index.html",
-			"webRoot": "${workspaceFolder}"
-		}
-	]
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [{
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "name": "Launch firefox ",
+            "url": "http://127.0.0.1:5500/",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "edge",
+            "request": "launch",
+            "name": "Launch Edge",
+            "url": "http://192.168.1.219:5500/index.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
 }
