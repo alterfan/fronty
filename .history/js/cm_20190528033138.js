@@ -159,7 +159,7 @@ function updatePreview() {
         preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
         head = "<head></head>",
         body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
-
+    console.log(JSON.stringify($("#css").val()));
     preview.open();
     //open
     frameConsole.init();

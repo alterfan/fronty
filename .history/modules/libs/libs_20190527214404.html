@@ -1,0 +1,46 @@
+<div class="group group--column group--flex-start">
+    <h3 class="w100"> Add External Stylesheet </h3>
+    <form class="group_form group_form-start">
+        <select id="addCssLibrary" class="group_select" data-action="addLibrary" data-type="css">
+            <option>Add External Stylesheet Library</option>
+            <option id="Consolas" value="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.css">Bootstrap 4.2.1</option>
+            <option id="Consolas" value="https://fonts.googleapis.com/icon?family=Material+Icons">Material Icons</option>
+            <option id="Consolas" value="https://use.fontawesome.com/releases/v5.6.3/css/all.css">Fontawesome 5.6.3</option>
+            <option id="FiraCode" value="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">Animate.css 3.7.0</option>
+        </select>
+        <div class="group_select_icon material-icons">unfold_more</div>
+    </form>
+    <div class="group group__column w100">
+        <div class="group_form group_form-start">
+            <a class="group_btn" data-action="addExternalInput" data-type="css">
+                <i class="material-icons">add_circle_outline</i> Add External URL
+            </a>
+        </div>
+        <ul id="cssUrls" class="group__column w100 ">
+        </ul>
+    </div>
+    <h3 class="w100"> Add External Scripts</h3>
+    <form class="group_form group_form-start">
+        <select id="addJsLibrary" class="group_select" data-action="addLibrary" data-type="js">
+            <option>Add External Scripts/CDNjs</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">JQuery 3.3.1</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">JQuery UI 1.12.1</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.5/jquery.mobile.min.js">JQuery mobile 1.4.5</option>
+            <option value="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/bootstrap.min.js">Bootstrap 4.2.1</option>
+        </select>
+        <div class="group_select_icon material-icons">unfold_more</div>
+    </form>
+    <div class="group group__column w100">
+        <div class="group_form group_form-start">
+            <a class="group_btn" data-action="addExternalInput" data-type="js">
+                <i class="material-icons">add_circle_outline</i> Add External URL
+            </a>
+        </div>
+        <ul id="jsUrls" class="group__column w100 ">
+        </ul>
+    </div>
+</div>
+<div class="modal_footer">
+
+</div>
+<script src="script.js"></script>

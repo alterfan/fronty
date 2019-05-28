@@ -153,13 +153,11 @@ class CmEditor extends Cm {
         cmEditor.setCursor(cmDoc.lineCount(), 0);
     }
 }
-
 function updatePreview() {
     let _head, previewFrame = document.getElementById('iframe'),
         preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
         head = "<head></head>",
         body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
-
     preview.open();
     //open
     frameConsole.init();
@@ -169,7 +167,6 @@ function updatePreview() {
     preview.close();
     //close
 }
-
 function appendLibs(preview) {
     var externalStylesheets = JSON.parse($('#code-3').val()),
         externalScripts = JSON.parse($('#code-4').val());
@@ -184,7 +181,6 @@ function appendLibs(preview) {
         preview.querySelector("head").innerHTML += "<script type='text/javascript' src='" + _l['link'] + "'></script>";
     }
 }
-
 function single(fn, context) {
     var result;
     return function() {

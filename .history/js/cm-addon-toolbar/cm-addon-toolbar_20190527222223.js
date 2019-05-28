@@ -9,8 +9,7 @@
     'use strict';
     let _cm = null,
         scroll, bar, panel, panel_item, item_arr, panel_item_icon, num = 0,
-        i,
-        actions = {
+        i, actions = {
             clear: function(cm) {
                 cm.setValue('');
                 cm.refresh()
@@ -71,7 +70,7 @@
         bar = wrap.insertBefore(bar, wrap.firstChild);
         for (i = 1; i < wrap.childNodes.length; i++) {
             wrap.childNodes[i].style.marginTop = "2.5em";
-            wrap.childNodes[i].style.maxHeight = "calc(100% - 2.5em)";
+            wrap.childNodes[i].style.maxHeight = "2.5em";
         }
         cm.refresh()
     }
@@ -156,7 +155,7 @@
         if (old == CodeMirror.Init) old = false;
         if (!old == !val) return;
         if (val) {
-            setTimeout(addBar(cm), 2000);;
+            addBar(cm);
             CodeMirror.on(cm, "mousedown", (cm) => {
                 if (_cm != cm) {
                     if (bar) {

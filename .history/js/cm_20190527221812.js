@@ -154,12 +154,12 @@ class CmEditor extends Cm {
     }
 }
 
+
 function updatePreview() {
     let _head, previewFrame = document.getElementById('iframe'),
         preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
         head = "<head></head>",
         body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
-
     preview.open();
     //open
     frameConsole.init();

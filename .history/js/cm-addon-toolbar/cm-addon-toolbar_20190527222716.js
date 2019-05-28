@@ -9,8 +9,7 @@
     'use strict';
     let _cm = null,
         scroll, bar, panel, panel_item, item_arr, panel_item_icon, num = 0,
-        i,
-        actions = {
+        i, actions = {
             clear: function(cm) {
                 cm.setValue('');
                 cm.refresh()
