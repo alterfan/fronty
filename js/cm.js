@@ -48,10 +48,10 @@ class Cm extends Ui {
         this.change_theme(_this.theme);
         _this.change_fontSize(_this.fontSize);
         _this.change_fontFamily(_this.fontFamily);
-        setTimeout(function() {
-            updatePreview()
+        $(document).ready(()=>{
+            updatePreview();
             $wrapper.addClass("fadeout");
-        }, _this.delay);
+        })        
     }
     cm_refresh() {
         $('.CodeMirror').each(function(i, el) {
@@ -109,15 +109,18 @@ class Cm extends Ui {
         cmInstance.on("keyup", function(cm) {
             cm.save();
             _DB.setStorage("autosaved", [$("#htmlmixed").val(), $("#css").val(), $("#javascript").val()]);
-            if (self._autoupdate == true) {
-                if (self.isType == true) {
-                    setTimeout(function() {
-                        single(updatePreview())
-                    }, self.delay);
-                }
-            }
+            self.updateDelay(self);
         })
         cmInstance.on("refresh", function(cm) {});
+    }
+    updateDelay(self) {
+        if (self._autoupdate == true) {
+            if (self.isType == true) {
+                setTimeout(function() {
+                    single(updatePreview());
+                }, self.delay);
+            }
+        }
     }
 }
 class CmEditor extends Cm {
@@ -153,38 +156,39 @@ class CmEditor extends Cm {
         cmEditor.setCursor(cmDoc.lineCount(), 0);
     }
 }
-
 function updatePreview() {
     let _head, previewFrame = document.getElementById('iframe'),
         preview = previewFrame.contentDocument || previewFrame.contentWindow.document,
-        head = "<head></head>",
-        body_script = "<body>" + $("#htmlmixed").val() + "</body>" + '<script type="text/javascript">' + $("#javascript").val() + '</script>';
-
+        headbody = "<head></head></body",
+        body = "<body>" + $("#htmlmixed").val() + "</body",
+        script = '<script type="text/javascript">' + $("#javascript").val() + '</script>';
     preview.open();
-    //open
     frameConsole.init();
-    preview.write(head + body_script);
-    lib.append(preview);
+    preview.write(headbody + body);
+    let libsArr = libs(preview);
+    for (var i = 0; i < libsArr.length; i++) {
+        preview.querySelector("head").innerHTML += libsArr[i]
+    }
     preview.querySelector("head").innerHTML += "<style>" + $("#css").val() + "</style>";
+    preview.querySelector("body").append(script);
     preview.close();
-    //close
 }
-
-function appendLibs(preview) {
+function libs(preview) {
     var externalStylesheets = JSON.parse($('#code-3').val()),
-        externalScripts = JSON.parse($('#code-4').val());
+        externalScripts = JSON.parse($('#code-4').val()),
+        arr = [];
     for (var key in externalStylesheets) {
         let l = externalStylesheets,
             _l = l[key];
-        preview.querySelector("head").innerHTML += "<link rel='stylesheet' href='" + _l['link'] + "'>";
+        arr.push("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + _l['link'] + "\">");
     }
     for (var key in externalScripts) {
         let l = externalScripts,
             _l = l[key];
-        preview.querySelector("head").innerHTML += "<script type='text/javascript' src='" + _l['link'] + "'></script>";
+        arr.push("<script type=\"text/javascript\" src=\"" + _l['link'] + "\"></script>");
     }
+    return arr;
 }
-
 function single(fn, context) {
     var result;
     return function() {

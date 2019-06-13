@@ -3,26 +3,28 @@
     // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
     // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [{
+    "configurations": [
+        
+        {
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "name": "localhost",
+            "name": "firefox localhost",
             "url": "http://localhost:5500/index.html",
             "webRoot": "${workspaceFolder}"
         }, {
             "type": "firefox",
             "request": "launch",
             "reAttach": true,
-            "name": "192.168.1.185",
+            "name": "firefox 192.168.1.185",
             "url": "http://192.168.1.185:5500/index.html",
             "webRoot": "${workspaceFolder}"
         },
         {
             "type": "edge",
             "request": "launch",
-            "name": "Launch Edge",
-            "url": "http://192.168.1.219:5500/index.html",
+            "name": "Edge localhost",
+            "url": "http://localhost:5500/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]

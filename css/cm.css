@@ -2,58 +2,40 @@
     --font: 1rem;
     --cursor: 1rem;
 }
-
 .CodeMirror {
     -webkit-overflow-scrolling: touch;
     height: 100%;
     max-height: 100%;
     border: none
 }
-
 .CodeMirror-scroll {
     -webkit-overflow-scrolling: touch;
     height: 100%;
     max-height: 100%;
 }
-
-.CodeMirror-simplescroll-horizontal {
-    background: var(--font_color);
-}
-
-.CodeMirror-simplescroll-vertical {
-    display: none !important;
-}
-
 .CodeMirror-linenumber {
     cursor: pointer
 }
-
 .CodeMirror-linenumber:hover {
     color: var(--btn_color_hover)
 }
-
 .CodeMirror-linenumbers {
     width: 2em
 }
-
 div.CodeMirror span.CodeMirror-matchingbracket {
     color: #0b0;
 }
-
 div.CodeMirror span.CodeMirror-nonmatchingbracket {
     color: #a22;
 }
-
 .CodeMirror-matchingtag {
     background: rgba(0, 187, 0, 0.3);
 }
-
 .cm-tab-1 {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
     background-position: right;
     background-repeat: no-repeat;
 }
-
 .cm-tab {
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwwAADsMBx2+oZAAAABp0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuMTFH80I3AAAAa0lEQVRIS9XTwQmAQAxE0RUb0AY8WILYgCcFD4r2X0uclSispAD/4W2YuYWwyczQwpIkLEnC8odqmaTxvPpEXaCXTVqfd5+fGeSQXU55F6DoJC8wSHEBgvwHFhk94xZ4VN+uCERhSRKWHJYumbXJrRsqSmcAAAAASUVORK5CYII=);
     background-position: right;

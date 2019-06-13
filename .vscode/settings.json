@@ -1,0 +1,6 @@
+{
+ "vscode_custom_css.policy": true,
+ "Switch header source": true,
+ "Toggle render whitespace": true,
+ "workbench.statusBar.feedback.visible": false
+}

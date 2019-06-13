@@ -1,0 +1,19 @@
+.gutter {
+   position: relative;
+}
+
+.gutter.gutter-vertical {
+    cursor: ns-resize;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.gutter.gutter-horizontal {
+    cursor: ew-resize;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.gutter:hover {
+    background-color: rgb(56, 52, 94) !important;
+}

@@ -1,6 +1,6 @@
-class Ui extends SplitView {
+
+class Ui {
     constructor() {
-        super();
         this.delay
         this.layout
         this.direction;
@@ -21,7 +21,7 @@ class Ui extends SplitView {
         }
         _DB.setStorageItem('configuration', "direction", isreverse);
         _DB.setStorageItem('configuration', "direction", layout);
-        this.initSplit(layout)
+        $(".split-element").css("flex-basis", "33.33%")
     }
     changeLayout(el) {
         var layout = el.attr("data-layout"),

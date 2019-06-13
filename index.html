@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="./lib/animate.css/animate.min.css">
     <link rel="stylesheet" href="./lib/Material Icons/icon.css">
     <link rel="stylesheet" href="./src/codemirror/theme/fronty.css">
-    <link rel='stylesheet' href='./src/codemirror/addon/hint/show-hint.css'>
-    <link rel='stylesheet' href='./src/codemirror/addon/lint/lint.css'>
-    <link rel='stylesheet' href='./src/codemirror/addon/fold/foldgutter.css'>
-    <link rel='stylesheet' href='./src/codemirror/addon/scroll/simplescrollbars.css'>
-    <link rel='stylesheet' href='./src/codemirror/addon/fold/foldgutter.css'>
+    <link rel="stylesheet" href="./src/codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="./src/codemirror/addon/lint/lint.css">
+    <link rel="stylesheet" href="./src/codemirror/addon/fold/foldgutter.css">
+    <link rel="stylesheet" href="./src/codemirror/addon/scroll/simplescrollbars.css">
+    <link rel="stylesheet" href="./src/codemirror/addon/fold/foldgutter.css">
     <link rel="stylesheet" href="./src/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="./css/animation.css">
     <link rel="stylesheet" href="./css/style.css">
@@ -20,10 +20,11 @@
     <link rel="stylesheet" href="./css/console.css">
     <link rel="stylesheet" href="./css/group.css">
     <link rel="stylesheet" href="./css/cm.css">
-    <link rel="stylesheet" href="./src/addons/split/split.css">
-    <link rel='stylesheet' href='./js/cm-addon-toolbar/cm-addon-toolbar.css'>
-    <link rel='stylesheet' href='./js/minimap/src/minimap.css'>
+    <link rel="stylesheet" href="./js/split/split.css">
+    <link rel="stylesheet" href="./js/bar/src/bar.css">
+    <link rel="stylesheet" href="./js/minimap/src/minimap.css">
     <script type="text/javascript" src="./lib/jQuery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/lodash.min.js" async></script>
 </head>
 
 <body>
@@ -68,23 +69,25 @@
             </div>
         </div>
         <div id="wrapper" data-layout="" data-reverse="" class="fronty_wrapper transition">
-            <div id="editors" class="fronty_wrapper_block">
-                <div id="editor-0" class="fronty_wrapper_block_editor">
+            <div id="editors" class="fronty_wrapper_block split-parent">
+                <div id="editor-0" class="fronty_wrapper_block_editor split-element">
                     <textarea id="htmlmixed" data-editor="0" data-action="activeEditor" mode="htmlmixed" class=" code hidden"></textarea>
                 </div>
                 <!-- css editor -->
-                <div id="editor-1" class="fronty_wrapper_block_editor">
+                <div id="editor-1" class="fronty_wrapper_block_editor split-element">
                     <textarea id="css" data-editor="1" mode="text/css" class=" code hidden"></textarea>
                 </div>
                 <!-- js editor -->
-                <div id="editor-2" class="fronty_wrapper_block_editor">
-                    <textarea id="javascript" data-editor="2" class=" code hidden">	console.log('message');</textarea>
+                <div id="editor-2" class="fronty_wrapper_block_editor split-element">
+                    <textarea id="javascript" data-editor="2" class=" code hidden"></textarea>
                 </div>
+                <textarea data-type="css" class="externalLibs externalStylesheets" id="code-3" hidden></textarea>
+                <textarea data-type="js" class="externalLibs externalScripts" id="code-4" hidden></textarea>
             </div>
             <!-- view -->
             <div id="preview" class="fronty_wrapper_block">
                 <div id="fronty_wrapper_block_preview" class="fronty_wrapper_block_preview">
-                    <iframe id="iframe" srcdoc=""></iframe>
+                    <iframe id="iframe"></iframe>
                 </div>
             </div>
         </div>
@@ -124,8 +127,6 @@
             <div id="overlay" class="overlay" data-target="modal" data-action="close" action="click">
             </div>
             <div class="loading hidden"></div>
-            <textarea data-type="css" class="externalLibs externalStylesheets" id="code-3" hidden></textarea>
-            <textarea data-type="js" class="externalLibs externalScripts" id="code-4" hidden></textarea>
         </div>
     </div>
     <script type="text/javascript" src="./js/db.js"></script>
@@ -144,23 +145,23 @@
     <script type="text/javascript" src="./src/codemirror/addon/scroll/simplescrollbars.js"></script>
     <script type="text/javascript" src="./src/codemirror/addon/display/autorefresh.js"></script>
     <!-- addons -->
-    <script type="text/javascript" src="./src/addons/split/split.min.js"></script>
     <script type="text/javascript" src="./src/addons/jsZip/FileSaver.js"></script>
     <script type="text/javascript" src="./src/addons/jsZip/jszip.min.js"></script>
     <script type="text/javascript" src="./src/addons/beautify/beautify-js.js"></script>
     <script type="text/javascript" src="./src/addons/beautify/beautify-css.js"></script>
     <script type="text/javascript" src="./src/addons/beautify/beautify-html.js"></script>
     <!-- my addons -->
-    <script type="text/javascript" src="./js/cm-addon-toolbar/cm-addon-toolbar.js"></script>
+    <script type="text/javascript" src="./js/bar/src/bar.js"></script>
     <script type="text/javascript" src="./js/minimap/src/minimap.js"></script>
     <!--  app  -->
     <script type="text/javascript" src="./js/app.js"></script>
     <script type="text/javascript" src="./js/console.js"></script>
-    <script type="text/javascript" src="./js/resize.js"></script>
+    <script type="text/javascript" src="./js/split/split.js"></script>
     <script type="text/javascript" src="./js/ui.js"></script>
     <script type="text/javascript" src="./modules/libs/libs.js"></script>
     <script type="text/javascript" src="./js/modal.js"></script>
     <script type="text/javascript" src="./js/cm.js"></script>
+   
 </body>
 
 </html>

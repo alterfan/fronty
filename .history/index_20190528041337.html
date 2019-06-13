@@ -1,0 +1,166 @@
+<html lang="en">
+
+<head>
+    <title>fronty</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="./lib/animate.css/animate.min.css">
+    <link rel="stylesheet" href="./lib/Material Icons/icon.css">
+    <link rel="stylesheet" href="./src/codemirror/theme/fronty.css">
+    <link rel='stylesheet' href='./src/codemirror/addon/hint/show-hint.css'>
+    <link rel='stylesheet' href='./src/codemirror/addon/lint/lint.css'>
+    <link rel='stylesheet' href='./src/codemirror/addon/fold/foldgutter.css'>
+    <link rel='stylesheet' href='./src/codemirror/addon/scroll/simplescrollbars.css'>
+    <link rel='stylesheet' href='./src/codemirror/addon/fold/foldgutter.css'>
+    <link rel="stylesheet" href="./src/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./css/animation.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/modal.css">
+    <link rel="stylesheet" href="./css/layouts-flexbox.css">
+    <link rel="stylesheet" href="./css/console.css">
+    <link rel="stylesheet" href="./css/group.css">
+    <link rel="stylesheet" href="./css/cm.css">
+    <link rel="stylesheet" href="./src/addons/split/split.css">
+    <link rel='stylesheet' href='./js/cm-addon-toolbar/cm-addon-toolbar.css'>
+    <link rel='stylesheet' href='./js/minimap/src/minimap.css'>
+    <script type="text/javascript" src="./lib/jQuery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="fronty">
+        <div class="fronty_header " id="header">
+            <div class="group">
+                <a data-action="open" data-view="projects" data-target="modal" class="group_btn" action="click">
+                    <i class="material-icons">view_list</i>
+                </a>
+                <input type="text" id="projectName" data-action="inputAction" class="group_input isBlured" placeholder="Project Name">
+            </div>
+            <div class="group">
+                <div class="group_separator"></div>
+                <a data-target="ui" data-action="changeLayout" action="click" data-layout="horizontal" data-reverse="default" class="group_btn">
+                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <rect x="0" y="53" width="100" height="47"></rect>
+                        <rect y="0" x="0" width="29.33" height="47"></rect>
+                        <rect y="0" x="35.33" width="29.33" height="47"></rect>
+                        <rect y="0" x="70.66" width="29.33" height="47"></rect>
+                    </svg>
+                </a>
+                <a data-target="ui" data-action="changeLayout" action="click" data-layout="vertical" data-reverse="default" class="group_btn">
+                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <rect x="0" y="0" width="47" height="29.33"></rect>
+                        <rect x="0" y="35.33" width="47" height="29.33"></rect>
+                        <rect x="0" y="70.66" width="47" height="29.33"></rect>
+                        <rect x="53" y="0" width="47" height="100"></rect>
+                    </svg>
+                </a>
+                <a data-target="ui" data-action="changeLayout" action="click" data-layout="vertical" data-reverse="reverse" class="group_btn">
+                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <rect x="0" y="0" width="47" height="100"></rect>
+                        <rect x="53" y="0" width="47" height="29.33"></rect>
+                        <rect x="53" y="35.33" width="47" height="29.33"></rect>
+                        <rect x="53" y="70.66" width="47" height="29.33"></rect>
+                    </svg>
+                </a>
+                <div class="group_separator"></div>
+                <a data-target="modal" data-action="toggle" data-view="settings" class="group_btn ui" action="click">
+                    <i class="material-icons">settings</i>
+                </a>
+            </div>
+        </div>
+        <div id="wrapper" data-layout="" data-reverse="" class="fronty_wrapper transition">
+            <div id="editors" class="fronty_wrapper_block split">
+                <div id="editor-0" class="fronty_wrapper_block_editor split-element">
+                    <textarea id="htmlmixed" data-editor="0" data-action="activeEditor" mode="htmlmixed" class=" code hidden"></textarea>
+                </div>
+                <!-- css editor -->
+                <div id="editor-1" class="fronty_wrapper_block_editor split-element">
+                    <textarea id="css" data-editor="1" mode="text/css" class=" code hidden"></textarea>
+                </div>
+                <!-- js editor -->
+                <div id="editor-2" class="fronty_wrapper_block_editor split-element">
+                    <textarea id="javascript" data-editor="2" class=" code hidden">	console.log('message');</textarea>
+                </div>
+            </div>
+            <!-- view -->
+            <div id="preview" class="fronty_wrapper_block">
+                <div id="fronty_wrapper_block_preview" class="fronty_wrapper_block_preview">
+                    <iframe id="iframe" srcdoc=""></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer" id="footer">
+            <div class="group">
+                <a class="resolution">
+                    <span id="iframeWidth"></span>x<span id="iframeHeight"></span>
+                </a>
+            </div>
+            <div class="group">
+                <div class="group_separator">
+                </div>
+                <a data-action="open" data-target="modal" data-view="libs" class="group_btn" action="click">
+                    <i class="material-icons">library_books</i>
+                </a>
+                <div class="group_separator">
+                </div>
+                <a data-action="toggle" data-target="frameConsole" action="click" class="group_btn">
+                    <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 4.4140625 6 L 3 7.4140625 L 7.5859375 12 L 3 16.585938 L 4.4140625 18 L 9 13.414062 L 9.0097656 13.423828 L 10.423828 11.990234 L 9.0097656 10.576172 L 9.0078125 10.578125 L 4.4140625 6 z M 13 15 L 13 17 L 21 17 L 21 15 L 13 15 z " />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div id="hidden">
+            <!-- modal window -->
+            <div id="modal" class="fronty_modal closed">
+                <div class="fronty_modal_head">
+                    <a data-target="modal" data-action="close" action="click" class="group_btn">
+                        <i class="material-icons">close</i>
+                    </a>
+                </div>
+                <div class="fronty_modal_content">
+                </div>
+            </div>
+            <div id="overlay" class="overlay" data-target="modal" data-action="close" action="click">
+            </div>
+            <div class="loading hidden"></div>
+            <textarea data-type="css" class="externalLibs externalStylesheets" id="code-3" hidden></textarea>
+            <textarea data-type="js" class="externalLibs externalScripts" id="code-4" hidden></textarea>
+        </div>
+    </div>
+    <script type="text/javascript" src="./js/db.js"></script>
+    <!-- codemirror -->
+    <script type="text/javascript" src="./src/codemirror/lib/codemirror.js"></script>
+    <script type="text/javascript" src="./src/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+    <script type="text/javascript" src="./src/codemirror/mode/xml/xml.js"></script>
+    <script type="text/javascript" src="./src/codemirror/mode/css/css.js"></script>
+    <script type="text/javascript" src="./src/codemirror/mode/javascript/javascript.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/selection/active-line.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/edit/closebrackets.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/edit/closetag.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/fold/xml-fold.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/edit/matchtags.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/edit/matchbrackets.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/scroll/simplescrollbars.js"></script>
+    <script type="text/javascript" src="./src/codemirror/addon/display/autorefresh.js"></script>
+    <!-- addons -->
+    <script type="text/javascript" src="./src/addons/split/split.min.js"></script>
+    <script type="text/javascript" src="./src/addons/jsZip/FileSaver.js"></script>
+    <script type="text/javascript" src="./src/addons/jsZip/jszip.min.js"></script>
+    <script type="text/javascript" src="./src/addons/beautify/beautify-js.js"></script>
+    <script type="text/javascript" src="./src/addons/beautify/beautify-css.js"></script>
+    <script type="text/javascript" src="./src/addons/beautify/beautify-html.js"></script>
+    <!-- my addons -->
+    <script type="text/javascript" src="./js/cm-addon-toolbar/cm-addon-toolbar.js"></script>
+    <script type="text/javascript" src="./js/minimap/src/minimap.js"></script>
+    <!--  app  -->
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/console.js"></script>
+    <script type="text/javascript" src="./js/resize.js"></script>
+    <script type="text/javascript" src="./js/ui.js"></script>
+    <script type="text/javascript" src="./modules/libs/libs.js"></script>
+    <script type="text/javascript" src="./js/modal.js"></script>
+    <script type="text/javascript" src="./js/cm.js"></script>
+</body>
+
+</html>

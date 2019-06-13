@@ -1,0 +1,22 @@
+.split-gutter {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    display: flex;
+    background-color: rgb(24, 19, 44) !important;
+    z-index: 10000001;
+}
+.split-gutter-vertical {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    bottom: 0
+}
+.split-gutter-horizontal {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+    right: 0
+}
+.split-gutter:hover {
+    background-color: rgb(56, 52, 94) !important;
+}
