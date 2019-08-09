@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro ExtraLight'), local('SourceCodePro-ExtraLight'), url('Sourcecodeproextralight.woff2') format('woff2'), url('Sourcecodeproextralight.woff') format('woff'), url('Sourcecodeproextralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro ExtraLight Italic'), local('SourceCodePro-ExtraLightIt'), url('Sourcecodeproextralightitalic.woff2') format('woff2'), url('Sourcecodeproextralightitalic.woff') format('woff'), url('Sourcecodeproextralightitalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Light'), local('SourceCodePro-Light'), url('Sourcecodeprolight.woff2') format('woff2'), url('Sourcecodeprolight.woff') format('woff'), url('Sourcecodeprolight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Light Italic'), local('SourceCodePro-LightIt'), url('Sourcecodeprolightitalic.woff2') format('woff2'), url('Sourcecodeprolightitalic.woff') format('woff'), url('Sourcecodeprolightitalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro'), local('SourceCodePro-Regular'), url('Sourcecodepro.woff2') format('woff2'), url('Sourcecodepro.woff') format('woff'), url('Sourcecodepro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Italic'), local('SourceCodePro-It'), url('Sourcecodeproitalic.woff2') format('woff2'), url('Sourcecodeproitalic.woff') format('woff'), url('Sourcecodeproitalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Medium'), local('SourceCodePro-Medium'), url('Sourcecodepromedium.woff2') format('woff2'), url('Sourcecodepromedium.woff') format('woff'), url('Sourcecodepromedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Medium Italic'), local('SourceCodePro-MediumIt'), url('Sourcecodepromediumitalic.woff2') format('woff2'), url('Sourcecodepromediumitalic.woff') format('woff'), url('Sourcecodepromediumitalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Semibold'), local('SourceCodePro-Semibold'), url('Sourcecodeprosemibold.woff2') format('woff2'), url('Sourcecodeprosemibold.woff') format('woff'), url('Sourcecodeprosemibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Semibold Italic'), local('SourceCodePro-SemiboldIt'), url('Sourcecodeprosemibolditalic.woff2') format('woff2'), url('Sourcecodeprosemibolditalic.woff') format('woff'), url('Sourcecodeprosemibolditalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Bold'), local('SourceCodePro-Bold'), url('Sourcecodeprobold.woff2') format('woff2'), url('Sourcecodeprobold.woff') format('woff'), url('Sourcecodeprobold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Bold Italic'), local('SourceCodePro-BoldIt'), url('Sourcecodeprobolditalic.woff2') format('woff2'), url('Sourcecodeprobolditalic.woff') format('woff'), url('Sourcecodeprobolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Black'), local('SourceCodePro-Black'), url('Sourcecodeproblack.woff2') format('woff2'), url('Sourcecodeproblack.woff') format('woff'), url('Sourcecodeproblack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Black Italic'), local('SourceCodePro-BlackIt'), url('Sourcecodeproblackitalic.woff2') format('woff2'), url('Sourcecodeproblackitalic.woff') format('woff'), url('Sourcecodeproblackitalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}

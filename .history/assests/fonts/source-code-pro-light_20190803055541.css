@@ -1,0 +1,12 @@
+/*****************************
+ All rights reserved.
+ AllFont.ru (c) 2011-2015
+ *****************************/
+@font-face {
+    font-family: 'Source Code Pro Light';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Code Pro Light'), local('SourceCodeProLight-Regular'),
+        url(http://allfont.ru/cache/fonts/source-code-pro-light_076043e85eddf5cbee7f4a2a12920a72.woff) format('woff'),
+        url(http://allfont.ru/cache/fonts/source-code-pro-light_076043e85eddf5cbee7f4a2a12920a72.ttf) format('truetype');
+}

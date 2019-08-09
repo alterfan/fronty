@@ -1,0 +1,108 @@
+@import url('../assests/fonts/Rubik-Regular.ttf');
+.frontland {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+    color: rgb(224, 224, 224)
+}
+.frontland-header,
+.frontland-footer {
+    flex: 0 0 auto;
+}
+.frontland-header,
+.frontland-footer {
+    padding: .5em 1em .5em 1em;
+    background: rgb(24, 19, 44);
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #ffffff1a;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+#workspace.frontland-workspace {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex: 1 1 auto;
+    position: relative;
+}
+/* .frontland-workspace {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(223, 223, 223)
+}
+ */
+#workspace.frontland-workspace {
+    position: relative;
+    white-space: nowrap;
+    height: 100%;
+    width: 100%;
+}
+.frontland-workspace-area div.frontland-workspace-area-preview {
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}
+.frontland-workspace>.frontland-workspace-area>.splitview {
+    white-space: normal;
+    flex: none;
+    position: relative
+}
+.frontland-workspace-area.horizontal>.splitview {
+    height: 100%;
+    display: inline-block
+}
+.frontland-workspace>.frontland-workspace-area.vertical>.splitview {
+    width: 100%
+}
+/* editors block */
+.frontland-workspace-area-view {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    min-width: 0%;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}
+#iframe {
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}
+.flex {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: -o-flex;
+}
+.flex.horizontal {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: row;
+}
+.flex.vertical {
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-direction: column;
+}
+.frontland-workspace-area-editor.flex {}

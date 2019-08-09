@@ -1,0 +1,79 @@
+:root {
+    --font: 1rem;
+    --cursor: 1rem;
+}
+.CodeMirror {
+    height: 100%;
+    width: 100%;
+    border: none
+}
+.CodeMirror-scroll {
+    height: 100%;
+    max-height: 100%;
+}
+.CodeMirror-linenumber {
+    cursor: pointer;
+    padding-left: 0;
+    text-align: center;
+}
+.CodeMirror-gutter {
+    cursor: pointer;
+    padding: 0;
+    text-align: center;
+}
+.CodeMirror-linenumber:hover {
+    color: var(--btn_color_hover)
+}
+.CodeMirror-matchingbracket {
+    color: #0b0;
+}
+.CodeMirror-nonmatchingbracket {
+    color: #a22;
+}
+.CodeMirror-focused .cm-matchhighlight {
+    box-shadow: inset 0px 0px 3px 0px rgb(255, 255, 255);
+    background-color: rgb(153, 153, 153);
+    color: rgb(0, 0, 0);
+}
+.CodeMirror-matchingtag {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.cm-tab {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+/*=============================================
+=            CodeMirror-activeline-gutter            =
+=============================================*/
+.CodeMirror-activeline-gutter .CodeMirror-gutter-elt {
+    color: #EC1561;
+}
+/*=====  End of activeline  ======*/
+/*=============================================
+=            .CodeMirror-guttermarker-subtle            =
+=============================================*/
+.CodeMirror-guttermarker-subtle {
+    -webkit-transition: color 250ms ease-in-out;
+    -moz-transition: color 250ms ease-in-out;
+    -ms-transition: color 250ms ease-in-out;
+    -o-transition: color 250ms ease-in-out;
+    color: white;
+    padding-right:2px;
+    transform: scale(1.2)
+}
+.CodeMirror-guttermarker-subtle:hover {
+    color: var(--btn_color_hover)
+}
+/*=====  End of .CodeMirror-guttermarker-subtle  ======*/
+/* .CodeMirror-foldgutter */
+.CodeMirror-foldgutter-open:after {
+    content: "\2212";
+    font-weight: bolder;
+}
+.CodeMirror-foldgutter-folded::after {
+    content: "\002B";
+    font-weight: bolder;
+}
+/*=====  End of CodeMirror-foldgutter  ======*/

@@ -1,0 +1,105 @@
+.split-gutter {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    display: flex;
+    background-color: rgb(24, 19, 44) !important;
+    z-index: 10000;
+}
+.split-gutter-vertical {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    cursor: row-resize
+}
+.split-gutter-horizontal {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+    right: 0;
+    cursor: col-resize
+}
+.split-gutter:hover {
+    background-color: rgb(56, 52, 94) !important;
+}
+
+/* old */
+
+
+
+
+
+
+
+
+.split-gutter-vertical {
+    min-width: 100%;
+    cursor: row-resize;
+    align-items: center;
+}
+.split-gutter-horizontal {
+    min-height: 100%;
+    cursor: col-resize;
+    justify-content: center
+}
+.split-gutter-horizontal,
+.split-gutter-vertical {
+    z-index: 9999;
+    display: flex;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.split-gutter-horizontal>div {
+    width: 4px;
+    min-height: 100%;
+    box-sizing: border-box;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+.split-gutter-vertical>div {
+    min-width: 100%;
+    height: 4px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.split-gutter-vertical>div,
+.split-gutter-horizontal>div {
+    background-color: rgb(24, 19, 44) !important;
+    transition: width 200ms ease-in-out, height 200ms ease-in-out, background-color 200ms ease-in-out;
+    -webkit-transition: width 200ms ease-in-out, height 200ms ease-in-out, background-color 200ms ease-in-out;
+    -moz-transition: width 200ms ease-in-out, height 200ms ease-in-out, background-color 200ms ease-in-out;
+    -ms-transition: width 200ms ease-in-out, height 200ms ease-in-out, background-color 200ms ease-in-out;
+    -o-transition: width 200ms ease-in-out, height 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+.split-gutter-horizontal:hover>div,
+.split-gutter-horizontal:active>div,
+.split-gutter-horizontal:focus>div {
+    width: 100%;
+    min-height: 100%;
+}
+.split-gutter-vertical:hover>div,
+.split-gutter-vertical:active>div,
+.split-gutter-vertical:focus>div {
+    min-width: 100%;
+    height: 100%;
+}
+.split-gutter-horizontal:active>div,
+.split-gutter-horizontal:focus>div,
+.split-gutter-vertical:active>div,
+.split-gutter-vertical:focus>div {
+    background-color: rgb(89, 50, 161) !important;
+}
+.split-gutter-vertical:active>div,
+.split-gutter-vertical:focus>div {
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+}
+.split-gutter-horizontal:active>div,
+.split-gutter-horizontal:focus>div {
+    box-sizing: border-box;
+    border-left: 1px solid rgba(164, 109, 253, 0.6);
+    border-right: 1px solid rgba(60, 26, 124, 0.9) !important;
+}

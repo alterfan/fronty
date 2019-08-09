@@ -1,0 +1,37 @@
+.transition {
+	-moz-transition: all 0.2s ease-in-out 0.2s;
+	-webkit-transition: all 0.2s ease-in-out 0.2s;
+	-o-transition: all 0.2s ease-in-out 0.2s;
+	transition: all 0.2s ease-in-out 0.2s;
+}
+.hidden {
+	visibility: hidden
+}
+.transition.fadein {
+	opacity: 0;
+	-webkit-transition: opacity 300ms ease-out;
+	-moz-transition: opacity 300ms ease-out;
+	-o-transition: opacity 300ms ease-out;
+	transition: opacity 300ms ease-out;
+}
+.transition.fadeout {
+	opacity: 1;
+	-webkit-transition: opacity 300ms ease-out;
+	-moz-transition: opacity 300ms ease-out;
+	-o-transition: opacity 300ms ease-out;
+	transition: opacity 300ms ease-out;
+}
+.slideoutleft {
+	left: -100%;
+	-webkit-transition: opacity 300ms ease-out;
+	-moz-transition: opacity 300ms ease-out;
+	-o-transition: opacity 300ms ease-out;
+	transition: opacity 300ms ease-out;
+}
+.slideinleft {
+	-webkit-transform: translate(100%);
+	-moz-transform: translate(100%);
+	-ms-transform: translate(100%);
+	-o-transform: translate(100%);
+	transform: translate(100%);
+}

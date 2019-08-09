@@ -1,0 +1,115 @@
+.bar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #372963;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    z-index: inherit;
+    text-decoration: none
+}
+.bar__group {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+.bar__group__item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    position: relative;
+    max-height: 32px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    fill: var(--btn_color);
+}
+.bar__group__item__icon {
+    position: relative;
+    max-height: 64px;
+    height: 2rem;
+    background: none;
+    border: none;
+    color: #ffffff
+}
+.bar__group__panel {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    z-index: 1090;
+    text-decoration: none
+}
+.bar__group__panel {
+    -moz-transition: opacity 0.1s ease-in-out 0.1s,
+        margin-bottom 0.1s ease-in-out 0.1s;
+    -webkit-transition: opacity 0.1s ease-in-out 0.1s,
+        margin-bottom 0.1s ease-in-out 0.1s;
+    -o-transition: opacity 0.1s ease-in-out 0.1s,
+        margin-bottom 0.1s ease-in-out 0.1s;
+    transition: opacity 0.1s ease-in-out 0.1s,
+        margin-bottom 0.1s ease-in-out 0.1s;
+    /* margin-bottom: -100%; */
+    opacity: 0;
+    /*Элемент полностью прозрачный (невидимый)*/
+    animation: show 900ms 1;
+    /* Указываем название анимации, её время и количество повторов*/
+    animation-fill-mode: forwards;
+    /* Чтобы элемент оставался в конечном состоянии анимации */
+    animation-delay: 100ms;
+    /* Задержка перед началом */
+}
+@keyframes show {
+    0% {
+        opacity: 0;
+        margin-bottom: 0;
+    }
+    100% {
+        opacity: 1;
+        margin-bottom: -100%;
+    }
+}
+/* group bar__group__panel__group_btn */
+.bar__group__panel__item {
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    -o-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    fill: var(--btn_color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #ffffff;
+}
+.bar__group__panel__item:hover {
+    color: #372963;
+    background-color: #ffffff
+}
+.bar__group__panel__separator {
+    border: none;
+    background: rgba(255, 255, 255, 0.596);
+    margin: 0.3em 2px;
+    height: 1.4em;
+    width: 1px;
+}

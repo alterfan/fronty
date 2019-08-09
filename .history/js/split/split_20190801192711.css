@@ -1,0 +1,52 @@
+.split-gutter-vertical {
+    bottom: 0;
+    cursor: row-resize
+}
+.split-gutter-horizontal {
+    right: 0;
+    cursor: col-resize
+}
+.split-gutter-horizontal:hover,
+.split-gutter-horizontal:active {
+    background-color: rgb(124, 116, 194) !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+.split-gutter-vertical:active,
+.split-gutter-vertical:hover {
+    background-color: rgb(124, 116, 194) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+.split-gutter-vertical>span,
+.split-gutter-horizontal>span {
+    background-color: rgb(24, 19, 44) !important;
+    transition: background-color 200ms ease-in-out;
+    -webkit-transition: background-color 200ms ease-in-out;
+    -moz-transition: background-color 200ms ease-in-out;
+    -ms-transition: background-color 200ms ease-in-out;
+    -o-transition: background-color 200ms ease-in-out;
+}
+.split-gutter-horizontal>span {
+    height: 100%;
+    width: 4px;
+}
+.split-gutter-vertical>span {
+    width: 100%;
+    height: 4px;
+}
+.split-gutter-horizontal,
+.split-gutter-vertical {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background-color: rgba(31, 31, 31, 0) !important;
+    transition: background-color 200ms ease-in-out;
+    -webkit-transition: background-color 200ms ease-in-out;
+    -moz-transition: background-color 200ms ease-in-out;
+    -ms-transition: background-color 200ms ease-in-out;
+    -o-transition: background-color 200ms ease-in-out;
+}

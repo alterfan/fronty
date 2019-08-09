@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Fira Code';
+    src: local('Fira Code Regular'), local('FiraCode-Regular'), url('FiraCode-Regular.woff2') format('woff2'), url('FiraCode-Regular.woff') format('woff'), url('FiraCode-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Fira Code';
+    src: local('Fira Code Bold'), local('FiraCode-Bold'), url('FiraCode-Bold.woff2') format('woff2'), url('FiraCode-Bold.woff') format('woff'), url('FiraCode-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto Regular'), local('Roboto-Regular'), url('Roboto-Regular.woff2') format('woff2'), url('Roboto-Regular.woff') format('woff'), url('Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto Bold'), local('Roboto-Bold'), url('Roboto-Bold.woff2') format('woff2'), url('Roboto-Bold.woff') format('woff'), url('Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Regular'), local('Sourcecodepro'), url('Sourcecodepro.woff2') format('woff2'), url('Sourcecodepro.woff') format('woff'), url('Sourcecodepro.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro Bold'), local('Source Code Pro-Bold'), url('Sourcecodepro.woff2') format('woff2'), url('Sourcecodepro.woff') format('woff'), url('Sourcecodepro.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'opensans';
+    src: local('Open Sans Regular'), local('Open Sans-Regular'), url('opensans-Regular.woff2') format('woff2'), url('opensans-Regular.woff') format('woff'), url('opensans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'opensans';
+    src: local('Open Sans Bold'), local('Open Sans-Bold'), url('opensans-Bold.woff2') format('woff2'), url('opensans-Bold.woff') format('woff'), url('opensans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Source Code Pro Light';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Code Pro Light'), local('SourceCodeProLight-Regular'),
+        url(source-code-pro-light.woff) format('woff'),
+        url(source-code-pro-light.ttf) format('truetype');
+}

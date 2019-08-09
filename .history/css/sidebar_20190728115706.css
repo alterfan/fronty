@@ -1,0 +1,136 @@
+/* modal */
+.fronty__workspace__sidebar {
+    background: var(--main_bg);
+    z-index: 100000;
+    overflow-y: hidden;
+    position: absolute;
+    box-shadow: 0 0 10px rgb(28, 26, 31);
+
+    min-height: 100%;
+    top: 0;
+    transition: transform 400ms ease-in-out, opacity 450ms;
+    -webkit-transition: transform 400ms ease-in-out, opacity 450ms;
+    -moz-transition: transform 400ms ease-in-out, opacity 450ms;
+    -ms-transition: transform 400ms ease-in-out, opacity 450ms;
+    -o-transition: transform 400ms ease-in-out, opacity 450ms;
+}
+
+.fronty__workspace__sidebar__splited {
+    position: relative;
+    min-width: 15vw;
+    max-width: 40vw;
+    height: 100%;
+}
+
+.fronty__workspace__sidebar__overalayed {
+    position: absolute;
+    min-width: 40vw;
+    max-width: 90vw;
+    height: 100%;
+}
+
+.fronty__workspace__sidebar__transition {
+    transition: transform 400ms ease-in-out, opacity 450ms;
+    -webkit-transition: transform 400ms ease-in-out, opacity 450ms;
+    -moz-transition: transform 400ms ease-in-out, opacity 450ms;
+    -ms-transition: transform 400ms ease-in-out, opacity 450ms;
+    -o-transition: transform 400ms ease-in-out, opacity 450ms;
+}
+
+.fronty__workspace__sidebar_right {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    right: 0%;
+    transition: transform 400ms ease-in-out, opacity 450ms;
+    -webkit-transition: transform 400ms ease-in-out, opacity 450ms;
+    -moz-transition: transform 400ms ease-in-out, opacity 450ms;
+    -ms-transition: transform 400ms ease-in-out, opacity 450ms;
+    -o-transition: transform 400ms ease-in-out, opacity 450ms;
+}
+
+.fronty__workspace__sidebar_left {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    left: 0%;
+    float: left;
+    transition: transform 400ms ease-in-out, opacity 450ms;
+    -webkit-transition: transform 400ms ease-in-out, opacity 450ms;
+    -moz-transition: transform 400ms ease-in-out, opacity 450ms;
+    -ms-transition: transform 400ms ease-in-out, opacity 450ms;
+    -o-transition: transform 400ms ease-in-out, opacity 450ms;
+}
+
+.fronty__workspace__sidebar_left.visible,
+.fronty__workspace__sidebar_right.visible {
+    transform: translateX(0px);
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+}
+
+.fronty__workspace__sidebar_head {
+    background: var(--main_border);
+    padding: .5em;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center
+}
+
+.fronty__workspace__sidebar__content {
+    display: flex;
+    flex: 4 100%;
+    flex-direction: column;
+    width: 100%;
+    padding: 2em;
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    min-height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.fronty__workspace__sidebar_content:nth-child(2) {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modal_footer {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0
+}
+
+.fronty__overlay {
+    background: rgba(0, 0, 0, 0.658);
+    cursor: pointer;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 400ms ease-out;
+    -webkit-transition: opacity 400ms ease-out;
+    -moz-transition: opacity 400ms ease-out;
+    -ms-transition: opacity 400ms ease-out;
+    -o-transition: opacity 400ms ease-out;
+}
+
+.fronty__overlay.visible {
+    opacity: 1;
+}

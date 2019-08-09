@@ -1,0 +1,72 @@
+@import url('../assests/fonts/Rubik-Regular.ttf');
+/* Шаблоны представления */
+.frontland-workspace {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+.frontland-workspace.vertical {
+    flex-direction: column
+}
+.frontland-workspace.horizontal {
+    flex-direction: row
+}
+/* editors block editor*/
+.frontland-workspace-area {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 0;
+    /* В Браузере Microsoft EDGE  для корректной работы Flexbox необходимо указать мин высоту блока или просто высоту. */
+}
+.frontland-workspace-area.vertical {
+    flex-direction: column
+}
+.frontland-workspace-area.horizontal {
+    flex-direction: row
+}
+.fronty_wrapper_block_editor {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+}
+/* editors block */
+#previewArea.frontland-workspace-area {
+    flex-direction: column;
+}
+.frontland-workspace-area-bar {
+    position: relative;
+    min-height: 32px;
+    width: 100%;
+}
+.frontland-workspace-area-iframe {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}
+.frontland-workspace-area-iframe>#preview {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}

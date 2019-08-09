@@ -1,0 +1,148 @@
+.fronty__workbench {
+}
+/* Шаблоны представления */
+.fronty__workspace {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    transition: opacity 0.2s ease-out;
+    -webkit-transition: opacity 0.2s ease-out;
+    -o-transition: opacity 0.2s ease-out;
+    -moz-transition: opacity 0.2s ease-out;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+/* editors block editor*/
+.fronty__workspace_block {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+}
+.fronty__workspace_block_editor {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+}
+.fronty__workspace_block_editor_bar {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* editors block */
+#preview {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+}
+.fronty__workspace_block_preview {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}
+.fronty__workspace_block_preview>iframe {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    background: #fff;
+    border: none
+}
+/* layout direction horizontal*/
+.fronty__workspace-horizontal {
+    flex-direction: column;
+}
+.fronty__workspace-horizontal .fronty__workspace_block {
+    width: 100%;
+    height: calc(100%/2);
+}
+/* layout direction vertical*/
+.fronty__workspace-vertical .fronty__workspace_block {
+    height: 100%;
+    flex-direction: column;
+    width: calc(100%/2);
+}
+.fronty__workspace-vertical .fronty__workspace_block .fronty__workspace_block_editor {
+    height: calc(100%/3);
+}
+/* layout direction vertical default*/
+.fronty__workspace-vertical.default {
+    flex-direction: row;
+}
+.fronty__workspace-vertical.reverse {
+    flex-direction: row-reverse;
+}
+element.style {}
+.monaco-split-view2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+div {
+    display: block;
+}
+.monaco-split-view2>.split-view-container>.split-view-view {
+    white-space: normal;
+    flex: none;
+    position: relative;
+}
+.monaco-split-view2>.split-view-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+}
+.monaco-workbench {
+    color: #cccccc;
+}
+.monaco-workbench {
+    font-size: 13px;
+    line-height: 1.4em;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.windows {
+    --monaco-monospace-font: Consolas, Inconsolata, "Courier New", monospace;
+}
+.windows {
+    font-family: Segoe WPC, Segoe UI, sans-serif;
+}
+.windows {
+    --monaco-monospace-font: Consolas, Inconsolata, "Courier New", monospace;
+}
+.windows {
+    font-family: Segoe WPC, Segoe UI, sans-serif;
+}
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 11px;
+    user-select: none;
+}

@@ -1,0 +1,15 @@
+<?xml-stylesheet type="text/css" href="../../css/css.css"?>
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height="32px">
+    <rect class="rect" x="0" y="0" width="47" height="47"></rect>
+    <rect x="53" y="0" width="47" height="47"></rect>
+    <rect x="0" y="53" width="47" height="47"></rect>
+    <rect x="53" y="53" width="47" height="47"></rect>
+</svg>
+	<!--                 <a data-target="layout" data-layout="1" layout-direction="vertical" data-action="change" class="group_btn">
+                    <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height="1em">
+                        <rect class="rect" x="0" y="0" width="47" height="47"></rect>
+                        <rect x="53" y="0" width="47" height="47"></rect>
+                        <rect x="0" y="53" width="47" height="47"></rect>
+                        <rect x="53" y="53" width="47" height="47"></rect>
+                    </svg>
+                </a> -->

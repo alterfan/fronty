@@ -1,0 +1,30 @@
+.split-gutter-vertical {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    z-index: 10000;
+    cursor: row-resize
+}
+.split-gutter-horizontal {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+    right: 0;
+    z-index: 10000;
+    cursor: col-resize
+}
+.split-gutter-horizontal:hover,
+.split-gutter-vertical:hover {
+    background-color: rgba(56, 52, 94, 1) !important;
+}
+.split-gutter-horizontal,
+.split-gutter-vertical {
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    background-color: rgba(31, 31, 31, 0.5) !important;
+    transition: background-color 200ms ease-in-out;
+    -webkit-transition: background-color 200ms ease-in-out;
+    -moz-transition: background-color 200ms ease-in-out;
+    -ms-transition: background-color 200ms ease-in-out;
+    -o-transition: background-color 200ms ease-in-out;
+}
